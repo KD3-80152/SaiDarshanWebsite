@@ -1,13 +1,16 @@
 package com.app.entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -51,12 +54,14 @@ private LocalDate dob;
 
 
 
+@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+private List<Aarti> aarti = new ArrayList<Aarti>();
+
 @Column(name="gender",length=20,unique=true)
 private Gender gender;
 
 @Column(name = "adhar_number",length = 12,unique = true,nullable = false)
 private String adharNumber;
-
 
 
 
