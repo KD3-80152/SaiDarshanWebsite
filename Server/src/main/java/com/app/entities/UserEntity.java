@@ -51,13 +51,17 @@ private UserRole role;
 @Column(name="birth_date")
 private LocalDate dob;
 
-
-
 @Column(name="gender",length=20,unique=true)
 private Gender gender;
 
 @Column(name = "adhar_number",length = 12,unique = true,nullable = false)
 private String adharNumber;
+
+@OneToMany(mappedBy="user",cascade = CascadeType.ALL)
+private List<Darshan> darshanList = new ArrayList<>();
+
+@OneToMany(mappedBy="user",cascade = CascadeType.ALL)
+private List<Accommodation> accomodations = new ArrayList<>();
 
 
 
