@@ -11,19 +11,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.AartiDTO;
 import com.app.service.AartiService;
 
+//https://localhost:8443/swagger-ui/index.html#/
 
 @RestController
+@RequestMapping("/aarti")
 public class AartiContoller 
 {
 	@Autowired
 	private AartiService artiService;
 	
-	@PostMapping
+	@PostMapping("/add")
 	public ResponseEntity<?> addAartiBooking(@RequestBody
 			@Valid AartiDTO aarti) {
 		System.out.println("in add darshan " + aarti);
@@ -33,7 +36,7 @@ public class AartiContoller
 	}
 	
 	
-	@GetMapping(value = "/{userId}")
+	@GetMapping(value = "/view/{userId}")
 	public ResponseEntity<?> getAartiBookingsByUser(@PathVariable Long userId) throws IOException {
 		System.out.println("get aarti bookings by user " + userId);
 		return ResponseEntity.ok(artiService.getAllAartiBookingsByUserId(userId));
