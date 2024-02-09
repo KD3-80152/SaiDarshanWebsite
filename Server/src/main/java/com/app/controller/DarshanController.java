@@ -18,10 +18,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.app.dto.DarshanDTO;
 import com.app.service.DarshanService;
 
+<<<<<<< HEAD
 @RestController
 @RequestMapping("/darshan")
 @Validated
+=======
+
+@RestController
+@RequestMapping("/darshan")
+>>>>>>> prashant
 public class DarshanController {
+	
 	@Autowired
 	private DarshanService darshanService;
 	

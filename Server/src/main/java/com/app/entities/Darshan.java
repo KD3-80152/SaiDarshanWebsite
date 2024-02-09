@@ -18,10 +18,14 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+<<<<<<< HEAD
 @Entity
 @Table(name = "darshan")
 public class Darshan extends BaseEntity{
 	
+=======
+public class Darshan extends BaseEntity{
+>>>>>>> prashant
 	@Column(name="darshan_date")
 	private LocalDate date;
 	
