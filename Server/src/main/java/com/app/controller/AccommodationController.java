@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +24,7 @@ import com.app.service.AccommodationService;
 @RequestMapping("/accommodation")
 @Validated
 public class AccommodationController {
+	 
 	@Autowired
 	private AccommodationService accoService;
 	
@@ -40,5 +42,12 @@ public class AccommodationController {
 		System.out.println("get accommodation bookings by user " + userId);
 		return ResponseEntity.ok(accoService.getAllAccommodationBookingsByUserId(userId));
 	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> deleteAccommodationDetails(@PathVariable Long id) {
+		System.out.println("in update accommodation" + id);
+		return ResponseEntity.ok(accoService.deleteAccomodationBookingById(id));
+	}
+
 	
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.app.custom_Exceptions.ResourceNotFoundException;
 import com.app.dao.AccommodationDao;
 import com.app.dao.DarshanDao;
 import com.app.dto.AccommodationDTO;
@@ -41,8 +42,12 @@ public class AccommodationServiceImpl implements AccommodationService {
 
 	@Override
 	public ApiResponse deleteAccomodationBookingById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Accommodation acco = accodao.findById(id).
+				orElseThrow(() -> new ResourceNotFoundException("Invalid emp id"));
+		
+		accodao.delete(acco);
+		return new ApiResponse("Accommodation Details of accommodation with Id" + acco.getId() + " deleted....");
+		
 	}
 
 }
