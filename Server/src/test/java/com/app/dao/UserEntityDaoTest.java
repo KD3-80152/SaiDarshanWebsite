@@ -21,6 +21,7 @@ import com.app.entities.UserRole;
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @Rollback(false)
 class UserEntityDaoTest {
+	
 	// dep
 	@Autowired
 	private UserEntityDao userRepo;
@@ -30,6 +31,7 @@ class UserEntityDaoTest {
 
 	@Test
 	void testAddUsers() {
+		
 	//	List<UserEntity> list = List.of(
 //				new UserEntity("a1", "b1", "a1@gmail.com", enc.encode("12345"),"9465823452", UserRole.ROLE_ADMIN,"146372983563"),
 //				new UserEntity("a2", "b2", "a2@gmail.com", enc.encode("2345"),"9465823451", UserRole.ROLE_USER,"146372983562"),

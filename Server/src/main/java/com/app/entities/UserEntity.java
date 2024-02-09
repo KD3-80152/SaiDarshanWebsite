@@ -1,14 +1,15 @@
 package com.app.entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -49,13 +50,17 @@ private UserRole role;
 @Column(name="birth_date")
 private LocalDate dob;
 
-
-
 @Column(name="gender",length=20,unique=true)
 private Gender gender;
 
 @Column(name = "adhar_number",length = 12,unique = true,nullable = false)
 private String adharNumber;
+
+@OneToMany(mappedBy="user",cascade = CascadeType.ALL)
+private List<Darshan> darshanList = new ArrayList<>();
+
+@OneToMany(mappedBy="user",cascade = CascadeType.ALL)
+private List<Accommodation> accomodations = new ArrayList<>();
 
 
 
