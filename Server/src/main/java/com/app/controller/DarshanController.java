@@ -19,6 +19,7 @@ import com.app.dto.DarshanDTO;
 import com.app.service.DarshanService;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 @RestController
 @RequestMapping("/darshan")
 @Validated
@@ -27,6 +28,16 @@ import com.app.service.DarshanService;
 @RestController
 @RequestMapping("/darshan")
 >>>>>>> prashant
+=======
+
+
+
+
+@RestController
+@RequestMapping("/darshan")
+@Validated
+
+>>>>>>> e927ba8a4c68c633cf620dd303c2b942170ef08a
 public class DarshanController {
 	
 	@Autowired

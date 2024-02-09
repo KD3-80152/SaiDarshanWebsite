@@ -19,13 +19,21 @@ import lombok.ToString;
 @Setter
 @ToString
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> e927ba8a4c68c633cf620dd303c2b942170ef08a
 @Entity
 @Table(name = "darshan")
 public class Darshan extends BaseEntity{
 	
+<<<<<<< HEAD
 =======
 public class Darshan extends BaseEntity{
 >>>>>>> prashant
+=======
+
+>>>>>>> e927ba8a4c68c633cf620dd303c2b942170ef08a
 	@Column(name="darshan_date")
 	private LocalDate date;
 	
