@@ -1,23 +1,32 @@
 package com.app.dto;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import com.app.entities.Address;
+import com.app.entities.Gender;
 import com.app.entities.State;
 import com.app.entities.UserRole;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
-import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-public class ProfileUpdateDTO {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+
+public class UserDTO {
 
 	@JsonProperty(access = Access.READ_ONLY) // this property only used during ser.
 	private Long id;
@@ -33,32 +42,24 @@ public class ProfileUpdateDTO {
 	@Pattern(regexp="((?=.*\\d)(?=.*[a-z])(?=.*[#@$*]).{5,20})",message = "Invalid password format")
 	private String password;
 	
+	@Pattern(regexp="((?=.*\\d)(?=.*[a-z])(?=.*[#@$*]).{5,20})",message = "Invalid password format")
+	private String newPassword;
+	
+	private String confirmNewPassword;
+	
 	@NotBlank(message = "Please enter your mobile number in order to proceed!")
 	@Pattern(regexp="^\\d{10}$",message = "Invalid number :(")
 	private String mobileNo;
 	
 	private UserRole role;
 	
-//	@NotBlank(message= "Please enter your address " )
-//	private Address address;
-	
-	@NotBlank(message="This field can't be empty")
-	private String lineOne;
-	
-	
-	private String lineTwo;
-	
-	
-	private String country;
-	
-	@NotBlank(message="This field can't be empty")
-	private String pincode;
-	
-	
-	private State state;
-	
-	@NotBlank(message="This field can't be empty")
-	private String district;
+	private LocalDate dob;
+
+	private Gender gender;
+
+	@NotNull(message="This field cannot contain null value")
+	@NotBlank(message="This field cannot be empty!")
+	private String adharNumber;
 	
 	
 	

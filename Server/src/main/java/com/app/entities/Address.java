@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
@@ -21,9 +22,11 @@ import lombok.ToString;
 @ToString
 public class Address extends BaseEntity {
 
-	@OneToOne
+	//one-to-one , uni dir Address 1--->1 Employee
+	//owning side : Address (since FK)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id",nullable=false)
-	@MapsId
+	@MapsId //shared primary approach
 	private UserEntity user;
 	
 	@Column(name="add_line_one",length = 120)

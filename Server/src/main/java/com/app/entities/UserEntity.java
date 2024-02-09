@@ -21,7 +21,7 @@ import lombok.ToString;
 @Entity
 @Table(name = "secure_users")
 @NoArgsConstructor
-@AllArgsConstructor()
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString(exclude = "password") // toString excluding password
@@ -64,8 +64,13 @@ private String adharNumber;
 @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
 private List<Darshan> darshanList =new ArrayList<Darshan>();
 
-@OneToMany(mappedBy="user",cascade = CascadeType.ALL)
+@OneToMany(mappedBy="user",cascade = CascadeType.ALL,orphanRemoval = true)
 private List<Accommodation> accomodations = new ArrayList<>();
+
+
+@OneToMany(mappedBy="user",cascade= CascadeType.ALL,orphanRemoval = true)
+private List<Pooja> poojas = new ArrayList<>();
+
 
 
 public UserEntity(String firstName, String lastName, String email, String password, String mobileNo, UserRole role,
@@ -83,9 +88,5 @@ public UserEntity(String firstName, String lastName, String email, String passwo
 }
 
 
-
-
-@OneToMany(mappedBy="user",cascade= CascadeType.ALL)
-private List<Pooja> poojas = new ArrayList<>();
-
 }
+
