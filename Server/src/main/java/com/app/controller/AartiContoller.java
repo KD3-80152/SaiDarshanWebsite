@@ -44,7 +44,14 @@ public class AartiContoller
 		
 	}
 	
-//	@DeleteMapping
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> deleteDarshanDetails(@PathVariable Long id)
+	{
+		System.out.println("In Delete Aarti: " + id);
+		return ResponseEntity.ok(artiService.deleteAartiBookingById(id));
+	}
+
 	
 	
 }

@@ -46,14 +46,15 @@ public class AartiServiceImpl implements AartiService
 	@Override
 	public ApiResponse deleteAartiBookingById(Long id) {
 		// TODO Auto-generated method stub
-		Aarti aarti = aartiDao.findById(id).orElseThrow(() -> new ResourceNotFoundException("Invalid"));
+		
 
 		
-//		    empRepo.delete(emp);// yet to be tested
-//			return new ApiResponse("Emp Details of emp with ID " + emp.getId() + " deleted....");
-
+		Aarti aarti = aartiDao.findById(id).
+				orElseThrow(() -> new ResourceNotFoundException("Invalid emp id"));
 		
-		return null;
+		aartiDao.delete(aarti);
+		return new ApiResponse("Darshan Details of dasrhan with ID " + aarti.getId() + " deleted....");
+//		return null;
 	}
 	
 }
