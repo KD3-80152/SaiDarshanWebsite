@@ -14,12 +14,12 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@ToString
 @Table(name="darshan")
+
+@ToString
+
 @Getter
 @Setter
-
-
 
 
 public class Darshan extends BaseEntity{

@@ -8,6 +8,10 @@
 
 #Thu Feb 08 15:34:03 IST 2024
 
+<<<<<<< HEAD
+>>>>>>> 04e6d7151d140a01d092b69c1faf02f25c792998
+=======
 >>>>>>> 0588ddd87df0f16285aeee431d52d3c082eaf976
+>>>>>>> ec19655d260e453568df2cf8c73c3c9fe6b5c4ff
 org.eclipse.wst.server.core.isServerProject=true
 eclipse.preferences.version=1
