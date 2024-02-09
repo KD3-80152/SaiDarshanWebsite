@@ -43,6 +43,7 @@ class UserEntityDaoTest {
 		List<UserEntity> list2 = userRepo.saveAll(list);
 		assertEquals(4, list2.size());
 
+
 	}
 
 }

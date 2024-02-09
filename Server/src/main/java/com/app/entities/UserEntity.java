@@ -9,7 +9,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+
+
+
 import javax.persistence.OneToMany;
+
+
+
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -21,7 +27,7 @@ import lombok.ToString;
 @Entity
 @Table(name = "secure_users")
 @NoArgsConstructor
-@AllArgsConstructor()
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString(exclude = "password") // toString excluding password
@@ -54,6 +60,11 @@ private LocalDate dob;
 
 
 
+@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+private List<Aarti> aarti = new ArrayList<Aarti>();
+
+
+
 @Column(name="gender",length=20)
 private Gender gender;
 
@@ -64,8 +75,8 @@ private String adharNumber;
 @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
 private List<Darshan> darshanList =new ArrayList<Darshan>();
 
-@OneToMany(mappedBy="user",cascade = CascadeType.ALL)
-private List<Accommodation> accomodations = new ArrayList<>();
+//@OneToMany(mappedBy="user",cascade = CascadeType.ALL)
+//private List<Accommodation> accomodations = new ArrayList<>();
 
 
 public UserEntity(String firstName, String lastName, String email, String password, String mobileNo, UserRole role,
@@ -85,7 +96,9 @@ public UserEntity(String firstName, String lastName, String email, String passwo
 
 
 
+
 @OneToMany(mappedBy="user",cascade= CascadeType.ALL)
 private List<Pooja> poojas = new ArrayList<>();
+
 
 }

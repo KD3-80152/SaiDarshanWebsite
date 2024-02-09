@@ -11,13 +11,18 @@ import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name="darshan")
+
+@ToString
+
 @Getter
 @Setter
 
 public class Darshan extends BaseEntity{
+
 
 	@Column(name="darshan_date")
 	private LocalDate date;
