@@ -47,6 +47,7 @@ private String mobileNo;
 @Column(length = 20)
 private UserRole role;
 
+
 @Column(name="birth_date")
 private LocalDate dob;
 
@@ -66,6 +67,7 @@ private List<Accommodation> accomodations = new ArrayList<>();
 
 
 
-
+@OneToMany(mappedBy="user",cascade= CascadeType.ALL)
+private List<Pooja> poojas = new ArrayList<>();
 
 }

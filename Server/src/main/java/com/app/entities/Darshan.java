@@ -18,10 +18,12 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+
 @Entity
 @Table(name = "darshan")
 public class Darshan extends BaseEntity{
 	
+
 	@Column(name="darshan_date")
 	private LocalDate date;
 	
