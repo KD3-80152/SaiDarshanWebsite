@@ -51,28 +51,22 @@ private UserRole role;
 @Column(name="birth_date")
 private LocalDate dob;
 
-<<<<<<< HEAD
+
 
 
 @Column(name="gender",length=20)
-=======
-@Column(name="gender",length=20,unique=true)
->>>>>>> 554bf647d4352891f756fc67e102160b25f20ccf
 private Gender gender;
 
 @Column(name = "adhar_number",length = 12,unique = true,nullable = false)
 private String adharNumber;
 
-<<<<<<< HEAD
+
 @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
 private List<Darshan> darshanList =new ArrayList<Darshan>();
-=======
-@OneToMany(mappedBy="user",cascade = CascadeType.ALL)
-private List<Darshan> darshanList = new ArrayList<>();
 
 @OneToMany(mappedBy="user",cascade = CascadeType.ALL)
 private List<Accommodation> accomodations = new ArrayList<>();
->>>>>>> 554bf647d4352891f756fc67e102160b25f20ccf
+
 
 public UserEntity(String firstName, String lastName, String email, String password, String mobileNo, UserRole role,
 		LocalDate dob, Gender gender, String adharNumber) {
