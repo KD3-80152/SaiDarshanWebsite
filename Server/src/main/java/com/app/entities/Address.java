@@ -46,11 +46,10 @@ public class Address extends BaseEntity {
 	@Column(name="district",length=20)
 	private String district;
 	
-	@Column(name="city",length=20)
-	private String city;
+	
 
 	public Address(UserEntity user, String lineOne, String lineTwo, String country, String pincode, State state,
-			String district, String city)
+			String district)
 	{
 		super();
 		this.user = user;
@@ -60,7 +59,7 @@ public class Address extends BaseEntity {
 		this.pincode = pincode;
 		this.state = state;
 		this.district = district;
-		this.city = city;
+		
 	}
 	
 	

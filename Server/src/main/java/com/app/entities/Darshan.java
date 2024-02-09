@@ -1,12 +1,10 @@
 package com.app.entities;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -15,14 +13,14 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
+@Entity
+@Table(name="darshan")
+
 @ToString
 
+@Getter
+@Setter
 
-
-@Entity
-@Table(name = "darshan")
 public class Darshan extends BaseEntity{
 
 
@@ -46,9 +44,10 @@ public class Darshan extends BaseEntity{
 	@Column(name="primary_devotee_name")
 	private String primaryDevoteeName;
 	
+
 	@Column(name= "adhar_no",unique=true)
 	private String adharNo;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "user_id") // Optional BUT reco , to specify the name of FK col.
 	private UserEntity user;
