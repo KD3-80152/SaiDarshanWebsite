@@ -15,7 +15,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Darshan {
+public class Darshan extends BaseEntity{
 	@Column(name="darshan_date")
 	private LocalDate date;
 	@Column(name="darshan_time_slot")
