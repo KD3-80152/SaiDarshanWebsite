@@ -60,8 +60,8 @@ private String adharNumber;
 @OneToMany(mappedBy="user",cascade = CascadeType.ALL)
 private List<Darshan> darshanList = new ArrayList<>();
 
-@OneToMany(mappedBy="user",cascade = CascadeType.ALL)
-private List<Accommodation> accomodations = new ArrayList<>();
+//@OneToMany(mappedBy="user",cascade = CascadeType.ALL)
+//private List<Accommodation> accomodations = new ArrayList<>();
 
 
 

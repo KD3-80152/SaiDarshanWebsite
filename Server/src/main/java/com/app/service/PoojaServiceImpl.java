@@ -7,10 +7,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.app.dao.PoojaDao;
 import com.app.dto.*;
-
 import com.app.entities.Pooja;
 
 
@@ -38,9 +36,23 @@ public class PoojaServiceImpl implements PoojaService{
 	}
 
 	@Override
-	public ApiResponse deleteDarshanBookingById(Long id) {
-		
+	public String deletePoojaBookingById(Long poojaId) {
+		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
+//	public String deletePoojaBookingById(Long poojaId) {
+//		if (poojaDao.existsById(poojaId)) {
+//			poojaDao.deleteById(poojaId);
+//			return "Deleted pooja details....";
+//		}
+//		// => invalid Pooja id
+//		throw new ResourceNotFoundException("Pooja  can't be deleted : Invalid Pooja Id!!!");
+//		
+//	}
+
+	
+
 
 }
