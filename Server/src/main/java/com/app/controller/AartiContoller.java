@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,6 +42,13 @@ public class AartiContoller
 		System.out.println("get aarti bookings by user " + userId);
 		return ResponseEntity.ok(artiService.getAllAartiBookingsByUserId(userId));
 		
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> deleteDarshanDetails(@PathVariable Long id)
+	{
+		System.out.println("In Delete Aarti: " + id);
+		return ResponseEntity.ok(artiService.deleteAartiBookingById(id));
 	}
 	
 	
