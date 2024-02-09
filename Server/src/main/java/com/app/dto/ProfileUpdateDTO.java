@@ -1,22 +1,24 @@
 package com.app.dto;
 
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 import com.app.entities.Address;
+import com.app.entities.State;
 import com.app.entities.UserRole;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
+import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
-@NoArgsConstructor
-public class Signup {
+public class ProfileUpdateDTO {
+
 	@JsonProperty(access = Access.READ_ONLY) // this property only used during ser.
 	private Long id;
 	
@@ -37,20 +39,36 @@ public class Signup {
 	
 	private UserRole role;
 	
+//	@NotBlank(message= "Please enter your address " )
+//	private Address address;
+	
+	@NotBlank(message="This field can't be empty")
+	private String lineOne;
+	
+	
+	private String lineTwo;
+	
+	
+	private String country;
+	
+	@NotBlank(message="This field can't be empty")
+	private String pincode;
+	
+	
+	private State state;
+	
+	@NotBlank(message="This field can't be empty")
+	private String district;
 	
 	
 	
 	
-	public Signup(String firstName, String lastName,
-			String email, String password, UserRole role) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.password = password;
-		this.role = role;  //after testing make default role as user
+	
+	
+	
 		
-	}
+	
+	
 	
 	
 }

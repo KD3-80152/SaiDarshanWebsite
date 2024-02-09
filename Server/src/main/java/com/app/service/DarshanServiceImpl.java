@@ -16,7 +16,10 @@ import com.app.dto.DarshanDTO;
 import com.app.entities.Darshan;
 @Service
 @Transactional
+
 public class DarshanServiceImpl implements DarshanService {
+	
+
 	@Autowired
 	private DarshanDao darshanDao;
 	
@@ -42,10 +45,14 @@ public class DarshanServiceImpl implements DarshanService {
 
 	@Override
 	public ApiResponse deleteDarshanBookingById(Long id) {
-		
+		//Darshan darshan = darshanDao.findById(id).orElseThrow(() -> new ResourceNotFoundException("Invalidid"));
+
+		// Before deleting emp rec , delete it's child rec from ProjectEmpDetails
+//		projectEmpRepo.deleteByMyEmployeeId(empId);// yet to be tested
+//		empRepo.delete(emp);// yet to be tested
+//		return new ApiResponse("Emp Details of emp with ID " + emp.getId() + " deleted....");
 		return null;
 	}
-	
 
 	
 

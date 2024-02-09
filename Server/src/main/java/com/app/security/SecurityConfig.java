@@ -45,7 +45,7 @@ public class SecurityConfig {
 				"/v*/api-doc*/**","/swagger-ui/**").permitAll()
 		// only required for JS clnts (react / angular) : for the pre flight requests
 		.antMatchers(HttpMethod.OPTIONS).permitAll()
-		.antMatchers("/products/purchase").hasRole("CUSTOMER")
+		.antMatchers("/products/purchase").hasRole("USER")
 		.antMatchers("/products/add").hasRole("ADMIN")
 		.anyRequest().authenticated()
 		.and()
