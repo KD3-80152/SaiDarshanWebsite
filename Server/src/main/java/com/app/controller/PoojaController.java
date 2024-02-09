@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
+import com.app.dto.ApiResponse;
 import com.app.dto.PoojaDTO;
 import com.app.service.PoojaService;
 
@@ -39,7 +39,11 @@ public class PoojaController {
 	
 	
 	
-	
-	
-
+		@DeleteMapping("/{poojaId}")
+		public ApiResponse deleteEmpDetails(@PathVariable Long poojaId) {
+			System.out.println("in del emp dtls " + poojaId);
+			return new ApiResponse(poojaService.deletePoojaBookingById(poojaId));
+		}
+		
+		
 }

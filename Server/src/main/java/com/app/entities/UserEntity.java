@@ -54,6 +54,11 @@ private LocalDate dob;
 
 
 
+@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+private List<Aarti> aarti = new ArrayList<Aarti>();
+
+
+
 @Column(name="gender",length=20)
 private Gender gender;
 
@@ -63,6 +68,7 @@ private String adharNumber;
 
 @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
 private List<Darshan> darshanList =new ArrayList<Darshan>();
+
 
 @OneToMany(mappedBy="user",cascade = CascadeType.ALL,orphanRemoval = true)
 private List<Accommodation> accomodations = new ArrayList<>();
@@ -89,4 +95,6 @@ public UserEntity(String firstName, String lastName, String email, String passwo
 
 
 }
+
+
 
