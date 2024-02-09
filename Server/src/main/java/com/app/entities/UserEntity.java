@@ -9,7 +9,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+
 import javax.persistence.OneToMany;
+
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -54,6 +56,11 @@ private LocalDate dob;
 
 
 
+@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+private List<Aarti> aarti = new ArrayList<Aarti>();
+
+
+
 @Column(name="gender",length=20)
 private Gender gender;
 
@@ -85,7 +92,9 @@ public UserEntity(String firstName, String lastName, String email, String passwo
 
 
 
+
 @OneToMany(mappedBy="user",cascade= CascadeType.ALL)
 private List<Pooja> poojas = new ArrayList<>();
+
 
 }

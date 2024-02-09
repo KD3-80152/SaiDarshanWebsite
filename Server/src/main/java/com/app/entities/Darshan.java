@@ -5,6 +5,7 @@ import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -13,11 +14,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name="darshan")
 @Getter
 @Setter
+@ToString
+@Table(name="darshan")
+
 
 public class Darshan extends BaseEntity{
+
 
 	@Column(name="darshan_date")
 	private LocalDate date;
