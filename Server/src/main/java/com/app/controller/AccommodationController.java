@@ -15,37 +15,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.dto.AccommodationDTO;
 import com.app.dto.DarshanDTO;
-import com.app.service.DarshanService;
-
-
-
-
+import com.app.service.AccommodationService;
 
 @RestController
-@RequestMapping("/darshan")
+@RequestMapping("/accommodation")
 @Validated
-
-
-public class DarshanController {
-	
+public class AccommodationController {
 	@Autowired
-	private DarshanService darshanService;
+	private AccommodationService accoService;
 	
 	@PostMapping("/add")
-	public ResponseEntity<?> addDarshanBooking(@RequestBody
-			@Valid DarshanDTO darshan) {
-		System.out.println("in add darshan " + darshan);
+	public ResponseEntity<?> addAccommodationBooking(@RequestBody
+			@Valid AccommodationDTO acco) {
+		System.out.println("in add accommodation " + acco);
 		return ResponseEntity
 				.status(HttpStatus.CREATED)
-				.body(darshanService.addDarshanBooking(darshan));
+				.body(accoService.addAccomodationBooking(acco));
 	}
 	
 	@GetMapping(value = "/view/{userId}")
-	public ResponseEntity<?> getDarshanBookingsByUser(@PathVariable Long userId) throws IOException {
-		System.out.println("get darshan bookings by user " + userId);
-		return ResponseEntity.ok(darshanService.getAllDarshanBookingsByUserId(userId));
-		
+	public ResponseEntity<?> getAccommodationBookingsByUser(@PathVariable Long userId) throws IOException {
+		System.out.println("get accommodation bookings by user " + userId);
+		return ResponseEntity.ok(accoService.getAllAccommodationBookingsByUserId(userId));
 	}
-
+	
 }
