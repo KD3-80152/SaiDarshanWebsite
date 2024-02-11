@@ -44,12 +44,14 @@ public class DarshanServiceImpl implements DarshanService {
 
 	@Override
 	public ApiResponse deleteDarshanBookingById(Long id) {
+
 		Darshan darshan = darshanDao.findById(id).
 				orElseThrow(() -> new ResourceNotFoundException("Invalid emp id"));
 		
 		darshanDao.delete(darshan);
 		return new ApiResponse("Darshan Details of dasrhan with ID " + darshan.getId() + " deleted....");
 		
+
 	}
 
 	
