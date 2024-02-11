@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.app.custom_Exceptions.ResourceNotFoundException;
 import com.app.dao.AartiDao;
 import com.app.dto.AartiDTO;
 import com.app.dto.ApiResponse;
@@ -46,7 +47,14 @@ public class AartiServiceImpl implements AartiService
 	public ApiResponse deleteAartiBookingById(Long id) {
 		// TODO Auto-generated method stub
 		
-		return null;
+
+		
+		Aarti aarti = aartiDao.findById(id).
+				orElseThrow(() -> new ResourceNotFoundException("Invalid emp id"));
+		
+		aartiDao.delete(aarti);
+		return new ApiResponse("Darshan Details of dasrhan with ID " + aarti.getId() + " deleted....");
+//		return null;
 	}
 	
 }

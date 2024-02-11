@@ -1,14 +1,18 @@
 package com.app.dto;
 
+import java.time.LocalDate;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 import com.app.entities.Address;
+import com.app.entities.Gender;
 import com.app.entities.UserRole;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,6 +20,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Signup {
 	@JsonProperty(access = Access.READ_ONLY) // this property only used during ser.
 	private Long id;
@@ -37,20 +42,15 @@ public class Signup {
 	
 	private UserRole role;
 	
+	private LocalDate dob;
+
+	private Gender gender;
+
+	private String adharNumber;
+
 	
 	
 	
-	
-	public Signup(String firstName, String lastName,
-			String email, String password, UserRole role) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.password = password;
-		this.role = role;  //after testing make default role as user
-		
-	}
 	
 	
 }
