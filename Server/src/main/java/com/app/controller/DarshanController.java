@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.dto.DarshanDTO;
+import com.app.dto.DarshanRequestDTO;
 import com.app.security.FindUserDetails;
 import com.app.service.DarshanService;
 
@@ -39,7 +39,7 @@ public class DarshanController {
 	// http://host:port/darshan/add
 	@PostMapping("/add")
 	public ResponseEntity<?> addDarshanBooking(@RequestBody
-			@Valid DarshanDTO darshan) {
+			@Valid DarshanRequestDTO darshan) {
 		System.out.println("in add darshan " + darshan);
 		Long userId = authUserDetails.getUserId();
 		return ResponseEntity

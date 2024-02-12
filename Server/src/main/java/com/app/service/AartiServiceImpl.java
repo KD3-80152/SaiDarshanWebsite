@@ -11,10 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.app.custom_Exceptions.ResourceNotFoundException;
 import com.app.dao.AartiDao;
 import com.app.dao.UserEntityDao;
-import com.app.dto.AartiDTO;
+import com.app.dto.AartiRequestDTO;
+import com.app.dto.AartiResponseDTO;
 import com.app.dto.ApiResponse;
 import com.app.entities.Aarti;
-import com.app.entities.Pooja;
 import com.app.entities.UserEntity;
 
 
@@ -32,7 +32,7 @@ public class AartiServiceImpl implements AartiService
 	private ModelMapper mapper;
 
 	@Override
-	public AartiDTO addAartiBooking(AartiDTO aarti,Long userId) {
+	public AartiResponseDTO addAartiBooking(AartiRequestDTO aarti,Long userId) {
 		UserEntity curUser= userDao.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Inavalid userId"));
 		Aarti artiEntity = mapper.map(aarti, Aarti.class);
 		artiEntity.setUser(curUser);
@@ -41,14 +41,14 @@ public class AartiServiceImpl implements AartiService
 		
 		Aarti persistentEnt = aartiDao.save(artiEntity);
 			
-		return mapper.map(persistentEnt, AartiDTO.class);
+		return mapper.map(persistentEnt, AartiResponseDTO.class);
 	}
 
 	@Override
-	public List<AartiDTO> getAllAartiBookingsByUserId(Long userId) {
+	public List<AartiResponseDTO> getAllAartiBookingsByUserId(Long userId) {
 		
 		List<Aarti> aartiList = aartiDao.findByUserId(userId);
-		return aartiList.stream().map(aarti -> mapper.map(aarti, AartiDTO.class)).collect(Collectors.toList());
+		return aartiList.stream().map(aarti -> mapper.map(aarti, AartiResponseDTO.class)).collect(Collectors.toList());
 	}
 
 	@Override
@@ -63,11 +63,11 @@ public class AartiServiceImpl implements AartiService
 	}
 	
 	@Override
-	public List<AartiDTO> getAllAartiBookings() {
-		// TODO Auto-generated method stub
+	public List<AartiResponseDTO> getAllAartiBookings() {
+		
 		List<Aarti> aartiSortedList = aartiDao.findAllOrderedByADateAsc();
 		return aartiSortedList.stream()
-				.map(aarti -> mapper.map(aarti, AartiDTO.class))
+				.map(aarti -> mapper.map(aarti, AartiResponseDTO.class))
 				.collect(Collectors.toList());
 
 	}

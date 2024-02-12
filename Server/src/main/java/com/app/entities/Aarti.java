@@ -45,7 +45,5 @@ public class Aarti extends BaseEntity
 	@JoinColumn(name = "user_id")
 	private UserEntity user;
 	
-	@Column(name= "adhar_no",unique=true)
-	private String adharNo;
 	
 }
