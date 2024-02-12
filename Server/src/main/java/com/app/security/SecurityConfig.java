@@ -41,12 +41,14 @@ public class SecurityConfig {
 		.exceptionHandling().authenticationEntryPoint(authEntry).
 		and().
 		authorizeRequests()
-		.antMatchers("/products/view","/users/signup","/users/signin",
+
+		.antMatchers("/darshan","/users/signup","/users/signin","/pooja","/accommodation","/aarti",
 				"/v*/api-doc*/**","/swagger-ui/**","/**").permitAll()
 		// only required for JS clnts (react / angular) : for the pre flight requests
 		.antMatchers(HttpMethod.OPTIONS).permitAll()
-		.antMatchers("/products/purchase").hasRole("USER")
-		.antMatchers("/products/add").hasRole("ADMIN")
+		.antMatchers("/signin/my_profile","/signin/my_profile/update_user","/signin/change_password","/signin/my_profile/address/**","/darshan/add",
+				"/darshan/","/darshan/{id}","/pooja/add","/pooja/","/pooja/{id}","/aarti/add","/aarti/","/aarti/{id}","/accommodation/add","/accommodation/","/accommodation/{id}").hasRole("USER")  
+		.antMatchers("/signin/user","/signin/user/{id}","/darshan/all","/pooja/all","/accommodation/all","/aarti/all").hasRole("ADMIN")
 		.anyRequest().authenticated()
 		.and()
 		//to tell spring sec : not to use HttpSession to store user's auth details

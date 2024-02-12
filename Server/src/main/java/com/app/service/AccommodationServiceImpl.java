@@ -27,15 +27,16 @@ public class AccommodationServiceImpl implements AccommodationService {
 	private ModelMapper mapper;
 	
 	@Override
-	public AccommodationDTO addAccomodationBooking(AccommodationDTO acco) {
+	public AccommodationDTO addAccomodationBooking(AccommodationDTO acco,Long userId) {
 		Accommodation accoEntity = mapper.map(acco,Accommodation.class);
 		Accommodation persistentAcco = accodao.save(accoEntity);
 		return mapper.map(persistentAcco, AccommodationDTO.class);
 	}
 
 	@Override
-	public List<AccommodationDTO> getAllAccommodationBookingsByUserId(Long accoId) {
-		List<Accommodation> accoList = accodao.findByUserId(accoId);
+	public List<AccommodationDTO> getAllAccommodationBookingsByUserId(Long userId) {
+		
+		List<Accommodation> accoList = accodao.findByUserId(userId);
 		return accoList.stream().map(acco -> mapper.map(acco, AccommodationDTO.class)).collect(Collectors.toList());
 
 	}

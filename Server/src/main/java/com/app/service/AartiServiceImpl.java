@@ -10,11 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.app.custom_Exceptions.ResourceNotFoundException;
 import com.app.dao.AartiDao;
+import com.app.dao.UserEntityDao;
 import com.app.dto.AartiDTO;
 import com.app.dto.ApiResponse;
-import com.app.dto.DarshanDTO;
 import com.app.entities.Aarti;
-import com.app.entities.Darshan;
+import com.app.entities.Pooja;
+import com.app.entities.UserEntity;
 
 
 @Service
@@ -25,36 +26,40 @@ public class AartiServiceImpl implements AartiService
 	private AartiDao aartiDao;
 	
 	@Autowired
+	private UserEntityDao userDao;
+	
+	@Autowired
 	private ModelMapper mapper;
 
 	@Override
-	public AartiDTO addAartiBooking(AartiDTO aarti) {
-		// TODO Auto-generated method stub
-		Aarti artiEnt = mapper.map(aarti, Aarti.class);
-		Aarti persistentEnt = aartiDao.save(artiEnt);
+	public AartiDTO addAartiBooking(AartiDTO aarti,Long userId) {
+		UserEntity curUser= userDao.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Inavalid userId"));
+		Aarti artiEntity = mapper.map(aarti, Aarti.class);
+		artiEntity.setUser(curUser);
+		artiEntity.setPrimaryDevoteeName(curUser.getFirstName()+" "+curUser.getLastName());
+		artiEntity.setAdharNo(curUser.getAdharNumber());
+		
+		Aarti persistentEnt = aartiDao.save(artiEntity);
 			
 		return mapper.map(persistentEnt, AartiDTO.class);
 	}
 
 	@Override
-	public List<AartiDTO> getAllAartiBookingsByUserId(Long aartiId) {
-		// TODO Auto-generated method stub
-		List<Aarti> aartiList = aartiDao.findByUserId(aartiId);
+	public List<AartiDTO> getAllAartiBookingsByUserId(Long userId) {
+		
+		List<Aarti> aartiList = aartiDao.findByUserId(userId);
 		return aartiList.stream().map(aarti -> mapper.map(aarti, AartiDTO.class)).collect(Collectors.toList());
 	}
 
 	@Override
-	public ApiResponse deleteAartiBookingById(Long id) {
-		// TODO Auto-generated method stub
-		
+	public ApiResponse deleteAartiBookingById(Long id) {	
 
-		
 		Aarti aarti = aartiDao.findById(id).
 				orElseThrow(() -> new ResourceNotFoundException("Invalid emp id"));
 		
 		aartiDao.delete(aarti);
 		return new ApiResponse("Darshan Details of dasrhan with ID " + aarti.getId() + " deleted....");
-//		return null;
+
 	}
 	
 	@Override

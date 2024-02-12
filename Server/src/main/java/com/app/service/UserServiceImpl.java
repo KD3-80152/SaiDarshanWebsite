@@ -1,6 +1,8 @@
 package com.app.service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -14,7 +16,9 @@ import com.app.custom_Exceptions.ResourceNotFoundException;
 import com.app.dao.AddressDao;
 import com.app.dao.UserEntityDao;
 import com.app.dto.ApiResponse;
+import com.app.dto.DarshanDTO;
 import com.app.dto.Signup;
+import com.app.dto.UserChangePasswordDTO;
 import com.app.dto.UserDTO;
 import com.app.entities.Address;
 import com.app.entities.UserEntity;
@@ -38,6 +42,7 @@ public class UserServiceImpl implements UserService {
 	//SIGNUP
 	@Override
 	public Signup userRegistration(Signup reqDTO) {
+		
 		
 		UserEntity user=mapper.map(reqDTO, UserEntity.class);
 		user.setPassword(encoder.encode(user.getPassword()));//pwd : encrypted using SHA
@@ -66,30 +71,12 @@ public class UserServiceImpl implements UserService {
 		return mapper.map(userDao.save(curUser), UserDTO.class);
 	}
 
-
-	//DELETE USER
-	@Override
-	public ApiResponse deleteUserDetails(Long userId) {
-		
-		Optional<Address> optAddr = addDao.findById(userId);
-		if(optAddr.isPresent())
-			addDao.delete(optAddr.get());
-		
-		UserEntity user= userDao.findById(userId).orElseThrow(()-> new ResourceNotFoundException("Invalid id , can't delete"));
-		
-		userDao.delete(user);
-		
-		
-		return new ApiResponse("User with ID " +user.getId() +" deleted.");
-	}
-
-
 	
 
 	//CHANGE PASSWORD
 	
 	@Override
-	public ApiResponse changeUserPassword(Long userId, UserDTO dto) {
+	public ApiResponse changeUserPassword(Long userId, UserChangePasswordDTO dto) {
 		
 		if(dto.getNewPassword().equals(dto.getConfirmNewPassword()))
 		{
@@ -106,7 +93,31 @@ public class UserServiceImpl implements UserService {
 	}
 	
 
+	
+	//GET ALL USERS ADMIN POV
 
+	@Override
+	public List<UserDTO> getAllUsers() {
+		List<UserEntity> allUsers= userDao.findAllOrderedById();
+		return allUsers.stream().map(UserEntity -> mapper.map(UserEntity, UserDTO.class)).collect(Collectors.toList());
+	}
+
+
+	//DELETE USER ADMIN POV
+		@Override
+		public ApiResponse deleteUserDetails(Long userId) {
+			
+			Optional<Address> optAddr = addDao.findById(userId);
+			if(optAddr.isPresent())
+				addDao.delete(optAddr.get());
+			
+			UserEntity user= userDao.findById(userId).orElseThrow(()-> new ResourceNotFoundException("Invalid id , can't delete"));
+			
+			userDao.delete(user);
+			
+			
+			return new ApiResponse("User with ID" +user.getId() +" deleted.");
+		}
 
 
 

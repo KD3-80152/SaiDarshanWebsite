@@ -8,8 +8,10 @@ import com.app.dto.DarshanDTO;
 
 public interface AartiService 
 {
-	AartiDTO addAartiBooking(AartiDTO aarti);
-	List<AartiDTO> getAllAartiBookingsByUserId(Long aartiId);
+	AartiDTO addAartiBooking(AartiDTO aarti,Long userId);
+	
+	List<AartiDTO> getAllAartiBookingsByUserId(Long userId);
+	
 	ApiResponse deleteAartiBookingById(Long id);
 	List<AartiDTO> getAllAartiBookings();
 }

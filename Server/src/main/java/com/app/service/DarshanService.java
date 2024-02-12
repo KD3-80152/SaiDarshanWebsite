@@ -7,9 +7,9 @@ import com.app.dto.DarshanDTO;
 
 public interface DarshanService {
 	
-	DarshanDTO addDarshanBooking(DarshanDTO darshan);
+	DarshanDTO addDarshanBooking(DarshanDTO darshan,Long userId);
 	
-	List<DarshanDTO> getAllDarshanBookingsByUserId(Long darshanId);
+	List<DarshanDTO> getAllDarshanBookingsByUserId(Long userId);
 	
 	ApiResponse deleteDarshanBookingById(Long id);
 

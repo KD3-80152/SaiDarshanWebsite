@@ -32,10 +32,12 @@ public class Pooja extends BaseEntity{
 	@JoinColumn(name = "user_id")
 	private UserEntity user;
 	
+
 	@Column(name = "primary_devotee_name")
 	private String primaryDevoteeName;
 	
 	@Column(name = "adhar_no",length = 12,unique = true)
+
 	private String adharNo;
 
 }
