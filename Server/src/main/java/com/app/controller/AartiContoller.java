@@ -53,15 +53,6 @@ public class AartiContoller
 	}
 	
 	
-	//ADMIN POV GETTING ALL POOJA BOOKINGS
-//			@GetMapping("/all")
-//			public ResponseEntity<?> getAllPoojaBookings() throws IOException 
-//			{
-//				
-//				System.out.println("get Pooja bookings");
-//				return ResponseEntity.ok(poojaService.getAllPoojaBookings());
-//				
-//			}
 	
 	//ADMIN POV GETTING ALL POOJA BOOKINGS
 	@GetMapping("/all")
