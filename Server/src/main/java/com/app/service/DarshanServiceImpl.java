@@ -73,6 +73,19 @@ public class DarshanServiceImpl implements DarshanService {
 			
 	}
 
+	@Override
+	public List<DarshanDTO> getAllDarshanBookings() {
+		// TODO Auto-generated method stub
+		List<Darshan> sortedDarshanListByDate = darshanDao.findAllByOrdersByDateAsc();
+		
+		return sortedDarshanListByDate.stream()
+				.map(darshan -> mapper.map(darshan, DarshanDTO.class))
+				.collect(Collectors.toList());
+	}
+	
+	
+	
+
 	
 	
 

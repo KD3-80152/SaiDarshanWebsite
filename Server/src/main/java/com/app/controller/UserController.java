@@ -33,11 +33,13 @@ public class UserController {
 	
 	
 	//method=GET
+
 	// http://host:port/signin/my_profile
 	@GetMapping("/my_profile")
 	public ResponseEntity<?> showUserProfile( @RequestBody @Valid UserDTO dto) {
 		Long userId = authUserDetails.getUserId();
 		System.out.println("in show profile " + userId + " " + dto);
+
 		return ResponseEntity.ok(userService.getUserProfile(userId));
 	}
 	
@@ -45,14 +47,12 @@ public class UserController {
 	  //method=PUT
 	  // http://host:port/signin/my_profile/update_user
 	//update the url according to front end
-	@PreAuthorize("hasRole('USER')")
 		@PutMapping("/my_profile/update_user")
 		public ResponseEntity<?> updateUserDetails( @RequestBody @Valid UserDTO dto) {
 		Long userId = authUserDetails.getUserId();
 			System.out.println("in update user " + userId + " " + dto);
 			return ResponseEntity.ok(userService.updateUser(userId, dto));
 		}
-		
 		
 	
 	//method =patch

@@ -11,5 +11,7 @@ public interface DarshanDao extends JpaRepository<Darshan, Long> {
 	
 	List<Darshan> findByUserId(Long userId);
 	
-		
+
+	List<Darshan> findAllByOrdersByDateAsc();
+	
 }

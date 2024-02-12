@@ -50,5 +50,16 @@ public class AccommodationServiceImpl implements AccommodationService {
 		return new ApiResponse("Accommodation Details of accommodation with Id" + acco.getId() + " deleted....");
 		
 	}
+	
+	
+	@Override
+	public List<AccommodationDTO> getAllAccommodationBookings() {
+		// TODO Auto-generated method stub
+		
+		List<Accommodation> sortedListByCheckInDate = accodao.findAllByOrdersByCheckInDateAsc();
+		return sortedListByCheckInDate.stream()
+				.map(accommodation -> mapper.map(accommodation, AccommodationDTO.class))
+				.collect(Collectors.toList());
+	}
 
 }

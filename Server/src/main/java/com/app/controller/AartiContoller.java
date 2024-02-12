@@ -62,6 +62,16 @@ public class AartiContoller
 		System.out.println("In Delete Aarti: " + id);
 		return ResponseEntity.ok(artiService.deleteAartiBookingById(id));
 	}
+	
+	
+	
+	//ADMIN POV GETTING ALL POOJA BOOKINGS
+	@GetMapping("/all")
+	public ResponseEntity<?> getAllAartiBookings()
+	{
+		System.out.println("Get All Aarti Bookings");
+		return ResponseEntity.ok(artiService.getAllAartiBookings());
+	}
 
 	
 	

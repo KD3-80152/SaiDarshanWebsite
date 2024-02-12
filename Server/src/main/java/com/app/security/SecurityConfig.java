@@ -41,6 +41,7 @@ public class SecurityConfig {
 		.exceptionHandling().authenticationEntryPoint(authEntry).
 		and().
 		authorizeRequests()
+
 		.antMatchers("/darshan","/users/signup","/users/signin","/pooja","/accommodation","/aarti",
 				"/v*/api-doc*/**","/swagger-ui/**","/**").permitAll()
 		// only required for JS clnts (react / angular) : for the pre flight requests

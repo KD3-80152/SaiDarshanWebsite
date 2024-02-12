@@ -43,10 +43,12 @@ public class AddressController {
 	    //method=Post
 		// http://host:port/signin/my_profile/address/add_address
 		//update the url according to front end
+
 		
 			@PostMapping("/add_address")
 			public ResponseEntity<?> assignUserAddress( @RequestBody @Valid AddressDTO dto) {
 			Long userId = authUserDetails.getUserId();
+
 				System.out.println("in update user " + userId + " " + dto);
 				return ResponseEntity.ok(addrService.asssignAddress(userId, dto));
 			}
@@ -56,11 +58,13 @@ public class AddressController {
 	//method=PUT
 	 // http://host:port/signin/my_profile/address/update_address
 	//update the url according to front end
+
 	
 		@PutMapping("/update_address")
 		public ResponseEntity<?> updateUserAddress(@RequestBody @Valid AddressDTO dto) 
 		{
 			Long userId = authUserDetails.getUserId();
+
 			System.out.println("in update user " + userId + " " + dto);
 			return ResponseEntity.ok(addrService.updateAddress(userId, dto));
 		}

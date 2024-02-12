@@ -2,10 +2,9 @@ package com.app.dto;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
 import org.hibernate.validator.constraints.Range;
-
 import com.app.entities.AartiType;
 
 import lombok.AllArgsConstructor;
@@ -17,9 +16,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class AartiDTO 
+public class AartiResponseDTO 
 {
-
 	@NotNull
 	private LocalDate aDate;
 	
@@ -37,9 +35,11 @@ public class AartiDTO
 	@NotNull
 	private double amount;
 	
-//	@NotNull
-//	private String primaryDevoteeName;
+	@NotBlank
+	@NotNull
+	private String primaryDevoteeName;
 	
-	
-	
+	@NotBlank
+	@NotNull
+	private String adharNo;
 }

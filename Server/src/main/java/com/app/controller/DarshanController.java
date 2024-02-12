@@ -70,7 +70,14 @@ public class DarshanController {
 		System.out.println("in delete darshan " + id);
 		return ResponseEntity.ok(darshanService.deleteDarshanBookingById(id));
 	}
-
+	
+	//ADMIN POV GETTING ALL POOJA BOOKINGS
+	@GetMapping("/all")
+	public ResponseEntity<?> getAllDarshanBookings()
+	{
+		System.out.println("Get All Darshan Bookings");
+		return ResponseEntity.ok(darshanService.getAllDarshanBookings());
+	}
 	
 
 }
