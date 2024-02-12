@@ -27,8 +27,8 @@ public class UserController {
 	//method=GET
 	// http://host:port/signin/{userId} 
 	@GetMapping("my_profile/{userId}")
-	public ResponseEntity<?> showUserProfile(@PathVariable Long userId, @RequestBody @Valid UserDTO dto) {
-		System.out.println("in show profile " + userId + " " + dto);
+	public ResponseEntity<?> showUserProfile(@PathVariable Long userId) {
+		System.out.println("in show profile " + userId );
 		return ResponseEntity.ok(userService.getUserProfile(userId));
 	}
 	
@@ -36,7 +36,7 @@ public class UserController {
 	  //method=PUT
 	  // http://host:port/signin/{userId} 
 	//update the url according to front end
-	@PreAuthorize("hasRole('USER')")
+//	@PreAuthorize("hasRole('USER')")
 		@PutMapping("my_profile/update_user/{userId}")
 		public ResponseEntity<?> updateUserDetails(@PathVariable Long userId, @RequestBody @Valid UserDTO dto) {
 			System.out.println("in update user " + userId + " " + dto);
@@ -48,7 +48,7 @@ public class UserController {
 		
 	//method=delete
 	// http://host:port/signin/{userId} 
-		@PreAuthorize("hasRole('ADMIN')")
+//		@PreAuthorize("hasRole('ADMIN')")
 		@DeleteMapping("/{userId}")
 		public ResponseEntity<?> deleteUser(@PathVariable Long userId)
 		{

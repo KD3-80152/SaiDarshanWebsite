@@ -13,5 +13,7 @@ public interface DarshanService {
 	
 	ApiResponse deleteDarshanBookingById(Long id);
 
+	List<DarshanDTO> getAllDarshanBookings();
+
 }
 

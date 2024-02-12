@@ -58,7 +58,7 @@ private LocalDate dob;
 private List<Aarti> aarti = new ArrayList<Aarti>();
 
 
-
+@Enumerated(EnumType.STRING)
 @Column(name="gender",length=20)
 private Gender gender;
 

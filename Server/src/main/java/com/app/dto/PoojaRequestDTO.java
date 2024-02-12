@@ -16,7 +16,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class PoojaDTO {
+public class PoojaRequestDTO {
 	
 	
 	@NotNull

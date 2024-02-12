@@ -24,7 +24,7 @@ public class AddressDTO {
 	private String lineTwo;
 	
 	
-	private String country;
+//	private String country = "BHARAT(India)";
 	
 	@NotBlank(message="This field can't be empty")
 	private String pincode;

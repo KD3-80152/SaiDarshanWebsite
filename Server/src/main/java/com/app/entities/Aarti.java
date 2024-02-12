@@ -11,9 +11,11 @@ import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 
 public class Aarti extends BaseEntity
@@ -35,6 +37,9 @@ public class Aarti extends BaseEntity
 	
 	@Column(name = "primary_devotee_name")
 	private String primaryDevoteeName;
+	
+	@Column(name = "adhar_no",length = 12,unique = true)
+	private String adharNo;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")

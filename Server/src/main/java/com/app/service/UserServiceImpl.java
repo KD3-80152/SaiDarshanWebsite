@@ -80,7 +80,7 @@ public class UserServiceImpl implements UserService {
 		userDao.delete(user);
 		
 		
-		return new ApiResponse("User with ID" +user.getId() +" deleted.");
+		return new ApiResponse("User with ID " +user.getId() +" deleted.");
 	}
 
 
@@ -94,7 +94,8 @@ public class UserServiceImpl implements UserService {
 		if(dto.getNewPassword().equals(dto.getConfirmNewPassword()))
 		{
 			UserEntity curUser=userDao.findById(userId).orElseThrow(()-> new ResourceNotFoundException("Invalid user ID, User not found!!"));
-			curUser.setPassword(dto.getConfirmNewPassword());
+			String encryptedPassword = encoder.encode(dto.getConfirmNewPassword());
+			curUser.setPassword(encryptedPassword);
 		}
 		else
 		{
@@ -103,6 +104,7 @@ public class UserServiceImpl implements UserService {
 		
 		return new ApiResponse("Password changed successfully");
 	}
+	
 
 
 

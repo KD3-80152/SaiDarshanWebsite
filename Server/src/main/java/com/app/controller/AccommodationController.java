@@ -48,6 +48,15 @@ public class AccommodationController {
 		System.out.println("in update accommodation" + id);
 		return ResponseEntity.ok(accoService.deleteAccomodationBookingById(id));
 	}
+	
+	
+	//ADMIN POV GETTING ALL POOJA BOOKINGS
+	@GetMapping("/all")
+	public ResponseEntity<?> getAllAccommodationBookings()
+	{
+		System.out.println("Get All Accommodation Bookings");
+		return ResponseEntity.ok(accoService.getAllAccommodationBookings());
+	}
 
 	
 }

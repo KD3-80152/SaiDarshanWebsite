@@ -27,7 +27,7 @@ public class AddressController {
 	//method=Post
 		 // http://host:port/signin/my_profile/update_address/{userId} 
 		//update the url according to front end
-		@PreAuthorize("hasRole('USER')")
+//		@PreAuthorize("hasRole('USER')")
 			@PostMapping("address/add_address/{userId}")
 			public ResponseEntity<?> assignUserAddress(@PathVariable Long userId, @RequestBody @Valid AddressDTO dto) {
 				System.out.println("in update user " + userId + " " + dto);
@@ -39,7 +39,7 @@ public class AddressController {
 	//method=PUT
 	 // http://host:port/signin/my_profile/update_address/{userId} 
 	//update the url according to front end
-	@PreAuthorize("hasRole('USER')")
+//	@PreAuthorize("hasRole('USER')")
 		@PutMapping("address/update_address/{userId}")
 		public ResponseEntity<?> updateUserAddress(@PathVariable Long userId, @RequestBody @Valid AddressDTO dto) {
 			System.out.println("in update user " + userId + " " + dto);

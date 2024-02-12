@@ -11,4 +11,5 @@ public interface AartiService
 	AartiDTO addAartiBooking(AartiDTO aarti);
 	List<AartiDTO> getAllAartiBookingsByUserId(Long aartiId);
 	ApiResponse deleteAartiBookingById(Long id);
+	List<AartiDTO> getAllAartiBookings();
 }

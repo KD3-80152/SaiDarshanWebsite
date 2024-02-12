@@ -57,4 +57,32 @@ public class AartiServiceImpl implements AartiService
 //		return null;
 	}
 	
+	@Override
+	public List<AartiDTO> getAllAartiBookings() {
+		// TODO Auto-generated method stub
+		List<Aarti> aartiSortedList = aartiDao.findAllOrderedByADateAsc();
+		return aartiSortedList.stream()
+				.map(aarti -> mapper.map(aarti, AartiDTO.class))
+				.collect(Collectors.toList());
+
+	}
+	
 }
+
+
+//@Override
+//public List<PoojaDTO> getAllPoojaBookings() {
+//	Sort sortByDate = Sort.by(Sort.Direction.ASC, "date"); // Sort by the 'date' property in ascending order
+//	List<Pooja> list= poojaDao.findAll(sortByDate);
+//	return list.stream().map(pooja -> mapper.map(pooja, PoojaDTO.class)).collect(Collectors.toList());
+//}
+
+//List<Aarti> sortedAartiList = aartiDao.findAllByOrderByADateAsc();
+//return sortedAartiList.stream()
+//        .map(aarti -> mapper.map(aarti, AartiDTO.class))
+//        .collect(Collectors.toList());
+
+
+
+
+
