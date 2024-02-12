@@ -13,7 +13,8 @@ import com.app.custom_Exceptions.ResourceNotFoundException;
 import com.app.dao.DarshanDao;
 import com.app.dao.UserEntityDao;
 import com.app.dto.ApiResponse;
-import com.app.dto.DarshanDTO;
+import com.app.dto.DarshanRequestDTO;
+import com.app.dto.DarshanResponseDTO;
 import com.app.entities.Darshan;
 import com.app.entities.UserEntity;
 @Service
@@ -32,22 +33,22 @@ public class DarshanServiceImpl implements DarshanService {
 	private ModelMapper mapper;
 	
 	@Override
-	public DarshanDTO addDarshanBooking(DarshanDTO darshan,Long userId) {
+	public DarshanResponseDTO addDarshanBooking(DarshanRequestDTO darshan,Long userId) {
 		UserEntity curUser= userDao.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Inavalid userId"));
 		Darshan darshanEntity=  mapper.map(darshan, Darshan.class);
 		darshanEntity.setUser(curUser);
 		darshanEntity.setPrimaryDevoteeName(curUser.getFirstName()+" "+curUser.getLastName());
 		darshanEntity.setAdharNo(curUser.getAdharNumber());
 		Darshan persistentDarshan = darshanDao.save(darshanEntity);
-		return mapper.map(persistentDarshan, DarshanDTO.class);
+		return mapper.map(persistentDarshan, DarshanResponseDTO.class);
 
 	}
 
 	@Override
-	public List<DarshanDTO> getAllDarshanBookingsByUserId(Long userId) {
+	public List<DarshanResponseDTO> getAllDarshanBookingsByUserId(Long userId) {
 	
 		List<Darshan> darshanList = darshanDao.findByUserId(userId);
-		return darshanList.stream().map(darshan -> mapper.map(darshan, DarshanDTO.class)).collect(Collectors.toList());
+		return darshanList.stream().map(darshan -> mapper.map(darshan, DarshanResponseDTO.class)).collect(Collectors.toList());
 	}
 
 	@Override
@@ -74,12 +75,12 @@ public class DarshanServiceImpl implements DarshanService {
 	}
 
 	@Override
-	public List<DarshanDTO> getAllDarshanBookings() {
-		// TODO Auto-generated method stub
+	public List<DarshanResponseDTO> getAllDarshanBookings() {
+		
 		List<Darshan> sortedDarshanListByDate = darshanDao.findAllByOrdersByDateAsc();
 		
 		return sortedDarshanListByDate.stream()
-				.map(darshan -> mapper.map(darshan, DarshanDTO.class))
+				.map(darshan -> mapper.map(darshan, DarshanResponseDTO.class))
 				.collect(Collectors.toList());
 	}
 	

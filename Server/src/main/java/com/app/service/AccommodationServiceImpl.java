@@ -10,12 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.app.custom_Exceptions.ResourceNotFoundException;
 import com.app.dao.AccommodationDao;
-import com.app.dao.DarshanDao;
-import com.app.dto.AccommodationDTO;
+import com.app.dto.AccommodationRequestDTO;
+import com.app.dto.AccommodationResponseDTO;
 import com.app.dto.ApiResponse;
-import com.app.dto.DarshanDTO;
 import com.app.entities.Accommodation;
-import com.app.entities.Darshan;
 
 @Service
 @Transactional
@@ -27,17 +25,17 @@ public class AccommodationServiceImpl implements AccommodationService {
 	private ModelMapper mapper;
 	
 	@Override
-	public AccommodationDTO addAccomodationBooking(AccommodationDTO acco,Long userId) {
+	public AccommodationResponseDTO addAccomodationBooking(AccommodationRequestDTO acco,Long userId) {
 		Accommodation accoEntity = mapper.map(acco,Accommodation.class);
 		Accommodation persistentAcco = accodao.save(accoEntity);
-		return mapper.map(persistentAcco, AccommodationDTO.class);
+		return mapper.map(persistentAcco, AccommodationResponseDTO.class);
 	}
 
 	@Override
-	public List<AccommodationDTO> getAllAccommodationBookingsByUserId(Long userId) {
+	public List<AccommodationResponseDTO> getAllAccommodationBookingsByUserId(Long userId) {
 		
 		List<Accommodation> accoList = accodao.findByUserId(userId);
-		return accoList.stream().map(acco -> mapper.map(acco, AccommodationDTO.class)).collect(Collectors.toList());
+		return accoList.stream().map(acco -> mapper.map(acco, AccommodationResponseDTO.class)).collect(Collectors.toList());
 
 	}
 
@@ -53,12 +51,12 @@ public class AccommodationServiceImpl implements AccommodationService {
 	
 	
 	@Override
-	public List<AccommodationDTO> getAllAccommodationBookings() {
-		// TODO Auto-generated method stub
+	public List<AccommodationResponseDTO> getAllAccommodationBookings() {
+		
 		
 		List<Accommodation> sortedListByCheckInDate = accodao.findAllByOrdersByCheckInDateAsc();
 		return sortedListByCheckInDate.stream()
-				.map(accommodation -> mapper.map(accommodation, AccommodationDTO.class))
+				.map(accommodation -> mapper.map(accommodation, AccommodationResponseDTO.class))
 				.collect(Collectors.toList());
 	}
 

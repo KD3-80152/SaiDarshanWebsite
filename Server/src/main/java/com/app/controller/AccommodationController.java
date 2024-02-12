@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.dto.AccommodationDTO;
-import com.app.dto.DarshanDTO;
+import com.app.dto.AccommodationRequestDTO;
 import com.app.security.FindUserDetails;
 import com.app.service.AccommodationService;
 
@@ -37,7 +36,7 @@ public class AccommodationController {
 	// http://host:port/accommodation/add
 	@PostMapping("/add")
 	public ResponseEntity<?> addAccommodationBooking(@RequestBody
-			@Valid AccommodationDTO acco) {
+			@Valid AccommodationRequestDTO acco) {
 		System.out.println("in add accommodation " + acco);
 		Long userId = authUserDetails.getUserId();
 		return ResponseEntity

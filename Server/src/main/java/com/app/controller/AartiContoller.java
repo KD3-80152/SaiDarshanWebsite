@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.dto.AartiDTO;
+import com.app.dto.AartiRequestDTO;
 import com.app.security.FindUserDetails;
 import com.app.service.AartiService;
 
@@ -35,7 +35,7 @@ public class AartiContoller
 	// http://host:port/aarti/add
 	@PostMapping("/add")
 	public ResponseEntity<?> addAartiBooking(@RequestBody
-			@Valid AartiDTO aarti) {
+			@Valid AartiRequestDTO aarti) {
 		Long userId = authUserDetails.getUserId();
 		System.out.println("in add darshan " + aarti);
 		return ResponseEntity
