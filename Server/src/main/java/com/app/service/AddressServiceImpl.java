@@ -28,14 +28,14 @@ public class AddressServiceImpl implements AddressService {
 	private ModelMapper mapper;
 	
 	
-//	@Override
-//	public AddressDTO getAddressDetails(Long userId) {
-//		
-//		return mapper.map(
-//				addDao.findById(userId).orElseThrow(
-//						() -> new ResourceNotFoundException("Invalid Emp  Id Or Address not yet assigned !!!!")),
-//				AddressDTO.class);
-//	}
+	@Override
+	public AddressDTO getAddressDetails(Long userId) {
+		
+		return mapper.map(
+				addDao.findById(userId).orElseThrow(
+						() -> new ResourceNotFoundException("Invalid Emp  Id Or Address not yet assigned !!!!")),
+				AddressDTO.class);
+	}
 	
 	
 	@Override

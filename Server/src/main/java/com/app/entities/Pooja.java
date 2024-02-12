@@ -31,5 +31,12 @@ public class Pooja extends BaseEntity{
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private UserEntity user;
+	
+	@Column(name="primary_devotee_name")
+	private String primaryDevoteeName;
+	
+
+	@Column(name= "adhar_no",unique=true)
+	private String adharNo;
 
 }

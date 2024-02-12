@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.AartiDTO;
+import com.app.security.FindUserDetails;
 import com.app.service.AartiService;
 
 //https://localhost:8443/swagger-ui/index.html#/
@@ -27,26 +28,36 @@ public class AartiContoller
 	@Autowired
 	private AartiService artiService;
 	
+	@Autowired
+	private FindUserDetails authUserDetails;
+	
+	//method=POST
+	// http://host:port/aarti/add
 	@PostMapping("/add")
 	public ResponseEntity<?> addAartiBooking(@RequestBody
 			@Valid AartiDTO aarti) {
+		Long userId = authUserDetails.getUserId();
 		System.out.println("in add darshan " + aarti);
 		return ResponseEntity
 				.status(HttpStatus.CREATED)
-				.body(artiService.addAartiBooking(aarti));
+				.body(artiService.addAartiBooking(aarti,userId));
 	}
 	
-	
-	@GetMapping(value = "/view/{userId}")
-	public ResponseEntity<?> getAartiBookingsByUser(@PathVariable Long userId) throws IOException {
+	//method=GET
+		// http://host:port/aarti/
+	@GetMapping(value = "/")
+	public ResponseEntity<?> getAartiBookingsByUser() throws IOException {
+		Long userId = authUserDetails.getUserId();
 		System.out.println("get aarti bookings by user " + userId);
 		return ResponseEntity.ok(artiService.getAllAartiBookingsByUserId(userId));
 		
 	}
 	
 
+	//method=DELETE
+		// http://host:port/aarti/{id}
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> deleteDarshanDetails(@PathVariable Long id)
+	public ResponseEntity<?> cancelAartiBooking(@PathVariable Long id)
 	{
 		System.out.println("In Delete Aarti: " + id);
 		return ResponseEntity.ok(artiService.deleteAartiBookingById(id));

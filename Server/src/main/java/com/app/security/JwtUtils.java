@@ -14,8 +14,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.stereotype.Component;
 
-import com.app.security.CustomUserDetails;
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -54,6 +52,7 @@ public class JwtUtils {
 																					// (expiration) value.
 				// setting a custom claim
 				.claim("authorities", getAuthoritiesInString(userPrincipal.getAuthorities()))
+				.claim("userId", userPrincipal.getUserId())
 				.signWith(key, SignatureAlgorithm.HS512) // Signs the constructed JWT using the specified
 															// algorithm with the specified key, producing a
 															// JWS(Json web signature=signed JWT)
@@ -92,6 +91,14 @@ public class JwtUtils {
 		List<GrantedAuthority> authorities = AuthorityUtils.commaSeparatedStringToAuthorityList(authString);
 		authorities.forEach(System.out::println);
 		return authorities;
+	}
+	
+	
+	//custom claim written in order to get id from by finding user through credentials
+	
+	public Long getUserId(Claims claims) {
+		Integer userId = (Integer) claims.get("userId");
+		return Integer.toUnsignedLong(userId);
 	}
 
 }
