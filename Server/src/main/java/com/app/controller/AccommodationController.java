@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.AccommodationDTO;
 import com.app.dto.DarshanDTO;
+import com.app.security.FindUserDetails;
 import com.app.service.AccommodationService;
 
 @RestController
@@ -28,21 +29,33 @@ public class AccommodationController {
 	@Autowired
 	private AccommodationService accoService;
 	
+	
+	@Autowired
+	private FindUserDetails authUserDetails;
+	
+	//method=POST
+	// http://host:port/accommodation/add
 	@PostMapping("/add")
 	public ResponseEntity<?> addAccommodationBooking(@RequestBody
 			@Valid AccommodationDTO acco) {
 		System.out.println("in add accommodation " + acco);
+		Long userId = authUserDetails.getUserId();
 		return ResponseEntity
 				.status(HttpStatus.CREATED)
-				.body(accoService.addAccomodationBooking(acco));
+				.body(accoService.addAccomodationBooking(acco,userId));
 	}
 	
-	@GetMapping(value = "/view/{userId}")
-	public ResponseEntity<?> getAccommodationBookingsByUser(@PathVariable Long userId) throws IOException {
+	//method=GET
+	// http://host:port/accommodation/
+	@GetMapping(value = "/")
+	public ResponseEntity<?> getAccommodationBookingsByUser() throws IOException {
+		Long userId = authUserDetails.getUserId();
 		System.out.println("get accommodation bookings by user " + userId);
 		return ResponseEntity.ok(accoService.getAllAccommodationBookingsByUserId(userId));
 	}
 	
+	//method=DELETE
+		// http://host:port/accommodation/{id}
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteAccommodationDetails(@PathVariable Long id) {
 		System.out.println("in update accommodation" + id);
