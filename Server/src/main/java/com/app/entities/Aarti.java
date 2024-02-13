@@ -45,5 +45,6 @@ public class Aarti extends BaseEntity
 	@JoinColumn(name = "user_id")
 	private UserEntity user;
 	
+
 	
 }

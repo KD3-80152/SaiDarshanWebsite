@@ -18,7 +18,8 @@ public interface DarshanDao extends JpaRepository<Darshan, Long> {
 	//@Query("select d from Darshan d where d.bookingDate=:bookingDate and d.timeSlot = :timeSlot")
 	List<Darshan> findByBookingDateAndTimeSlot(Long bookingDateId , Long TimeSlotId);
 
-//	@Query("select d from Darshan d order by d.date")
+
+//	@Query("select d from Darshan d order by d.date
 //	List<Darshan> findAllOrderedByDateAsc();
 
 	

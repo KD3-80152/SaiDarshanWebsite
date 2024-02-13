@@ -35,7 +35,8 @@ public class DarshanServiceImpl implements DarshanService {
 	private TimeSlotDao timeSlotDao;
 	
 	@Autowired
-	private BookingDateDao bookingDatedao;
+	private BookingDateDao bookingDateDao;
+
 	
 	@Autowired
 	private UserEntityDao userDao; 
@@ -108,22 +109,21 @@ public class DarshanServiceImpl implements DarshanService {
 	}
 
 
-//	public List<DarshanResponseDTO> getAllDarshanBookings() {
-//		
-//		List<Darshan> sortedDarshanListByDate = darshanDao.findAllOrderedByDateAsc();
-//		
-//		return sortedDarshanListByDate.stream()
-//				.map(darshan -> mapper.map(darshan, DarshanResponseDTO.class))
-//				.collect(Collectors.toList());
-//	}
+
+
+	
+
 	public List<DarshanResponseDTO> getAllDarshanBookings() {
 		
-	Sort sortByDate = Sort.by(Sort.Direction.ASC, "bookingDate"); // Sort by the 'date' property in ascending order
-	List<Darshan> list= darshanDao.findAll(sortByDate);
-	return list.stream().map(darshan -> mapper.map(darshan, DarshanResponseDTO.class)).collect(Collectors.toList());
+		Sort sortByDate = Sort.by(Sort.Direction.ASC, "bookingDate"); // Sort by the 'date' property in ascending order
+		List<Darshan> list= darshanDao.findAll(sortByDate);
+		return list.stream().map(darshan -> mapper.map(darshan, DarshanResponseDTO.class)).collect(Collectors.toList());
+		
+		
+		}
 	
-	
-	}
+
+
 	
 
 	

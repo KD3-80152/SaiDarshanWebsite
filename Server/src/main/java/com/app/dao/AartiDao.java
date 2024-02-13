@@ -11,7 +11,8 @@ public interface AartiDao extends JpaRepository<Aarti, Long>
 {
 	List<Aarti> findByUserId(Long userId);
 
-	@Query("select a from Aarti a order by a.aDate")
+
+	@Query("SELECT a FROM Aarti a ORDER BY a.aDate ASC")
 	List<Aarti> findAllOrderedByADateAsc();
 	
 }
