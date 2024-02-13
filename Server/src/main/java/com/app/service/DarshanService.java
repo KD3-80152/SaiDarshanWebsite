@@ -12,6 +12,8 @@ public interface DarshanService {
 	List<DarshanDTO> getAllDarshanBookingsByUserId(Long darshanId);
 	
 	ApiResponse deleteDarshanBookingById(Long id);
+	
+	public Integer incrementCounter(Long bookingDateId,Long timeSlotId);
 
 }
 

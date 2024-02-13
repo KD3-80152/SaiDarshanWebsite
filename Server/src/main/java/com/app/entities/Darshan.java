@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -24,11 +25,13 @@ import lombok.ToString;
 public class Darshan extends BaseEntity{
 
 
-	@Column(name="darshan_date")
-	private LocalDate date;
+	@JoinColumn(name="darshan_date")
+	@ManyToOne
+	private BookingDate bookingDate;
 	
-	@Column(name="darshan_time_slot")
-	private LocalTime timeSlot;
+	@JoinColumn(name="darshan_time_slot")
+	@ManyToOne
+	private TimeSlot timeSlot;
 	
 	@Column(name="no_of_men")
 	private int men;
@@ -52,4 +55,5 @@ public class Darshan extends BaseEntity{
 	@JoinColumn(name = "user_id") // Optional BUT reco , to specify the name of FK col.
 	private UserEntity user;
 	
+	public Integer counter;
 }
