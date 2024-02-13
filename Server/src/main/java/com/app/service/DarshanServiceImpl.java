@@ -6,24 +6,21 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.app.custom_Exceptions.ResourceNotFoundException;
+import com.app.dao.BookingDateDao;
 import com.app.dao.DarshanDao;
-
 import com.app.dao.TimeSlotDao;
-import com.app.dto.ApiResponse;
-import com.app.dto.DarshanDTO;
-import com.app.entities.BookingDate;
-import com.app.entities.Darshan;
-import com.app.entities.TimeSlot;
-
 import com.app.dao.UserEntityDao;
 import com.app.dto.ApiResponse;
 import com.app.dto.DarshanRequestDTO;
 import com.app.dto.DarshanResponseDTO;
-
+import com.app.entities.BookingDate;
+import com.app.entities.Darshan;
+import com.app.entities.TimeSlot;
 import com.app.entities.UserEntity;
 
 @Service
@@ -38,7 +35,7 @@ public class DarshanServiceImpl implements DarshanService {
 	private TimeSlotDao timeSlotDao;
 	
 	@Autowired
-	private BookingDate bookingDate;
+	private BookingDateDao bookingDatedao;
 	
 	@Autowired
 	private UserEntityDao userDao; 
@@ -111,18 +108,22 @@ public class DarshanServiceImpl implements DarshanService {
 	}
 
 
+//	public List<DarshanResponseDTO> getAllDarshanBookings() {
+//		
+//		List<Darshan> sortedDarshanListByDate = darshanDao.findAllOrderedByDateAsc();
+//		
+//		return sortedDarshanListByDate.stream()
+//				.map(darshan -> mapper.map(darshan, DarshanResponseDTO.class))
+//				.collect(Collectors.toList());
+//	}
 	public List<DarshanResponseDTO> getAllDarshanBookings() {
 		
-		List<Darshan> sortedDarshanListByDate = darshanDao.findAllOrderedByDateAsc();
-		
-		return sortedDarshanListByDate.stream()
-				.map(darshan -> mapper.map(darshan, DarshanResponseDTO.class))
-				.collect(Collectors.toList());
+	Sort sortByDate = Sort.by(Sort.Direction.ASC, "bookingDate"); // Sort by the 'date' property in ascending order
+	List<Darshan> list= darshanDao.findAll(sortByDate);
+	return list.stream().map(darshan -> mapper.map(darshan, DarshanResponseDTO.class)).collect(Collectors.toList());
+	
+	
 	}
-	
-	
-	
-
 	
 
 	

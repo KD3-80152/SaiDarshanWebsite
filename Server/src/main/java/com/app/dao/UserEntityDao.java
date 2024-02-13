@@ -11,7 +11,6 @@ public interface UserEntityDao extends JpaRepository<UserEntity,Long>{
 //derived finder 
 	Optional<UserEntity> findByEmail(String email);
 
-	List<UserEntity> findAllOrderedById();
 	
 	
 	

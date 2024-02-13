@@ -13,6 +13,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
 
 @EnableWebSecurity//to enable spring sec frmwork support
 @Configuration //to tell SC , this is config class containing @Bean methods
@@ -34,7 +35,15 @@ public class SecurityConfig {
 	public SecurityFilterChain authorizeRequests(HttpSecurity http) throws Exception
 	{
 		//URL based authorization rules
-		http.cors()
+		http.cors().
+		configurationSource(request->
+		{
+		 CorsConfiguration corsConfig=new CorsConfiguration();
+		 corsConfig.addAllowedOrigin("http://localhost:3000");
+		 corsConfig.addAllowedMethod("*");
+		 corsConfig.addAllowedHeader("*");
+		 return corsConfig;
+		})
 		.and().
 		//disable CSRF token generation n verification
 		csrf()	.disable()
@@ -46,9 +55,9 @@ public class SecurityConfig {
 				"/v*/api-doc*/**","/swagger-ui/**","/**").permitAll()
 		// only required for JS clnts (react / angular) : for the pre flight requests
 		.antMatchers(HttpMethod.OPTIONS).permitAll()
-		.antMatchers("/signin/my_profile","/signin/my_profile/update_user","/signin/change_password","/signin/my_profile/address/**","/darshan/add",
+		.antMatchers("/user/my-profile","/user/my-profile/update-user","/user/change-password","/user/my-profile/address/**","/darshan/add",
 				"/darshan/","/darshan/{id}","/pooja/add","/pooja/","/pooja/{id}","/aarti/add","/aarti/","/aarti/{id}","/accommodation/add","/accommodation/","/accommodation/{id}").hasRole("USER")  
-		.antMatchers("/signin/user","/signin/user/{id}","/darshan/all","/pooja/all","/accommodation/all","/aarti/all").hasRole("ADMIN")
+		.antMatchers("/admin/all-users","/admin/all-users/{id}","/darshan/all","/pooja/all","/accommodation/all","/aarti/all").hasRole("ADMIN")
 		.anyRequest().authenticated()
 		.and()
 		//to tell spring sec : not to use HttpSession to store user's auth details
