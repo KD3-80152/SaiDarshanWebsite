@@ -1,0 +1,7 @@
+.background {
+    background-image: url('saibaba.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Adjust this as per your requirement */
+    /* Optionally, you can add more styles here */
+  }

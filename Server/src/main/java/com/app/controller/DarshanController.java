@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.dto.DarshanDTO;
+import com.app.dto.DarshanRequestDTO;
 import com.app.security.FindUserDetails;
 import com.app.service.DarshanService;
 
@@ -34,12 +34,12 @@ public class DarshanController {
 	@Autowired
 	private FindUserDetails authUserDetails;
 	
-	
+	//ADD NEW DARSHAN BOOKING
 	//method=POST
 	// http://host:port/darshan/add
 	@PostMapping("/add")
 	public ResponseEntity<?> addDarshanBooking(@RequestBody
-			@Valid DarshanDTO darshan) {
+			@Valid DarshanRequestDTO darshan) {
 		System.out.println("in add darshan " + darshan);
 		Long userId = authUserDetails.getUserId();
 		return ResponseEntity
@@ -48,7 +48,7 @@ public class DarshanController {
 	}
 	
 	
-	
+	//GET PARTICULAR USER'S DARSHAN BOOKINGS
 	//method=GET
 	// http://host:port/darshan/
 	@GetMapping(value = "/")
@@ -59,7 +59,7 @@ public class DarshanController {
 		return ResponseEntity.ok(darshanService.getAllDarshanBookingsByUserId(userId));	
 	}
 	
-	
+	//CANCEL PARTICULAR USER'S DARSHAN BOOKINGS
 	//method=DELETE
 	// http://host:port/darshan/{id}
 	@DeleteMapping("/{id}")
@@ -71,7 +71,9 @@ public class DarshanController {
 		return ResponseEntity.ok(darshanService.deleteDarshanBookingById(id));
 	}
 	
-	//ADMIN POV GETTING ALL POOJA BOOKINGS
+	//ADMIN POV GETTING ALL DARSHAN BOOKINGS
+	//method=GET
+			// http://host:port/darshan/all
 	@GetMapping("/all")
 	public ResponseEntity<?> getAllDarshanBookings()
 	{

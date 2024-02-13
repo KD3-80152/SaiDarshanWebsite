@@ -27,6 +27,7 @@ public class AddressController {
 	@Autowired
 	private FindUserDetails authUserDetails;
 	
+	//GET USER'S ADDRESS
 		//method=get
 		//http://host:port/signin/my_profile/address 
 		//update the url according to front end
@@ -39,7 +40,7 @@ public class AddressController {
 			
 		}
 	
-	
+		//ASSIGN AN ADDRESS TO THE USER
 	    //method=Post
 		// http://host:port/signin/my_profile/address/add_address
 		//update the url according to front end
@@ -54,7 +55,7 @@ public class AddressController {
 			}
 	
 	
-	
+	//UPDATE USER'S ADDRESS
 	//method=PUT
 	 // http://host:port/signin/my_profile/address/update_address
 	//update the url according to front end

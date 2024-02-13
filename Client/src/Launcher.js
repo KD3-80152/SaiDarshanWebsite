@@ -1,8 +1,10 @@
+
 import React from 'react'
 import Home from './Home'
 import Registration from './Registration'
 import Login from './Login'
 import NotFound from './NotFound'
+import './app.css';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 // import {Link, Route, Switch} from 'react-router-dom';
@@ -34,7 +36,8 @@ import { Routes, Route, Link } from 'react-router-dom';
 
 const Launcher = () => {
   return (
-    <div className="container">
+    <div className = "background">
+    <div className="container ">
       {/* <Router> */}
       <hr />
       <Link to = "/home">Home</Link> {" | "}
@@ -51,6 +54,7 @@ const Launcher = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
       {/* </Router> */}
+    </div>
     </div>
   )
 }

@@ -14,7 +14,8 @@ import com.app.custom_Exceptions.ResourceNotFoundException;
 import com.app.dao.PoojaDao;
 import com.app.dao.UserEntityDao;
 import com.app.dto.ApiResponse;
-import com.app.dto.PoojaDTO;
+import com.app.dto.PoojaRequestDTO;
+import com.app.dto.PoojaResponseDTO;
 import com.app.entities.Pooja;
 import com.app.entities.UserEntity;
 
@@ -33,20 +34,20 @@ public class PoojaServiceImpl implements PoojaService{
 	private ModelMapper mapper;
 
 	@Override
-	public PoojaDTO addPoojaBooking(PoojaDTO pooja,Long userId) {
+	public PoojaResponseDTO addPoojaBooking(PoojaRequestDTO pooja,Long userId) {
 		UserEntity curUser= userDao.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Inavalid userId"));
 		Pooja poojaEntity=  mapper.map(pooja, Pooja.class);
 		poojaEntity.setUser(curUser);
 		poojaEntity.setPrimaryDevoteeName(curUser.getFirstName()+" "+curUser.getLastName());
 		poojaEntity.setAdharNo(curUser.getAdharNumber());
 		Pooja persistentpooja = poojaDao.save(poojaEntity);
-		return mapper.map(persistentpooja, PoojaDTO.class);
+		return mapper.map(persistentpooja, PoojaResponseDTO.class);
 	}
 
 	@Override
-	public List<PoojaDTO> getAllPoojaBookingsByUserId(Long userId) {
+	public List<PoojaResponseDTO> getAllPoojaBookingsByUserId(Long userId) {
 		List<Pooja> poojaList = poojaDao.findByUserId(userId);
-		return poojaList.stream().map(pooja -> mapper.map(pooja, PoojaDTO.class)).collect(Collectors.toList());
+		return poojaList.stream().map(pooja -> mapper.map(pooja, PoojaResponseDTO.class)).collect(Collectors.toList());
 	}
 
 	@Override
@@ -70,10 +71,10 @@ public class PoojaServiceImpl implements PoojaService{
 	}
 
 	@Override
-	public List<PoojaDTO> getAllPoojaBookings() {
+	public List<PoojaResponseDTO> getAllPoojaBookings() {
 		Sort sortByDate = Sort.by(Sort.Direction.ASC, "date"); // Sort by the 'date' property in ascending order
 		List<Pooja> list= poojaDao.findAll(sortByDate);
-		return list.stream().map(pooja -> mapper.map(pooja, PoojaDTO.class)).collect(Collectors.toList());
+		return list.stream().map(pooja -> mapper.map(pooja, PoojaResponseDTO.class)).collect(Collectors.toList());
 	}
 
 	

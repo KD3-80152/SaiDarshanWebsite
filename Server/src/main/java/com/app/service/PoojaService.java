@@ -4,15 +4,17 @@ import java.util.List;
 
 import com.app.dto.ApiResponse;
 import com.app.dto.PoojaDTO;
+import com.app.dto.PoojaRequestDTO;
+import com.app.dto.PoojaResponseDTO;
 
 public interface PoojaService {
 	
-	PoojaDTO addPoojaBooking(PoojaDTO darshan,Long userId);
+	PoojaResponseDTO addPoojaBooking(PoojaRequestDTO darshan,Long userId);
 	
-	List<PoojaDTO> getAllPoojaBookingsByUserId(Long poojaId);
+	List<PoojaResponseDTO> getAllPoojaBookingsByUserId(Long poojaId);
 
 	ApiResponse deletePoojaBookingById(Long poojaId);
 
-	List<PoojaDTO> getAllPoojaBookings();
+	List<PoojaResponseDTO> getAllPoojaBookings();
 
 }

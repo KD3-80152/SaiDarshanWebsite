@@ -31,9 +31,8 @@ public class UserController {
 	@Autowired
 	private FindUserDetails authUserDetails;
 	
-	
+	//GET USER PROFILE
 	//method=GET
-
 	// http://host:port/signin/my_profile
 	@GetMapping("/my_profile")
 	public ResponseEntity<?> showUserProfile( @RequestBody @Valid UserDTO dto) {
@@ -43,7 +42,7 @@ public class UserController {
 		return ResponseEntity.ok(userService.getUserProfile(userId));
 	}
 	
-	
+	//UPDATE USER PROFILE
 	  //method=PUT
 	  // http://host:port/signin/my_profile/update_user
 	//update the url according to front end
@@ -54,9 +53,8 @@ public class UserController {
 			return ResponseEntity.ok(userService.updateUser(userId, dto));
 		}
 		
-	
+	//CHANGE PASSWORD
 	//method =patch
-	//change password
 	// http://host:port/signin/change_password
 	@PatchMapping("/change_password")
 	public ResponseEntity<?> changePassword(@RequestBody @Valid UserChangePasswordDTO dto)
