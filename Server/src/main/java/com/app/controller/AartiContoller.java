@@ -31,6 +31,7 @@ public class AartiContoller
 	@Autowired
 	private FindUserDetails authUserDetails;
 	
+	//ADD NEW AARTI BOOKING 
 	//method=POST
 	// http://host:port/aarti/add
 	@PostMapping("/add")
@@ -43,8 +44,9 @@ public class AartiContoller
 				.body(artiService.addAartiBooking(aarti,userId));
 	}
 	
+	//GET ALL AARTI BOKINGS BY THE USER
 	//method=GET
-		// http://host:port/aarti/
+	// http://host:port/aarti/
 	@GetMapping(value = "/")
 	public ResponseEntity<?> getAartiBookingsByUser() throws IOException {
 		Long userId = authUserDetails.getUserId();
@@ -54,8 +56,9 @@ public class AartiContoller
 	}
 	
 
+	//CANCEL PARTICULAR USER'S AARTI BOOKINGS
 	//method=DELETE
-		// http://host:port/aarti/{id}
+	// http://host:port/aarti/{id}
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> cancelAartiBooking(@PathVariable Long id)
 	{
@@ -66,6 +69,8 @@ public class AartiContoller
 	
 	
 	//ADMIN POV GETTING ALL POOJA BOOKINGS
+	//method=GET
+	// http://host:port/aarti/all
 	@GetMapping("/all")
 	public ResponseEntity<?> getAllAartiBookings()
 	{
