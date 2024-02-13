@@ -3,8 +3,10 @@ package com.app.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -12,7 +14,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Getter
-@Entity(name = "booking_date")
+@Data
+@Entity
+@Table(name = "booking_date")
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookingDate extends BaseEntity {

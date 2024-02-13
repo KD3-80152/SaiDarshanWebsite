@@ -6,10 +6,12 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.app.custom_Exceptions.ResourceNotFoundException;
+import com.app.dao.BookingDateDao;
 import com.app.dao.DarshanDao;
 
 import com.app.dao.TimeSlotDao;
@@ -38,7 +40,7 @@ public class DarshanServiceImpl implements DarshanService {
 	private TimeSlotDao timeSlotDao;
 	
 	@Autowired
-	private BookingDate bookingDate;
+	private BookingDateDao bookingDateDao;
 	
 	@Autowired
 	private UserEntityDao userDao; 
@@ -111,16 +113,24 @@ public class DarshanServiceImpl implements DarshanService {
 	}
 
 
+//	public List<DarshanResponseDTO> getAllDarshanBookings() {
+//		
+//		List<Darshan> sortedDarshanListByDate = darshanDao.findAllOrderedByDateAsc();
+//		
+//		return sortedDarshanListByDate.stream()
+//				.map(darshan -> mapper.map(darshan, DarshanResponseDTO.class))
+//				.collect(Collectors.toList());
+//	}
+	
+
 	public List<DarshanResponseDTO> getAllDarshanBookings() {
 		
-		List<Darshan> sortedDarshanListByDate = darshanDao.findAllOrderedByDateAsc();
+		Sort sortByDate = Sort.by(Sort.Direction.ASC, "bookingDate"); // Sort by the 'date' property in ascending order
+		List<Darshan> list= darshanDao.findAll(sortByDate);
+		return list.stream().map(darshan -> mapper.map(darshan, DarshanResponseDTO.class)).collect(Collectors.toList());
 		
-		return sortedDarshanListByDate.stream()
-				.map(darshan -> mapper.map(darshan, DarshanResponseDTO.class))
-				.collect(Collectors.toList());
-	}
-	
-	
+		
+		}
 	
 
 	

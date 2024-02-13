@@ -98,7 +98,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<UserDTO> getAllUsers() {
-		List<UserEntity> allUsers= userDao.findAllOrderedById();
+		List<UserEntity> allUsers= userDao.findAll();//findAllOrderedById();
 		return allUsers.stream().map(UserEntity -> mapper.map(UserEntity, UserDTO.class)).collect(Collectors.toList());
 	}
 
