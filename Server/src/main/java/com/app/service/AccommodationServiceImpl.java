@@ -54,7 +54,7 @@ public class AccommodationServiceImpl implements AccommodationService {
 	public List<AccommodationResponseDTO> getAllAccommodationBookings() {
 		
 		
-		List<Accommodation> sortedListByCheckInDate = accodao.findAllByOrdersByCheckInDateAsc();
+		List<Accommodation> sortedListByCheckInDate = accodao.findAllByOrderedByCheckInDateAsc();
 		return sortedListByCheckInDate.stream()
 				.map(accommodation -> mapper.map(accommodation, AccommodationResponseDTO.class))
 				.collect(Collectors.toList());
