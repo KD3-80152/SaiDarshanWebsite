@@ -33,7 +33,7 @@ public class UserController {
 	
 	//GET USER PROFILE
 	//method=GET
-	// http://host:port/signin/my_profile
+	// http://host:port/user/my_profile
 	@GetMapping("/my-profile")
 	public ResponseEntity<?> showUserProfile( @RequestBody @Valid UserDTO dto) {
 		Long userId = authUserDetails.getUserId();
@@ -44,7 +44,7 @@ public class UserController {
 	
 	//UPDATE USER PROFILE
 	  //method=PUT
-	  // http://host:port/signin/my_profile/update_user
+	  // http://host:port/user/my_profile/update_user
 	//update the url according to front end
 		@PutMapping("/my-profile/update-user")
 		public ResponseEntity<?> updateUserDetails( @RequestBody @Valid UserDTO dto) {
@@ -55,7 +55,7 @@ public class UserController {
 		
 	//CHANGE PASSWORD
 	//method =patch
-	// http://host:port/signin/change_password
+	// http://host:port/user/change_password
 	@PatchMapping("/change-password")
 	public ResponseEntity<?> changePassword(@RequestBody @Valid UserChangePasswordDTO dto)
 	{

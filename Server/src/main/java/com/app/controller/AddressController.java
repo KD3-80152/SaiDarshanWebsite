@@ -18,7 +18,7 @@ import com.app.security.FindUserDetails;
 import com.app.service.AddressService;
 
 @RestController
-@RequestMapping("/signin/my_profile/address")
+@RequestMapping("/user/my-profile/address")
 public class AddressController {
 
 	@Autowired
@@ -29,7 +29,7 @@ public class AddressController {
 	
 	//GET USER'S ADDRESS
 		//method=get
-		//http://host:port/signin/my_profile/address 
+		//http://host:port/user/my_profile/address 
 		//update the url according to front end
 		@GetMapping
 		public ResponseEntity<?> getUserAddress() {
@@ -42,11 +42,11 @@ public class AddressController {
 	
 		//ASSIGN AN ADDRESS TO THE USER
 	    //method=Post
-		// http://host:port/signin/my_profile/address/add_address
+		// http://host:port/user/my_profile/address/add_address
 		//update the url according to front end
 
 		
-			@PostMapping("/add_address")
+			@PostMapping("/add-address")
 			public ResponseEntity<?> assignUserAddress( @RequestBody @Valid AddressDTO dto) {
 			Long userId = authUserDetails.getUserId();
 
@@ -57,11 +57,11 @@ public class AddressController {
 	
 	//UPDATE USER'S ADDRESS
 	//method=PUT
-	 // http://host:port/signin/my_profile/address/update_address
+	 // http://host:port/user/my_profile/address/update_address
 	//update the url according to front end
 
 	
-		@PutMapping("/update_address")
+		@PutMapping("/update-address")
 		public ResponseEntity<?> updateUserAddress(@RequestBody @Valid AddressDTO dto) 
 		{
 			Long userId = authUserDetails.getUserId();
