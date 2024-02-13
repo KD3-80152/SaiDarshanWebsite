@@ -32,6 +32,8 @@ public class UserSignInSignUpController {
 	private AuthenticationManager mgr;
 
 	// SIGN UP
+	//method= GET 
+	// http://host:port/users/signup
 	@PostMapping("/signup")
 	public ResponseEntity<?> userSignup(@RequestBody @Valid Signup dto) {
 		System.out.println("in sign up " + dto);
@@ -51,6 +53,10 @@ public class UserSignInSignUpController {
 	 * success : Auth Resp DTO : mesg + JWT token + SC 200 IN case of failure : SC
 	 * 401
 	 */
+	
+	//SIGN IN
+	//method= POST
+	// http://host:port/users/signin
 	@PostMapping("/signin")
 	public ResponseEntity<?> signinUser(@RequestBody @Valid SigninRequest reqDTO) {
 		System.out.println("in signin " + reqDTO);
