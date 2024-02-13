@@ -10,7 +10,7 @@ import com.app.entities.Accommodation;
 public interface AccommodationDao extends JpaRepository<Accommodation,Long>{
 	List<Accommodation> findByUserId(Long userId);
 	
-	
+
 	@Query("SELECT a FROM Accommodation a ORDER BY a.checkInDate ASC")
 	List<Accommodation> findAllByOrderedByCheckInDateAsc();
 }

@@ -2,6 +2,7 @@ package com.app.entities;
 
 import javax.persistence.Entity;
 
+
 public enum TimeEnum {
 	SIX_AM,
 	Eight_AM,

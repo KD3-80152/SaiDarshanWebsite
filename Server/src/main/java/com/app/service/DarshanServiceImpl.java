@@ -13,19 +13,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.app.custom_Exceptions.ResourceNotFoundException;
 import com.app.dao.BookingDateDao;
 import com.app.dao.DarshanDao;
-
 import com.app.dao.TimeSlotDao;
-import com.app.dto.ApiResponse;
-import com.app.dto.DarshanDTO;
-import com.app.entities.BookingDate;
-import com.app.entities.Darshan;
-import com.app.entities.TimeSlot;
-
 import com.app.dao.UserEntityDao;
 import com.app.dto.ApiResponse;
 import com.app.dto.DarshanRequestDTO;
 import com.app.dto.DarshanResponseDTO;
-
+import com.app.entities.BookingDate;
+import com.app.entities.Darshan;
+import com.app.entities.TimeSlot;
 import com.app.entities.UserEntity;
 
 @Service
@@ -41,6 +36,7 @@ public class DarshanServiceImpl implements DarshanService {
 	
 	@Autowired
 	private BookingDateDao bookingDateDao;
+
 	
 	@Autowired
 	private UserEntityDao userDao; 
@@ -113,14 +109,8 @@ public class DarshanServiceImpl implements DarshanService {
 	}
 
 
-//	public List<DarshanResponseDTO> getAllDarshanBookings() {
-//		
-//		List<Darshan> sortedDarshanListByDate = darshanDao.findAllOrderedByDateAsc();
-//		
-//		return sortedDarshanListByDate.stream()
-//				.map(darshan -> mapper.map(darshan, DarshanResponseDTO.class))
-//				.collect(Collectors.toList());
-//	}
+
+
 	
 
 	public List<DarshanResponseDTO> getAllDarshanBookings() {
@@ -132,6 +122,7 @@ public class DarshanServiceImpl implements DarshanService {
 		
 		}
 	
+
 
 	
 
