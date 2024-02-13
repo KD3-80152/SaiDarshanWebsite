@@ -23,7 +23,7 @@ import com.app.service.AartiService;
 
 @RestController
 @RequestMapping("/aarti")
-public class AartiContoller 
+public class AartiController 
 {
 	@Autowired
 	private AartiService artiService;

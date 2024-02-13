@@ -22,7 +22,7 @@ import com.app.security.FindUserDetails;
 import com.app.service.UserService;
 
 @RestController
-@RequestMapping("/signin")
+@RequestMapping("/user")
 public class UserController {
 
 	@Autowired
@@ -34,7 +34,7 @@ public class UserController {
 	//GET USER PROFILE
 	//method=GET
 	// http://host:port/signin/my_profile
-	@GetMapping("/my_profile")
+	@GetMapping("/my-profile")
 	public ResponseEntity<?> showUserProfile( @RequestBody @Valid UserDTO dto) {
 		Long userId = authUserDetails.getUserId();
 		System.out.println("in show profile " + userId + " " + dto);
@@ -46,7 +46,7 @@ public class UserController {
 	  //method=PUT
 	  // http://host:port/signin/my_profile/update_user
 	//update the url according to front end
-		@PutMapping("/my_profile/update_user")
+		@PutMapping("/my-profile/update-user")
 		public ResponseEntity<?> updateUserDetails( @RequestBody @Valid UserDTO dto) {
 		Long userId = authUserDetails.getUserId();
 			System.out.println("in update user " + userId + " " + dto);
@@ -56,7 +56,7 @@ public class UserController {
 	//CHANGE PASSWORD
 	//method =patch
 	// http://host:port/signin/change_password
-	@PatchMapping("/change_password")
+	@PatchMapping("/change-password")
 	public ResponseEntity<?> changePassword(@RequestBody @Valid UserChangePasswordDTO dto)
 	{
 		Long userId = authUserDetails.getUserId();
@@ -64,26 +64,5 @@ public class UserController {
 		return ResponseEntity.ok(userService.changeUserPassword(userId,dto));
 	}
 	
-	//ADMIN POV GET ALL USERS
-		//method=get
-		// http://host:port/signin/user
-		@GetMapping("/user")
-		public ResponseEntity<?> getAllUsers()
-		{
-			System.out.println("in get all users admin pov");
-			return ResponseEntity.ok(userService.getAllUsers());
-		}
-		
-		
-		//ADMIN POV DELETE USER BY ID
-		//method=delete
-		// http://host:port/signin/user/{id}
-			@PreAuthorize("hasRole('ADMIN')")
-			@DeleteMapping("/user/{id}")
-			public ResponseEntity<?> deleteUser()
-			{
-				Long userId = authUserDetails.getUserId();
-				System.out.println("in delete user " + userId + " ");
-				return ResponseEntity.ok(userService.deleteUserDetails(userId));
-			}
+	
 }

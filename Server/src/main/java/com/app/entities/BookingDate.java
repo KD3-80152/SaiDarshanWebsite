@@ -1,18 +1,22 @@
 package com.app.entities;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDate;
-import java.util.List;
+import lombok.Setter;
 
 @Getter
-@Entity(name = "booking_date")
+@Setter
+@Entity
+@Table(name = "booking_date")
 @NoArgsConstructor
 @AllArgsConstructor
 public class BookingDate extends BaseEntity {
