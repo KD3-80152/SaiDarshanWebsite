@@ -32,6 +32,7 @@ public class AccommodationController {
 	@Autowired
 	private FindUserDetails authUserDetails;
 	
+	//ADD NEW ACCOMMODATION BOOKING
 	//method=POST
 	// http://host:port/accommodation/add
 	@PostMapping("/add")
@@ -44,6 +45,7 @@ public class AccommodationController {
 				.body(accoService.addAccomodationBooking(acco,userId));
 	}
 	
+	//GET PARTICULAR USER'S ACCOMMODATION BOOKINGS
 	//method=GET
 	// http://host:port/accommodation/
 	@GetMapping(value = "/")
@@ -53,6 +55,7 @@ public class AccommodationController {
 		return ResponseEntity.ok(accoService.getAllAccommodationBookingsByUserId(userId));
 	}
 	
+	//CANCEL PARTICULAR USER'S ACCOMMODATION BOOKINGS
 	//method=DELETE
 		// http://host:port/accommodation/{id}
 	@DeleteMapping("/{id}")
@@ -62,7 +65,9 @@ public class AccommodationController {
 	}
 	
 	
-	//ADMIN POV GETTING ALL POOJA BOOKINGS
+	//ADMIN POV GETTING ALL ACCOMMODATION BOOKINGS
+			//method=GET
+			// http://host:port/accommodation/all
 	@GetMapping("/all")
 	public ResponseEntity<?> getAllAccommodationBookings()
 	{

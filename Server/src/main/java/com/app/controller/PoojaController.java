@@ -72,7 +72,7 @@ public class PoojaController {
 		
 		
 	//ADMIN POV GETTING ALL POOJA BOOKINGS
-		//method=DELETE
+		//method=GET
 		// http://host:port/pooja/all
 		@GetMapping("/all")
 		public ResponseEntity<?> getAllPoojaBookings() throws IOException 
