@@ -2,6 +2,7 @@ package com.app.dto;
 
 import java.time.*;
 
+import javax.validation.constraints.NotBlank;
 //import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -16,7 +17,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class PoojaDTO {
+public class PoojaResponseDTO {
 	
 	
 	@NotNull
@@ -34,6 +35,14 @@ public class PoojaDTO {
 	
 	@NotNull
 	private double amount;
+	
+	@NotBlank
+	@NotNull
+	private String primaryDevoteeName;
+	
+	@NotBlank
+	@NotNull
+	private String adharNo;
 	
 
 }

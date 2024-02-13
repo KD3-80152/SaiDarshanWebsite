@@ -40,6 +40,12 @@ public class Accommodation extends BaseEntity {
 	@JoinColumn(name = "user_id") // Optional BUT reco , to specify the name of FK col.
 	private UserEntity user;
 	
+	@Column(name = "primary_devotee_name")
+	private String primaryDevoteeName;
+	
+	@Column(name = "adhar_no",length = 12,unique = true)
+	private String adharNo;
+	
 	
 	
 }

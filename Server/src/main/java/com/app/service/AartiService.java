@@ -2,13 +2,16 @@ package com.app.service;
 
 import java.util.List;
 
-import com.app.dto.AartiDTO;
+import com.app.dto.AartiRequestDTO;
+import com.app.dto.AartiResponseDTO;
 import com.app.dto.ApiResponse;
-import com.app.dto.DarshanDTO;
 
 public interface AartiService 
 {
-	AartiDTO addAartiBooking(AartiDTO aarti);
-	List<AartiDTO> getAllAartiBookingsByUserId(Long aartiId);
+	AartiResponseDTO addAartiBooking(AartiRequestDTO aarti,Long userId);
+	
+	List<AartiResponseDTO> getAllAartiBookingsByUserId(Long userId);
+	
 	ApiResponse deleteAartiBookingById(Long id);
+	List<AartiResponseDTO> getAllAartiBookings();
 }

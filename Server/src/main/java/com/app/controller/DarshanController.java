@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.dto.DarshanDTO;
+import com.app.dto.DarshanRequestDTO;
+import com.app.security.FindUserDetails;
 import com.app.service.DarshanService;
 
 
@@ -30,27 +31,53 @@ public class DarshanController {
 	@Autowired
 	private DarshanService darshanService;
 	
+	@Autowired
+	private FindUserDetails authUserDetails;
+	
+	
+	//method=POST
+	// http://host:port/darshan/add
 	@PostMapping("/add")
 	public ResponseEntity<?> addDarshanBooking(@RequestBody
-			@Valid DarshanDTO darshan) {
+			@Valid DarshanRequestDTO darshan) {
 		System.out.println("in add darshan " + darshan);
+		Long userId = authUserDetails.getUserId();
 		return ResponseEntity
 				.status(HttpStatus.CREATED)
-				.body(darshanService.addDarshanBooking(darshan));
+				.body(darshanService.addDarshanBooking(darshan,userId));
 	}
 	
-	@GetMapping(value = "/view/{userId}")
-	public ResponseEntity<?> getDarshanBookingsByUser(@PathVariable Long userId) throws IOException {
+	
+	
+	//method=GET
+	// http://host:port/darshan/
+	@GetMapping(value = "/")
+	public ResponseEntity<?> getDarshanBookingsByUser() throws IOException 
+	{
+		Long userId = authUserDetails.getUserId();
 		System.out.println("get darshan bookings by user " + userId);
 		return ResponseEntity.ok(darshanService.getAllDarshanBookingsByUserId(userId));	
 	}
 	
+	
+	//method=DELETE
+	// http://host:port/darshan/{id}
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> deleteDarshanDetails(@PathVariable Long id) {
-		System.out.println("in update darshan " + id);
+	public ResponseEntity<?> cancelDarshanBooking(@PathVariable Long id) 
+	{
+		
+		
+		System.out.println("in delete darshan " + id);
 		return ResponseEntity.ok(darshanService.deleteDarshanBookingById(id));
 	}
-
+	
+	//ADMIN POV GETTING ALL POOJA BOOKINGS
+	@GetMapping("/all")
+	public ResponseEntity<?> getAllDarshanBookings()
+	{
+		System.out.println("Get All Darshan Bookings");
+		return ResponseEntity.ok(darshanService.getAllDarshanBookings());
+	}
 	
 
 }

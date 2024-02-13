@@ -7,14 +7,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Range;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-@Getter
-@Setter
-@ToString
-public class DarshanDTO {
+public class DarshanResponseDTO 
+{
 	@NotNull
 	private LocalDate date;
 	
@@ -32,12 +26,11 @@ public class DarshanDTO {
 	@NotNull
 	@Range(max=4)
 	private int children;
-	
 	@NotNull
 	private float amount;
 	
 	private String primaryDevoteeName;
+	
 	@NotNull
 	private String adharNo;
-
 }

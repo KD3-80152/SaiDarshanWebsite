@@ -10,12 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.app.custom_Exceptions.ResourceNotFoundException;
 import com.app.dao.AccommodationDao;
-import com.app.dao.DarshanDao;
-import com.app.dto.AccommodationDTO;
+import com.app.dto.AccommodationRequestDTO;
+import com.app.dto.AccommodationResponseDTO;
 import com.app.dto.ApiResponse;
-import com.app.dto.DarshanDTO;
 import com.app.entities.Accommodation;
-import com.app.entities.Darshan;
 
 @Service
 @Transactional
@@ -27,16 +25,17 @@ public class AccommodationServiceImpl implements AccommodationService {
 	private ModelMapper mapper;
 	
 	@Override
-	public AccommodationDTO addAccomodationBooking(AccommodationDTO acco) {
+	public AccommodationResponseDTO addAccomodationBooking(AccommodationRequestDTO acco,Long userId) {
 		Accommodation accoEntity = mapper.map(acco,Accommodation.class);
 		Accommodation persistentAcco = accodao.save(accoEntity);
-		return mapper.map(persistentAcco, AccommodationDTO.class);
+		return mapper.map(persistentAcco, AccommodationResponseDTO.class);
 	}
 
 	@Override
-	public List<AccommodationDTO> getAllAccommodationBookingsByUserId(Long accoId) {
-		List<Accommodation> accoList = accodao.findByUserId(accoId);
-		return accoList.stream().map(acco -> mapper.map(acco, AccommodationDTO.class)).collect(Collectors.toList());
+	public List<AccommodationResponseDTO> getAllAccommodationBookingsByUserId(Long userId) {
+		
+		List<Accommodation> accoList = accodao.findByUserId(userId);
+		return accoList.stream().map(acco -> mapper.map(acco, AccommodationResponseDTO.class)).collect(Collectors.toList());
 
 	}
 
@@ -48,6 +47,17 @@ public class AccommodationServiceImpl implements AccommodationService {
 		accodao.delete(acco);
 		return new ApiResponse("Accommodation Details of accommodation with Id" + acco.getId() + " deleted....");
 		
+	}
+	
+	
+	@Override
+	public List<AccommodationResponseDTO> getAllAccommodationBookings() {
+		
+		
+		List<Accommodation> sortedListByCheckInDate = accodao.findAllByOrdersByCheckInDateAsc();
+		return sortedListByCheckInDate.stream()
+				.map(accommodation -> mapper.map(accommodation, AccommodationResponseDTO.class))
+				.collect(Collectors.toList());
 	}
 
 }
