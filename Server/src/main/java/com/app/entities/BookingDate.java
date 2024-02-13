@@ -3,10 +3,18 @@ package com.app.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDate;
 import java.util.List;
 
+@Getter
 @Entity(name = "booking_date")
+@NoArgsConstructor
+@AllArgsConstructor
 public class BookingDate extends BaseEntity {
 	
 	@Column(name = "darshan_date")

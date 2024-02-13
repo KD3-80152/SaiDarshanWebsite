@@ -1,11 +1,13 @@
 package com.app.service;
 
-import com.app.dto.UserDTO;
+import java.util.List;
 
 import javax.validation.Valid;
 
 import com.app.dto.ApiResponse;
 import com.app.dto.Signup;
+import com.app.dto.UserChangePasswordDTO;
+import com.app.dto.UserDTO;
 
 public interface UserService {
 //sign up
@@ -21,5 +23,8 @@ public interface UserService {
 	ApiResponse deleteUserDetails(Long userId);
 
 
-	ApiResponse changeUserPassword(Long userId, UserDTO dto);
+	ApiResponse changeUserPassword(Long userId, UserChangePasswordDTO dto);
+
+
+	List<UserDTO> getAllUsers();
 }

@@ -38,15 +38,6 @@ public class UserDTO {
 	@Email(message = "Invalid Email!!!")
 	private String email;
 	
-	@JsonProperty(access = Access.WRITE_ONLY)
-	@Pattern(regexp="((?=.*\\d)(?=.*[a-z])(?=.*[#@$*]).{5,20})",message = "Invalid password format")
-	private String password;
-	
-	@Pattern(regexp="((?=.*\\d)(?=.*[a-z])(?=.*[#@$*]).{5,20})",message = "Invalid password format")
-	private String newPassword;
-	
-	private String confirmNewPassword;
-	
 	@NotBlank(message = "Please enter your mobile number in order to proceed!")
 	@Pattern(regexp="^\\d{10}$",message = "Invalid number :(")
 	private String mobileNo;

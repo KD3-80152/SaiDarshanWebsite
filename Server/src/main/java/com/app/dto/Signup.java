@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import com.app.entities.Address;
@@ -36,6 +37,10 @@ public class Signup {
 	@Pattern(regexp="((?=.*\\d)(?=.*[a-z])(?=.*[#@$*]).{5,20})",message = "Invalid password format")
 	private String password;
 	
+	@JsonProperty(access = Access.WRITE_ONLY)
+	@Pattern(regexp="((?=.*\\d)(?=.*[a-z])(?=.*[#@$*]).{5,20})",message = "Invalid password format")
+	private String confirmPassword;
+	
 	@NotBlank(message = "Please enter your mobile number in order to proceed!")
 	@Pattern(regexp="^\\d{10}$",message = "Invalid number :(")
 	private String mobileNo;
@@ -46,6 +51,8 @@ public class Signup {
 
 	private Gender gender;
 
+	@NotBlank(message = "Please enter your aadhar number in order to proceed!")
+	@NotNull(message="this field can't contain null values")
 	private String adharNumber;
 
 	

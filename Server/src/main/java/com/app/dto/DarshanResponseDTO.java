@@ -7,17 +7,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Range;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
-
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-@Getter
-@Setter
-@ToString
-public class DarshanDTO {
+public class DarshanResponseDTO 
+{
 	@NotNull
 	private LocalDate date;
 	
@@ -35,7 +26,6 @@ public class DarshanDTO {
 	@NotNull
 	@Range(max=4)
 	private int children;
-	
 	@NotNull
 	private float amount;
 	
@@ -43,8 +33,4 @@ public class DarshanDTO {
 	
 	@NotNull
 	private String adharNo;
-	
-	@JsonProperty(access = Access.READ_ONLY)
-	public Integer counter;
-
 }

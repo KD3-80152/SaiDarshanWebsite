@@ -1,45 +1,33 @@
 package com.app.dto;
 
 import java.time.LocalDate;
-
+import java.time.LocalTime;
 import javax.validation.constraints.NotNull;
-
 import org.hibernate.validator.constraints.Range;
-
-import com.app.entities.AartiType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class AartiDTO 
+public class AccommodationRequestDTO 
 {
-
-	@NotNull
-	private LocalDate aDate;
 	
 	@NotNull
-	private AartiType type;
+	@Range(max=2)
+	private int numberOfDays;
 	
 	@NotNull
-	@Range(max = 4)
-	private int men;
+	private LocalDate checkInDate;
 	
 	@NotNull
-	@Range(max = 4)
-	private int women;
+	private LocalTime checkInTime;
 	
 	@NotNull
-	private double amount;
-	
-//	@NotNull
-//	private String primaryDevoteeName;
-	
-	
+	@Range(max=2)
+	private int numberOfRooms;
 	
 }

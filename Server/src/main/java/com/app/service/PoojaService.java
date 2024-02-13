@@ -2,14 +2,19 @@ package com.app.service;
 
 import java.util.List;
 
+import com.app.dto.ApiResponse;
 import com.app.dto.PoojaDTO;
+import com.app.dto.PoojaRequestDTO;
+import com.app.dto.PoojaResponseDTO;
 
 public interface PoojaService {
 	
-	PoojaDTO addPoojaBooking(PoojaDTO darshan);
+	PoojaResponseDTO addPoojaBooking(PoojaRequestDTO darshan,Long userId);
 	
-	List<PoojaDTO> getAllPoojaBookingsByUserId(Long poojaId);
+	List<PoojaResponseDTO> getAllPoojaBookingsByUserId(Long poojaId);
 
-	String deletePoojaBookingById(Long poojaId);
+	ApiResponse deletePoojaBookingById(Long poojaId);
+
+	List<PoojaResponseDTO> getAllPoojaBookings();
 
 }

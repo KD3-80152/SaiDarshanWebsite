@@ -3,17 +3,20 @@ package com.app.service;
 import java.util.List;
 
 import com.app.dto.ApiResponse;
-import com.app.dto.DarshanDTO;
+import com.app.dto.DarshanRequestDTO;
+import com.app.dto.DarshanResponseDTO;
 
 public interface DarshanService {
 	
-	DarshanDTO addDarshanBooking(DarshanDTO darshan);
+	DarshanResponseDTO addDarshanBooking(DarshanRequestDTO darshan,Long userId);
 	
-	List<DarshanDTO> getAllDarshanBookingsByUserId(Long darshanId);
+	List<DarshanResponseDTO> getAllDarshanBookingsByUserId(Long userId);
 	
 	ApiResponse deleteDarshanBookingById(Long id);
 	
 	public Integer incrementCounter(Long bookingDateId,Long timeSlotId);
+
+	List<DarshanResponseDTO> getAllDarshanBookings();
 
 }
 

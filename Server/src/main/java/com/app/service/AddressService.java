@@ -10,4 +10,5 @@ public interface AddressService {
 
 	AddressDTO asssignAddress(Long userId, @Valid AddressDTO dto);
 
+	AddressDTO getAddressDetails(Long userId);
 }
