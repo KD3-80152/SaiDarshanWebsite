@@ -71,15 +71,4 @@ public class PoojaController {
 		}
 		
 		
-	//ADMIN POV GETTING ALL POOJA BOOKINGS
-		//method=GET
-		// http://host:port/pooja/all
-		@GetMapping("/all")
-		public ResponseEntity<?> getAllPoojaBookings() throws IOException 
-		{
-			
-			System.out.println("get Pooja bookings");
-			return ResponseEntity.ok(poojaService.getAllPoojaBookings());
-			
-		}
 }
