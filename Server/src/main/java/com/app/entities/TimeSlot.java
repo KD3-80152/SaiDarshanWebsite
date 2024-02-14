@@ -27,7 +27,6 @@ public class TimeSlot extends BaseEntity {
 	
 	
 	@OneToMany(mappedBy = "timeSlot")
-	@JoinColumn(name = "darshan_id")
 	private List<Darshan> darshanList;
 	
 	

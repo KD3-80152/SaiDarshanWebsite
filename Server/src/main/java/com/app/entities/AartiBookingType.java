@@ -25,20 +25,19 @@ public class AartiBookingType extends BaseEntity{
 	@Enumerated(EnumType.STRING) 
     private AartiType aartiEnumType;
 	
-	
+	//@JoinColumn(name = "aarti_id")
 	@OneToMany(mappedBy = "aartiBookingType")
-	@JoinColumn(name = "aarti_id")
 	private List<Aarti> aartiList;
 	
 	
     public Long addAarti(Aarti aarti) {
 			aartiList.add(aarti);
-			aarti.setAartiBookingtype(this);
+			aarti.setAartiBookingType(this);
 			return this.getId();
 		}
 	 
 	public void removeAarti(Aarti aarti) {
 			aartiList.remove(aarti);
-			aarti.setAartiBookingtype(null);
+			aarti.setAartiBookingType(null);
 	   }
 }

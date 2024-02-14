@@ -29,9 +29,8 @@ public class BookingDate extends BaseEntity {
     private LocalDate darshanDate;
     
 	
-    
+	//@JoinColumn(name = "darshan_Id")
     @OneToMany(mappedBy = "bookingDate")
-    @JoinColumn(name = "darshan_Id")
 	private List<Darshan> darshanList;
     
     public Long addDarshan(Darshan darshan) {
