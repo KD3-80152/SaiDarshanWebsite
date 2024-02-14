@@ -42,9 +42,9 @@ public class DarshanController {
 	// http://host:port/darshan/add
 	@PostMapping("/add")
 	public ResponseEntity<?> addDarshanBooking(@RequestBody
-			@Valid DarshanRequestDTO darshan) {
-		System.out.println("in add darshan " + darshan);
+			@Valid DarshanRequestDTO darshan) {	
 		Long userId = authUserDetails.getUserId();
+		System.out.println("in add darshan " + darshan);
 		return ResponseEntity
 				.status(HttpStatus.CREATED)
 				.body(darshanService.addDarshanBooking(darshan,userId));

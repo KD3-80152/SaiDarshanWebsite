@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.dto.AddressDTO;
+import com.app.dto.AddressRequestDTO;
 import com.app.security.FindUserDetails;
 import com.app.service.AddressService;
 
@@ -47,7 +47,7 @@ public class AddressController {
 
 		
 			@PostMapping("/add-address")
-			public ResponseEntity<?> assignUserAddress( @RequestBody @Valid AddressDTO dto) {
+			public ResponseEntity<?> assignUserAddress( @RequestBody @Valid AddressRequestDTO dto) {
 			Long userId = authUserDetails.getUserId();
 
 				System.out.println("in update user " + userId + " " + dto);
@@ -62,7 +62,7 @@ public class AddressController {
 
 	
 		@PutMapping("/update-address")
-		public ResponseEntity<?> updateUserAddress(@RequestBody @Valid AddressDTO dto) 
+		public ResponseEntity<?> updateUserAddress(@RequestBody @Valid AddressRequestDTO dto) 
 		{
 			Long userId = authUserDetails.getUserId();
 

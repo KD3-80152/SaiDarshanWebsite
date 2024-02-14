@@ -19,13 +19,15 @@ import lombok.Setter;
 @Setter
 public class Aarti extends BaseEntity
 {
-	@JoinColumn(name = "arti_date_id")
+	
 	@ManyToOne
+	@JoinColumn(name = "arti_date_id")
 	private AartiBookingDate aartiBookingDate;
 	
-	@JoinColumn(name = "aarti_booking_id")
+	
 	@ManyToOne
-	private AartiBookingType aartiBookingtype;
+	@JoinColumn(name = "aarti_booking_id")
+	private AartiBookingType aartiBookingType;
 	
 	@Column(name = "no_of_men")
 	private int men;

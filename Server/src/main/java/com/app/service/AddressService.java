@@ -2,13 +2,14 @@ package com.app.service;
 
 import javax.validation.Valid;
 
-import com.app.dto.AddressDTO;
+import com.app.dto.AddressRequestDTO;
+import com.app.dto.AddressResponseDTO;
 
 public interface AddressService {
 
-	AddressDTO updateAddress(Long userId, @Valid AddressDTO dto);
+	AddressResponseDTO updateAddress(Long userId, @Valid AddressRequestDTO dto);
 
-	AddressDTO asssignAddress(Long userId, @Valid AddressDTO dto);
+	AddressResponseDTO asssignAddress(Long userId, @Valid AddressRequestDTO dto);
 
-	AddressDTO getAddressDetails(Long userId);
+	AddressResponseDTO getAddressDetails(Long userId);
 }

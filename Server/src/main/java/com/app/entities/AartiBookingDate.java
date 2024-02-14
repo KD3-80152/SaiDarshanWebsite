@@ -21,8 +21,8 @@ public class AartiBookingDate extends BaseEntity {
 	@Column(name = "aarti_date")
     private LocalDate aartiDate;
     
+	//@JoinColumn(name = "aarti_id")
     @OneToMany(mappedBy = "aartiBookingDate")
-    @JoinColumn(name = "aarti_id")
 	private List<Aarti> aartiList;
     
     public Long addAarti(Aarti aarti) {

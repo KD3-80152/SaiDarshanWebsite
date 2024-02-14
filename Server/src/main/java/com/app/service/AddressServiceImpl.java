@@ -10,7 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.app.custom_Exceptions.ResourceNotFoundException;
 import com.app.dao.AddressDao;
 import com.app.dao.UserEntityDao;
-import com.app.dto.AddressDTO;
+import com.app.dto.AddressRequestDTO;
+import com.app.dto.AddressResponseDTO;
 import com.app.entities.Address;
 import com.app.entities.UserEntity;
 
@@ -29,25 +30,25 @@ public class AddressServiceImpl implements AddressService {
 	
 	
 	@Override
-	public AddressDTO getAddressDetails(Long userId) {
+	public AddressResponseDTO getAddressDetails(Long userId) {
 		
 		return mapper.map(
 				addDao.findById(userId).orElseThrow(
 						() -> new ResourceNotFoundException("Invalid Emp  Id Or Address not yet assigned !!!!")),
-				AddressDTO.class);
+				AddressResponseDTO.class);
 	}
 	
 	
 	@Override
-	public AddressDTO updateAddress(Long userId, @Valid AddressDTO dto) {
+	public AddressResponseDTO updateAddress(Long userId, @Valid AddressRequestDTO dto) {
 		Address addr= addDao.findById(userId).orElseThrow(()-> new ResourceNotFoundException("Invalid user ID, Address not found!!"));
 		mapper.map(dto, addr);
-		return mapper.map(addDao.save(addr), AddressDTO.class);
+		return mapper.map(addDao.save(addr), AddressResponseDTO.class);
 		
 	}
 
 	@Override
-	public AddressDTO asssignAddress(Long userId, @Valid AddressDTO dto) {
+	public AddressResponseDTO asssignAddress(Long userId, @Valid AddressRequestDTO dto) {
 		UserEntity user= userDao.findById(userId).orElseThrow(()-> new ResourceNotFoundException("Invalid user ID, User not found!!"));
 		
 		Address address = mapper.map(dto, Address.class);
@@ -55,7 +56,7 @@ public class AddressServiceImpl implements AddressService {
 		address.setUser(user);
 		
 		addDao.save(address);
-		return mapper.map(address, AddressDTO.class);
+		return mapper.map(address, AddressResponseDTO.class);
 	}
 
 	
