@@ -1,5 +1,6 @@
 package com.app.dao;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +21,7 @@ public interface DarshanDao extends JpaRepository<Darshan, Long> {
 
 
 	List<Darshan> findAllOrderedByDateAsc();
-
 	
+	@Query("select d.timeSlot from Darshan d where d.bookingDate = :date and d.counter < 5" )
+	List<TimeSlot> FindTimeSlotsByBookingDateAndCounter(LocalDate date);
 }

@@ -1,6 +1,8 @@
 package com.app.controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.DarshanRequestDTO;
+import com.app.entities.TimeSlot;
 import com.app.security.FindUserDetails;
 import com.app.service.DarshanService;
 
@@ -79,6 +82,11 @@ public class DarshanController {
 	{
 		System.out.println("Get All Darshan Bookings");
 		return ResponseEntity.ok(darshanService.getAllDarshanBookings());
+	}
+	
+	@GetMapping("/availableTimeSlots")
+	public List<TimeSlot> getAllAvailableTimeSlotsByDate(LocalDate bookingDate) {
+		return darshanService.getAllAvailableTimeSlotsByDate(bookingDate);
 	}
 	
 

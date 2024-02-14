@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.app.custom_Exceptions.ResourceNotFoundException;
+import com.app.dao.BookingDateDao;
 import com.app.dao.DarshanDao;
 
 import com.app.dao.TimeSlotDao;
@@ -38,7 +39,7 @@ public class DarshanServiceImpl implements DarshanService {
 	private TimeSlotDao timeSlotDao;
 	
 	@Autowired
-	private BookingDate bookingDate;
+	private BookingDateDao bookingDateDao;
 	
 	@Autowired
 	private UserEntityDao userDao; 
@@ -48,7 +49,7 @@ public class DarshanServiceImpl implements DarshanService {
 	private ModelMapper mapper;
 	
 	@Override
-	public DarshanResponseDTO addDarshanBooking(DarshanRequestDTO darshan,Long userId) {
+	public ApiResponse addDarshanBooking(DarshanRequestDTO darshan,Long userId) {
 		UserEntity curUser= userDao.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Inavalid userId"));
 		Darshan darshanEntity=  mapper.map(darshan, Darshan.class);
 		darshanEntity.setUser(curUser);
@@ -61,10 +62,8 @@ public class DarshanServiceImpl implements DarshanService {
 		Long dId = bookingDate.addDarshan(persistentDarshan);
 		Integer counter = incrementCounter(tId, dId);
 		if(counter==5)
-			return null;	
-		return mapper.map(persistentDarshan, DarshanResponseDTO.class);
-		
-
+			return new ApiResponse("No slot avilable");
+		return new ApiResponse("Darshan booking successfully done for given slot");
 	}
 
 	@Override
@@ -89,8 +88,11 @@ public class DarshanServiceImpl implements DarshanService {
 		long differenceInDays = java.time.temporal.ChronoUnit.DAYS.between(currentDate, darshan.getBookingDate().getDarshanDate());
 
 		if(differenceInDays >= 15)
-		{
+		{	TimeSlot timeslot = timeSlotDao.findById(darshan.getTimeSlot().getId()).orElseThrow(() -> new ResourceNotFoundException("Inavalid TimeSlot id"));
+			BookingDate bookingDate = bookingDateDao.findById(darshan.getBookingDate().getId()).orElseThrow(() -> new ResourceNotFoundException("Inavalid BookingDate id"));
 			darshanDao.delete(darshan);
+			timeslot.removeDarshan(darshan);
+			bookingDate.removeDarshan(darshan);
 			return new ApiResponse("Darshan Details of dasrhan with ID " + darshan.getId() + " cancelled....");
 		}
 		
@@ -99,13 +101,14 @@ public class DarshanServiceImpl implements DarshanService {
 			
 	}
 
+	
 	@Override
-
 	public Integer incrementCounter(Long timeSlotId, Long bookingDateId) {
 		List<Darshan> darshanList = darshanDao.findByBookingDateAndTimeSlot(bookingDateId, timeSlotId);
 		Darshan d = darshanList.get(0);
 		if(d.counter == null)
 			darshanList.stream().map(darshan -> darshan.counter = 0);
+		else
 		    darshanList.stream().map(darshan -> darshan.counter ++);
 		return d.counter;
 	}
@@ -118,6 +121,11 @@ public class DarshanServiceImpl implements DarshanService {
 		return sortedDarshanListByDate.stream()
 				.map(darshan -> mapper.map(darshan, DarshanResponseDTO.class))
 				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<TimeSlot> getAllAvailableTimeSlotsByDate(LocalDate bookingDate) {
+		return darshanDao.FindTimeSlotsByBookingDateAndCounter(bookingDate);
 	}
 	
 	

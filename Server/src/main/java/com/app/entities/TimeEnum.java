@@ -5,10 +5,11 @@ import javax.persistence.Entity;
 @Entity
 public enum TimeEnum {
 	SIX_AM,
-	Eight_AM,
+	EIGHT_AM,
 	TEN_AM,
 	TWO_PM,
 	FOUR_PM,
-	SIX_PM
+	SIX_PM,
+	
 	
 }

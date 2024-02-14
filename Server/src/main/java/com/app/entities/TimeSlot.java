@@ -1,15 +1,23 @@
 package com.app.entities;
 
-import java.time.LocalTime;
+
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity(name="time_slots")
 public class TimeSlot extends BaseEntity {
 	
@@ -17,11 +25,9 @@ public class TimeSlot extends BaseEntity {
 	@Enumerated(EnumType.STRING) 
     private TimeEnum darshanTimeSlot;
 	
-    
-	@Column(name="is_darshan_available")
-    private boolean isDarshanAvailable;
 	
 	@OneToMany(mappedBy = "timeSlot")
+	@JoinColumn(name = "darshan_id")
 	private List<Darshan> darshanList;
 	
 	

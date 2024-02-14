@@ -8,24 +8,30 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Table(name = "aarti")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
+@Getter
+@Setter
 public class Aarti extends BaseEntity
 {
-	@Column(name = "arti_date")
-	private LocalDate aDate;
+	@JoinColumn(name = "arti_date_id")
+	@ManyToOne
+	private AartiBookingDate aartiBookingDate;
 	
-	@Enumerated(EnumType.STRING)
-	@Column(name = "aarti_type",length = 20 )
-	private AartiType type;
+	@JoinColumn(name = "aarti_booking_id")
+	@ManyToOne
+	private AartiBookingType aartiBookingtype;
 	
 	@Column(name = "no_of_men")
 	private int men;
@@ -45,5 +51,6 @@ public class Aarti extends BaseEntity
 	@JoinColumn(name = "user_id")
 	private UserEntity user;
 	
+	public Integer counter;
 	
 }
