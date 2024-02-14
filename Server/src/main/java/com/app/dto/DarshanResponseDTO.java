@@ -8,12 +8,12 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Range;
 
 public class DarshanResponseDTO 
-{
+{	
 	@NotNull
 	private LocalDate date;
 	
 	@NotNull
-	private LocalTime timeSlot;
+	private String timeSlot;
 	
 	@NotNull
 	@Range(max=4)
@@ -33,4 +33,6 @@ public class DarshanResponseDTO
 	
 	@NotNull
 	private String adharNo;
+	
+	private Long id;
 }

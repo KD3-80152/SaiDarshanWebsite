@@ -13,7 +13,7 @@ public class DarshanRequestDTO
 	private LocalDate date;
 	
 	@NotNull
-	private LocalTime timeSlot;
+	private String timeSlot;
 	
 	@NotNull
 	@Range(max=4)

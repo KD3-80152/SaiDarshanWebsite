@@ -1,22 +1,26 @@
 package com.app.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.app.dto.ApiResponse;
 import com.app.dto.DarshanRequestDTO;
 import com.app.dto.DarshanResponseDTO;
+import com.app.entities.TimeSlot;
 
 public interface DarshanService {
 	
-	DarshanResponseDTO addDarshanBooking(DarshanRequestDTO darshan,Long userId);
+	ApiResponse addDarshanBooking(DarshanRequestDTO darshan,Long userId);
 	
 	List<DarshanResponseDTO> getAllDarshanBookingsByUserId(Long userId);
 	
 	ApiResponse deleteDarshanBookingById(Long id);
 	
-	public Integer incrementCounter(Long bookingDateId,Long timeSlotId);
+	Integer incrementCounter(Long bookingDateId,Long timeSlotId);
 
 	List<DarshanResponseDTO> getAllDarshanBookings();
+	
+	List<TimeSlot> getAllAvailableTimeSlotsByDate(LocalDate bookingDate);
 
 }
 
