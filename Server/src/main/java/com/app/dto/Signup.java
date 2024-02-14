@@ -55,9 +55,4 @@ public class Signup {
 	@NotNull(message="this field can't contain null values")
 	private String adharNumber;
 
-	
-	
-	
-	
-	
 }
