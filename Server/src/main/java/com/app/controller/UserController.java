@@ -35,9 +35,9 @@ public class UserController {
 	//method=GET
 	// http://host:port/user/my_profile
 	@GetMapping("/my-profile")
-	public ResponseEntity<?> showUserProfile( @RequestBody @Valid UserDTO dto) {
+	public ResponseEntity<?> showUserProfile() {
 		Long userId = authUserDetails.getUserId();
-		System.out.println("in show profile " + userId + " " + dto);
+		System.out.println("in show profile " + userId);
 
 		return ResponseEntity.ok(userService.getUserProfile(userId));
 	}
