@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,10 +28,10 @@ public class BookingDate extends BaseEntity {
 	@Column(name = "darshan_date")
     private LocalDate darshanDate;
     
-	@Column(name = "is_darshan_available")
-    private boolean isDarshanAvailable;
+	
     
     @OneToMany(mappedBy = "bookingDate")
+    @JoinColumn(name = "darshan_Id")
 	private List<Darshan> darshanList;
     
     public Long addDarshan(Darshan darshan) {

@@ -22,11 +22,11 @@ import lombok.ToString;
 public class Darshan extends BaseEntity{
 
 
-	@JoinColumn(name="darshan_date")
+	@JoinColumn(name="darshan_date_id")
 	@ManyToOne
 	private BookingDate bookingDate;
 	
-	@JoinColumn(name="darshan_time_slot")
+	@JoinColumn(name="darshan_timeslot_id")
 	@ManyToOne
 	private TimeSlot timeSlot;
 	

@@ -42,4 +42,6 @@ public class AartiResponseDTO
 	@NotBlank
 	@NotNull
 	private String adharNo;
+	
+	private Long id;
 }
