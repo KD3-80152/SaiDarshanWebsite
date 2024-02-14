@@ -4,13 +4,16 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -19,11 +22,15 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class Address extends BaseEntity {
 
-	@OneToOne
+	//one-to-one , uni dir Address 1--->1 Employee
+	//owning side : Address (since FK)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id",nullable=false)
-	@MapsId
+	@MapsId //shared primary approach
 	private UserEntity user;
 	
 	@Column(name="add_line_one",length = 120)
@@ -32,10 +39,11 @@ public class Address extends BaseEntity {
 	@Column(name="add_line_two",length=120)
 	private String lineTwo;
 	
-	@Getter
-	@Setter(value = AccessLevel.NONE)
-	@Column(name="country")
-	private String country;
+//	@Getter
+//	@Setter(value = AccessLevel.NONE)
+	
+	@Column(name="country", nullable = false, columnDefinition = "VARCHAR(20) DEFAULT 'BHARAT(India)'")
+	private String country = "BHARAT(India)";
 	
 	@Column(name="pincode",length=7)
 	private String pincode;
@@ -46,21 +54,8 @@ public class Address extends BaseEntity {
 	@Column(name="district",length=20)
 	private String district;
 	
-	
 
-	public Address(UserEntity user, String lineOne, String lineTwo, String country, String pincode, State state,
-			String district)
-	{
-		super();
-		this.user = user;
-		this.lineOne = lineOne;
-		this.lineTwo = lineTwo;
-		this.country = "India";
-		this.pincode = pincode;
-		this.state = state;
-		this.district = district;
-		
-	}
+	
 	
 	
 	

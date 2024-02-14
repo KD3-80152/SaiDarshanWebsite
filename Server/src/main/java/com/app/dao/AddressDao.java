@@ -8,6 +8,6 @@ import com.app.entities.Address;
 @Repository
 public interface AddressDao extends JpaRepository<Address, Long>{
 
-     Address findByUserId(Long userId);
+     
 	
 }

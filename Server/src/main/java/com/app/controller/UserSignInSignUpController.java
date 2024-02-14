@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.dto.ApiResponse;
 import com.app.dto.SigninRequest;
 import com.app.dto.SigninResponse;
 import com.app.dto.Signup;
@@ -30,11 +31,21 @@ public class UserSignInSignUpController {
 	@Autowired
 	private AuthenticationManager mgr;
 
-	// sign up
+	// SIGN UP
+	//method= GET 
+	// http://host:port/users/signup
 	@PostMapping("/signup")
 	public ResponseEntity<?> userSignup(@RequestBody @Valid Signup dto) {
 		System.out.println("in sign up " + dto);
-		return ResponseEntity.status(HttpStatus.CREATED).body(userService.userRegistration(dto));
+		if (dto.getConfirmPassword().equals(dto.getPassword()))
+			{
+				return ResponseEntity.status(HttpStatus.CREATED).body(userService.userRegistration(dto));
+			}
+		else
+		{
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ApiResponse("Passwords do not match..:("));
+	
+		}
 	}
 
 	/*
@@ -42,6 +53,10 @@ public class UserSignInSignUpController {
 	 * success : Auth Resp DTO : mesg + JWT token + SC 200 IN case of failure : SC
 	 * 401
 	 */
+	
+	//SIGN IN
+	//method= POST
+	// http://host:port/users/signin
 	@PostMapping("/signin")
 	public ResponseEntity<?> signinUser(@RequestBody @Valid SigninRequest reqDTO) {
 		System.out.println("in signin " + reqDTO);
