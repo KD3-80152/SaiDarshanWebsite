@@ -40,7 +40,7 @@ public class AccommodationServiceImpl implements AccommodationService {
 		accoEntity.setAdharNo(curUser.getAdharNumber());
 		Accommodation persistentAcco = accodao.save(accoEntity);
 	    incrementCounter(persistentAcco);
-	    if(persistentAcco.getRoomCounter()==5)
+	    if(persistentAcco.getRoomCounter()==3)
 			return new ApiResponse("No booking avilable on given date");
 		return new ApiResponse("Room booking successfully done.");
 
@@ -86,11 +86,12 @@ public class AccommodationServiceImpl implements AccommodationService {
 		List<Accommodation> accoList = accodao.findByCheckInDate(acco.getCheckInDate());
 		if(accoList!=null) {
 		Accommodation ac = accoList.get(0);
-		accoList.forEach(a -> a.setRoomCounter(ac.getRoomCounter()+a.getNumberOfRooms()));
+		//accoList.forEach(a -> a.setRoomCounter(ac.getRoomCounter()+a.getNumberOfRooms()));
+		accoList.forEach(a -> a.setRoomCounter(a.getRoomCounter()+1));
 		return ac.getRoomCounter();
 		}
 		else 
-			acco.setRoomCounter(acco.getNumberOfRooms());
+			acco.setRoomCounter(1);
 		return acco.getRoomCounter();
 		
 	}
@@ -99,7 +100,8 @@ public class AccommodationServiceImpl implements AccommodationService {
 	public Integer decrementCounter(Accommodation acco) {
 		List<Accommodation> accoList = accodao.findByCheckInDate(acco.getCheckInDate());
 		Accommodation ac = accoList.get(0);
-		accoList.forEach(a -> a.setRoomCounter(a.getRoomCounter()-acco.getNumberOfRooms()));
+		//accoList.forEach(a -> a.setRoomCounter(a.getRoomCounter()-acco.getNumberOfRooms()));
+		accoList.forEach(a -> a.setRoomCounter(a.getRoomCounter()-1));
 		return ac.getRoomCounter();
 		
 	}
