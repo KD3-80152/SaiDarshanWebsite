@@ -8,7 +8,7 @@ const WelcomeNote =()=>
 
     return(
         <div  style={{backgroundImage:"https://artworkbird.co.in/sai-baba-marathi-png/"}} >
-              <div className="ng-binding text-center" style={{color:"red"}}>
+              <div className="ng-binding text-center" style={{color:"maroon"}}>
                 <h2>Welcome To Sai Darshan Booking Portal</h2>
                </div>
 
