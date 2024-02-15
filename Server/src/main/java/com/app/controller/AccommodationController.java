@@ -77,6 +77,8 @@ public class AccommodationController {
 		return ResponseEntity.ok(accoService.getAllAccommodationBookings());
 	}
 	
+	
+	
 	@GetMapping("/availableDates")
 	public ResponseEntity<?> getAllAvailableDates()
 	{
