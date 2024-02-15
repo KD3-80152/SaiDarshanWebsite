@@ -24,6 +24,7 @@ import lombok.ToString;
 @ToString
 public class Accommodation extends BaseEntity {
 	
+	
 	@Column(name = "no_of_days")
 	private int numberOfDays;
 	
@@ -46,6 +47,12 @@ public class Accommodation extends BaseEntity {
 	@Column(name = "adhar_no",length = 12,unique = true)
 	private String adharNo;
 	
+	
+	private Integer roomCounter = 0;
+	
+	public Accommodation(LocalDate checkInDate) {
+		this.checkInDate = checkInDate;
+	}
 	
 	
 }

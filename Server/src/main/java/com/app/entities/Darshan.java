@@ -53,4 +53,9 @@ public class Darshan extends BaseEntity{
 	private UserEntity user;
 	
 	public Integer counter;
+
+	public Darshan(TimeSlot timeSlot) {
+		this.timeSlot = timeSlot;
+	}
+	
 }

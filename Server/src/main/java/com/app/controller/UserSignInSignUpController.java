@@ -1,5 +1,7 @@
 package com.app.controller;
 
+import java.util.Collection;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -70,9 +73,25 @@ public class UserSignInSignUpController {
 				.authenticate(new UsernamePasswordAuthenticationToken
 						(reqDTO.getEmail(), reqDTO.getPassword()));
 		System.out.println(verifiedAuth.getClass());// Custom user details
-		// => auth success
-		return ResponseEntity
-				.ok(new SigninResponse(utils.generateJwtToken(verifiedAuth), "Successful Authentication!!!"));
+//		// => auth success
+//		return ResponseEntity
+//				.ok(new SigninResponse(utils.generateJwtToken(verifiedAuth), "Successful Authentication!!!"));
+		
+		// Get the authorities (roles) assigned to the authenticated user
+	    Collection<? extends GrantedAuthority> authorities = verifiedAuth.getAuthorities();
+
+	    // Check if the user has the "ADMIN" role
+	    boolean isAdmin = authorities.stream()
+	                                  .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"));
+
+	    // Return response based on user's role
+	    if (isAdmin) {
+	        // If user is admin
+	        return ResponseEntity.ok(new SigninResponse(utils.generateJwtToken(verifiedAuth), "ROLE_ADMIN"/*"Admin Authentication Successful!!!"*/));
+	    } else {
+	        // If user is not admin
+	        return ResponseEntity.ok(new SigninResponse(utils.generateJwtToken(verifiedAuth), "ROLE_USER"/*"User Authentication Successful!!!"*/));
+	    }
 
 	}
 
