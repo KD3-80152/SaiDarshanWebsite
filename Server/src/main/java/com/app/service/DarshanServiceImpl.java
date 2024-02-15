@@ -126,6 +126,7 @@ public class DarshanServiceImpl implements DarshanService {
 
 	@Override
 	public List<TimeSlot> getAllAvailableTimeSlotsByDate(LocalDate bookingDate) {
+		
 		return darshanDao.FindTimeSlotsByBookingDateAndCounter(bookingDate);
 	}
 	
