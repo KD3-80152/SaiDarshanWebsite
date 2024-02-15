@@ -1,5 +1,6 @@
 package com.app.dao;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,4 +14,9 @@ public interface AccommodationDao extends JpaRepository<Accommodation,Long>{
 
 	@Query("SELECT a FROM Accommodation a ORDER BY a.checkInDate ASC")
 	List<Accommodation> findAllByOrderedByCheckInDateAsc();
+	
+	List<Accommodation> findByCheckInDate(LocalDate date);
+	
+	@Query("Select a.checkInDate from Accommodation a where a.roomCounter < 5")
+	List<LocalDate> findCheckInDatesByRoomCounter();
 }

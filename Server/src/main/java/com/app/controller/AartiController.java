@@ -68,15 +68,7 @@ public class AartiController
 	
 	
 	
-	//ADMIN POV GETTING ALL POOJA BOOKINGS
-	//method=GET
-	// http://host:port/aarti/all
-	@GetMapping("/all")
-	public ResponseEntity<?> getAllAartiBookings()
-	{
-		System.out.println("Get All Aarti Bookings");
-		return ResponseEntity.ok(artiService.getAllAartiBookings());
-	}
+
 
 	
 	

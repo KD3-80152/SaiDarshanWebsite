@@ -65,6 +65,8 @@ public class AccommodationController {
 	}
 	
 	
+
+
 	//ADMIN POV GETTING ALL ACCOMMODATION BOOKINGS
 			//method=GET
 			// http://host:port/accommodation/all
@@ -73,6 +75,13 @@ public class AccommodationController {
 	{
 		System.out.println("Get All Accommodation Bookings");
 		return ResponseEntity.ok(accoService.getAllAccommodationBookings());
+	}
+	
+	@GetMapping("/availableDates")
+	public ResponseEntity<?> getAllAvailableDates()
+	{
+		System.out.println("Get All Available Accommodation Booking Dates");
+		return ResponseEntity.ok(accoService.getAllAvailableDates());
 	}
 
 	

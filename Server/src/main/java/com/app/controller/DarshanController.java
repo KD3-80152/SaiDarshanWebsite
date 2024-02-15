@@ -42,9 +42,9 @@ public class DarshanController {
 	// http://host:port/darshan/add
 	@PostMapping("/add")
 	public ResponseEntity<?> addDarshanBooking(@RequestBody
-			@Valid DarshanRequestDTO darshan) {
-		System.out.println("in add darshan " + darshan);
+			@Valid DarshanRequestDTO darshan) {	
 		Long userId = authUserDetails.getUserId();
+		System.out.println("in add darshan " + darshan);
 		return ResponseEntity
 				.status(HttpStatus.CREATED)
 				.body(darshanService.addDarshanBooking(darshan,userId));
@@ -74,15 +74,7 @@ public class DarshanController {
 		return ResponseEntity.ok(darshanService.deleteDarshanBookingById(id));
 	}
 	
-	//ADMIN POV GETTING ALL DARSHAN BOOKINGS
-	//method=GET
-			// http://host:port/darshan/all
-	@GetMapping("/all")
-	public ResponseEntity<?> getAllDarshanBookings()
-	{
-		System.out.println("Get All Darshan Bookings");
-		return ResponseEntity.ok(darshanService.getAllDarshanBookings());
-	}
+
 	
 	@GetMapping("/availableTimeSlots")
 	public List<TimeSlot> getAllAvailableTimeSlotsByDate(LocalDate bookingDate) {

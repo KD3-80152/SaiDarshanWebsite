@@ -37,7 +37,7 @@ public class UserController {
 	@GetMapping("/my-profile")
 	public ResponseEntity<?> showUserProfile() {
 		Long userId = authUserDetails.getUserId();
-		System.out.println("in show profile " + userId + " " );
+		System.out.println("in show profile " + userId);
 
 		return ResponseEntity.ok(userService.getUserProfile(userId));
 	}

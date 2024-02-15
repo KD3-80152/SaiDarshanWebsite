@@ -57,7 +57,7 @@ public class SecurityConfig {
 		.antMatchers(HttpMethod.OPTIONS).permitAll()
 		.antMatchers("/user/my-profile","/user/my-profile/update-user","/user/change-password","/user/my-profile/address/**","/darshan/add",
 				"/darshan/","/darshan/{id}","/pooja/add","/pooja/","/pooja/{id}","/aarti/add","/aarti/","/aarti/{id}","/accommodation/add","/accommodation/","/accommodation/{id}").hasRole("USER")  
-		.antMatchers("/admin/all-users","/admin/all-users/{id}","/darshan/all","/pooja/all","/accommodation/all","/aarti/all").hasRole("ADMIN")
+		.antMatchers("/admin/all-users","/admin/all-users/{id}","/admin/allDarshan","/admin/allPooja","/admin/allAccommodation","/admin/allAarti").hasRole("ADMIN")
 		.anyRequest().authenticated()
 		.and()
 		//to tell spring sec : not to use HttpSession to store user's auth details
