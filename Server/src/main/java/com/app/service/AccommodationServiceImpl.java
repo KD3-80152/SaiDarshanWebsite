@@ -10,10 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.app.custom_Exceptions.ResourceNotFoundException;
 import com.app.dao.AccommodationDao;
+import com.app.dao.UserEntityDao;
 import com.app.dto.AccommodationRequestDTO;
 import com.app.dto.AccommodationResponseDTO;
 import com.app.dto.ApiResponse;
 import com.app.entities.Accommodation;
+import com.app.entities.UserEntity;
 
 @Service
 @Transactional
@@ -24,12 +26,21 @@ public class AccommodationServiceImpl implements AccommodationService {
 	@Autowired
 	private ModelMapper mapper;
 	
+	@Autowired
+	private UserEntityDao userDao;
+	
 	@Override
 	public AccommodationResponseDTO addAccomodationBooking(AccommodationRequestDTO acco,Long userId) {
+		
+		UserEntity curUser = userDao.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Invalid User"));
 		Accommodation accoEntity = mapper.map(acco,Accommodation.class);
+		accoEntity.setUser(curUser);
+		accoEntity.setPrimaryDevoteeName(curUser.getFirstName()+" "+curUser.getLastName());
+		accoEntity.setAdharNo(curUser.getAdharNumber());
 		Accommodation persistentAcco = accodao.save(accoEntity);
 		return mapper.map(persistentAcco, AccommodationResponseDTO.class);
 	}
+		
 
 	@Override
 	public List<AccommodationResponseDTO> getAllAccommodationBookingsByUserId(Long userId) {

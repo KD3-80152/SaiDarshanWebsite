@@ -63,7 +63,7 @@ public class PoojaController {
 	//method=DELETE
 	// http://host:port/pooja/{id}
 		
-		@DeleteMapping("/{id}")
+		@DeleteMapping("/{poojaId}")
 		public ApiResponse cancelPoojaBooking(@PathVariable Long poojaId) {
 			
 			System.out.println("in cancel " + poojaId);

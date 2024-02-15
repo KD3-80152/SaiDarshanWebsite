@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,9 +40,9 @@ public class AdminController {
 			// http://host:port/signin/user/{id}
 				
 				@DeleteMapping("/all-users/{id}")
-				public ResponseEntity<?> deleteUser()
+				public ResponseEntity<?> deleteUser(@PathVariable Long userId)
 				{
-					Long userId = authUserDetails.getUserId();
+					Long adminId = authUserDetails.getUserId();
 					System.out.println("in delete user " + userId + " ");
 					return ResponseEntity.ok(userService.deleteUserDetails(userId));
 				}

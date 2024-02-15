@@ -52,7 +52,7 @@ public class SecurityConfig {
 		authorizeRequests()
 
 		.antMatchers("/darshan","/users/signup","/users/signin","/pooja","/accommodation","/aarti",
-				"/v*/api-doc*/**","/swagger-ui/**","/**").permitAll()
+				"/v*/api-doc*/**","/swagger-ui/**").permitAll()
 		// only required for JS clnts (react / angular) : for the pre flight requests
 		.antMatchers(HttpMethod.OPTIONS).permitAll()
 		.antMatchers("/user/my-profile","/user/my-profile/update-user","/user/change-password","/user/my-profile/address/**","/darshan/add",
