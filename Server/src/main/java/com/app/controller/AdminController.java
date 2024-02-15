@@ -1,5 +1,7 @@
 package com.app.controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -9,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.security.FindUserDetails;
+import com.app.service.AartiService;
+import com.app.service.AccommodationService;
+import com.app.service.DarshanService;
+import com.app.service.PoojaService;
 import com.app.service.UserService;
 
 @RestController
@@ -22,6 +28,18 @@ public class AdminController {
 	
 	@Autowired
 	private FindUserDetails authUserDetails;
+	
+	@Autowired
+	private PoojaService poojaService;
+	
+	@Autowired
+	private AccommodationService accoService;
+	
+	@Autowired
+	private DarshanService darshanService;
+	
+	@Autowired
+	private AartiService artiService;
 	
 	
 	//ADMIN POV GET ALL USERS
@@ -46,6 +64,55 @@ public class AdminController {
 					System.out.println("in delete user " + userId + " ");
 					return ResponseEntity.ok(userService.deleteUserDetails(id));
 				}
+				
+				
+				
+				
+				//ADMIN POV GETTING ALL POOJA BOOKINGS
+				//method=GET
+				// http://host:port/pooja/all
+				@GetMapping("/allPooja")
+				public ResponseEntity<?> getAllPoojaBookings() throws IOException 
+				{
+					
+					System.out.println("get Pooja bookings");
+					return ResponseEntity.ok(poojaService.getAllPoojaBookings());
+					
+				}
+				
+				
+				//ADMIN POV GETTING ALL ACCOMMODATION BOOKINGS
+				//method=GET
+				// http://host:port/accommodation/all
+				@GetMapping("/allAccommodation")
+				public ResponseEntity<?> getAllAccommodationBookings()
+				{
+					System.out.println("Get All Accommodation Bookings");
+					return ResponseEntity.ok(accoService.getAllAccommodationBookings());
+				}
+				
+				
+				//ADMIN POV GETTING ALL DARSHAN BOOKINGS
+				//method=GET
+						// http://host:port/darshan/all
+				@GetMapping("/allDarshan")
+				public ResponseEntity<?> getAllDarshanBookings()
+				{
+					System.out.println("Get All Darshan Bookings");
+					return ResponseEntity.ok(darshanService.getAllDarshanBookings());
+				}
+				
+				
+				//ADMIN POV GETTING ALL AARTI BOOKINGS
+				//method=GET
+				// http://host:port/aarti/all
+				@GetMapping("/allAarti")
+				public ResponseEntity<?> getAllAartiBookings()
+				{
+					System.out.println("Get All Aarti Bookings");
+					return ResponseEntity.ok(artiService.getAllAartiBookings());
+				}
+				
 	
 	
 }
