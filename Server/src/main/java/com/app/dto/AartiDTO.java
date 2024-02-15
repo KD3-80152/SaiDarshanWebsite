@@ -26,16 +26,20 @@ public class AartiDTO
 	@NotNull
 	private AartiType type;
 	
-	@NotNull
-	@Range(max = 4)
-	private int men;
+//	@NotNull
+//	@Range(max = 4)
+//	private int men;
 	
-	@NotNull
-	@Range(max = 4)
-	private int women;
+//	@NotNull
+//	@Range(max = 4)
+//	private int women;
 	
 	@NotNull
 	private double amount;
+	
+	
+	@Range(max=4)
+	private int noofPerson;
 	
 //	@NotNull
 //	private String primaryDevoteeName;
