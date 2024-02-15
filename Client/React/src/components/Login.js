@@ -1,93 +1,161 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
+
 
 const Login = () => {
-   const url = 'http://localhost:8443/login';
+    
+   
+    let navigate = useNavigate();
 
-    const [formData, setFormData] = useState({
-        email: '',
-        password: ''
-    });
+   
 
-    const [errors, setErrors] = useState({});
-    const [valid, setValid] = useState(true);
-    const navigate = useNavigate();
+    const [loginRequest, setLoginRequest] = useState({
+        email: "",
+        password: "",
+        
+      });
 
-    const handleSubmit = (e) => {
+    const [role,setRole]=useState("");
+    
+      const handleUserInput = (e) => {
+        setLoginRequest({ ...loginRequest, [e.target.name]: e.target.value });
+      };
+    
+      const loginAction = (e) => {
+        fetch("https://localhost:8443/users/signin", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(loginRequest),
+        })
+          .then((result) => {
+            console.log("result", result);
+            result.json().then((res) => {
+              console.log(res.mesg);
+              
+              console.log(role);
+              if (res.mesg === "Successful Authentication!") {
+                console.log("Got the success response");
+    
+                if (res.jwt != null) {
+                  sessionStorage.setItem("jwtToken", res.jwt);
+                  
+                  sessionStorage.setItem("role",res.role);
+                }
+    
+                if (res.jwt !== null) {
+                  toast.success(res.mesg, {
+                    position: "top-right",
+                    autoClose: 1000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                  });
+                  setTimeout(() => {
+                    window.location.href = "/home";
+                     
+                  }, 1000); 
+                } else {
+                  toast.error(res.mesg, {
+                    position: "top-right",
+                    autoClose: 1000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                  });
+                }
+              
+              }
+            });
+          })
+          .catch((error) => {
+            console.error(error);
+            toast.error("It seems server is down", {
+              position: "top-right",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          });
         e.preventDefault();
-        let isValid = true;
-        let validationErrors = {};
+      };
+   
 
-        if (formData.email === "" || formData.email === null) {
-            isValid = false;
-            validationErrors.email = "Email Required";
-        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-            isValid = false;
-            validationErrors.email = "Email is not valid";
-        }
-
-        if (formData.password === "" || formData.password === null) {
-            isValid = false;
-            validationErrors.password = "Password Required";
-        } else if (formData.password.length < 8) {
-            isValid = false;
-            validationErrors.password = "Password length should be at least 8 characters";
-        }
-
-        setErrors(validationErrors);
-        setValid(isValid);
-
-        if (isValid) {
-            axios.get(url)
-                .then(result => {
-                    const user = result.data.find(user => user.email === formData.email);
-                    if (user) {
-                        if (user.password === formData.password) {
-                            alert("Login Successfully");
-                            navigate('/');
-                        } else {
-                            setErrors({ password: "Wrong Password" });
-                        }
-                    } else {
-                        setErrors({ email: "Wrong Email" });
-                    }
-                })
-                .catch(err => console.log(err));
-        }
-    };
-
-    return (
-        <div className="container-fluid" style={{backgroundImage:"https://artworkbird.co.in/sai-baba-marathi-png/", margin:"auto"}} >
-            <div >
-                <div className="">
-                    <div className="signup-form">
-                        <form className="" onSubmit={handleSubmit}>
-                            <h4 className=" text-secondary">Login Your Account</h4>
-                            <div className="row">
-                                <div >
-                                    <label>Email<span className="text-danger">*</span></label>
-                                    <input type="email" name="email" className="form-control" placeholder="Enter Email" onChange={(event) => setFormData({ ...formData, email: event.target.value })} />
-                                    {valid ? <></> : <span className="text-danger">{errors.email}</span>}
-                                </div>
-                                <div className="" style={{marginTop:10}}>
-                                    <label>Password<span className="text-danger">*</span></label>
-                                    <input type="password" name="password" className="form-control" placeholder="Enter Password" onChange={(event) => setFormData({ ...formData, password: event.target.value })} />
-                                    {valid ? <></> : <span className="text-danger">{errors.password}</span>}
-                                </div>
-                                <div className="">
-                                    {/* <button type="submit" className="btn btn-primary float-end">Login Now</button> */}
-                                    <button class="btn btn-primary float-end" style={{ backgroundColor: 'orange', borderColor: 'orange',marginTop:10 }}
-                                     onClick={{}} >Login Now</button>
-                                </div>
-                            </div>
-                        </form>
-                        {/* <p className="text-center mt-3 text-secondary">If you do not have an account, Please <Link to="/registration">Register Now</Link></p> */}
-                    </div>
-                </div>
+  return (
+    <div>
+      <div className="mt-2 d-flex aligns-items-center justify-content-center">
+        <div className="form-card border-color" style={{ width: "37rem" }}>
+          <div className="container">
+            <div
+              className="card-header bg-color custom-bg-text mt-2 d-flex justify-content-center align-items-center"
+              style={{
+                borderRadius: "0em",
+                height: "38px",
+              }}
+            >
+              <h4 className="card-title">User Login</h4>
             </div>
+            <div className="card-body mt-1">
+              <form>
+                <div className="mb-1 text-color">
+                  <label for="email" class="form-label">
+                    <b>Email Id</b>
+                  </label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="email"
+                    name="email"
+                    onChange={handleUserInput}
+                    value={loginRequest.email}
+                  />
+                </div>
+                <div className="mb-1 text-color">
+                  <label for="password" className="form-label">
+                    <b>Password</b>
+                  </label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="password"
+                    name="password"
+                    onChange={handleUserInput}
+                    value={loginRequest.password}
+                    autoComplete="on"
+                  />
+                </div>
+                <div className="d-flex aligns-items-center justify-content-center">
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    // style={{backgroundColor:"red"}}
+                    //className="btn bg-color custom-bg-text"
+                    onClick={loginAction}
+                    >
+                    Login
+                  </button>
+                </div>
+                <ToastContainer />
+              </form>
+            </div>
+          </div>
         </div>
-    );
+      </div>
+      {/* <Footer/> */}
+    </div>
+
+  );
 };
 
 export default Login;
