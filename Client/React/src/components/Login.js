@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
     
    
+   
     let navigate = useNavigate();
 
    
@@ -38,13 +39,12 @@ const Login = () => {
               console.log(res.mesg);
               
               console.log(role);
-              if (res.mesg === "Successful Authentication!") {
+              if (res.mesg === "ROLE_ADMIN") {
                 console.log("Got the success response");
     
                 if (res.jwt != null) {
                   sessionStorage.setItem("jwtToken", res.jwt);
                   
-                  sessionStorage.setItem("role",res.role);
                 }
     
                 if (res.jwt !== null) {
@@ -58,7 +58,7 @@ const Login = () => {
                     progress: undefined,
                   });
                   setTimeout(() => {
-                    window.location.href = "/home";
+                    window.location.href = "/pooja";
                      
                   }, 1000); 
                 } else {

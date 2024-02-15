@@ -24,17 +24,22 @@ public class DarshanDTO {
 	@NotNull
 	private LocalTime timeSlot;
 	
-	@NotNull
-	@Range(max=4)
-	private int men;
+//	@NotNull
+//	@Range(max=4)
+//	private int men;
 
-	@NotNull
-	@Range(max=4)
-	private int women;
+//	@NotNull
+//	@Range(max=4)
+//	private int women;
+
+//	@NotNull
+//	@Range(max=4)
+//	private int children;
 	
-	@NotNull
 	@Range(max=4)
-	private int children;
+	private int noofPerson;
+		
+	
 	
 	@NotNull
 	private float amount;
