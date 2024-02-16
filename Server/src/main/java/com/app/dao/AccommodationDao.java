@@ -17,6 +17,9 @@ public interface AccommodationDao extends JpaRepository<Accommodation,Long>{
 	
 	List<Accommodation> findByCheckInDate(LocalDate date);
 	
-	@Query("Select a.checkInDate from Accommodation a where a.roomCounter < 5")
+	@Query("Select a.checkInDate from Accommodation a where a.roomCounter < 3")
 	List<LocalDate> findCheckInDatesByRoomCounter();
+	
+	@Query("select distinct a.roomCounter from Accommodation a where a.checkInDate =:date")
+	Integer findRoomCounterByCheckInDate(LocalDate date);
 }
