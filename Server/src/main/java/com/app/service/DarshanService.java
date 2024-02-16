@@ -20,7 +20,8 @@ public interface DarshanService {
 
 	List<DarshanResponseDTO> getAllDarshanBookings();
 	
-	List<TimeSlot> getAllAvailableTimeSlotsByDate(LocalDate bookingDate);
+	List<String> getAllBookedTimeSlotsByDate(LocalDate bookingDate);
 
+	List<LocalDate> getAllBookedDates();
 }
 

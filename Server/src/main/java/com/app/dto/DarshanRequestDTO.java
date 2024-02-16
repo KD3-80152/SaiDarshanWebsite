@@ -7,10 +7,16 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Range;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+@Getter
+@Setter
+@ToString
 public class DarshanRequestDTO 
 {
 	@NotNull
-	private LocalDate date;
+	private LocalDate bookingDate;
 	
 	@NotNull
 	private String timeSlot;
