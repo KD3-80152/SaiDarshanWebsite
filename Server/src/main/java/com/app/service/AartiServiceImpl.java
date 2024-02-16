@@ -32,8 +32,14 @@ public class AartiServiceImpl implements AartiService
 	private ModelMapper mapper;
 
 	@Override
-	public AartiResponseDTO addAartiBooking(AartiRequestDTO aarti,Long userId) {
-		UserEntity curUser= userDao.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Inavalid userId"));
+	public ApiResponse addAartiBooking(AartiRequestDTO aarti,Long userId) {
+		UserEntity curUser= userDao.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Invalid userId"));
+		
+		List<Aarti> list = aartiDao.findByAartiBookingDate(aarti.getAartiBookingDate());
+		
+//		int noOfAartiSlotsByDate = 
+				
+		
 		Aarti artiEntity = mapper.map(aarti, Aarti.class);
 		artiEntity.setUser(curUser);
 		artiEntity.setPrimaryDevoteeName(curUser.getFirstName()+" "+curUser.getLastName());
@@ -41,10 +47,10 @@ public class AartiServiceImpl implements AartiService
 		
 		Aarti persistentEnt = aartiDao.save(artiEntity);
 			
-		return mapper.map(persistentEnt, AartiResponseDTO.class);
+		return new ApiResponse();
 	}
 
-	@Override
+	/*@Override
 	public List<AartiResponseDTO> getAllAartiBookingsByUserId(Long userId) {
 		
 		List<Aarti> aartiList = aartiDao.findByUserId(userId);
@@ -70,7 +76,7 @@ public class AartiServiceImpl implements AartiService
 				.map(aarti -> mapper.map(aarti, AartiResponseDTO.class))
 				.collect(Collectors.toList());
 
-	}
+	}*/
 	
 }
 

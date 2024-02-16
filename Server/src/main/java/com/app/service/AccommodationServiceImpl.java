@@ -83,37 +83,10 @@ public class AccommodationServiceImpl implements AccommodationService {
 				.collect(Collectors.toList());
 	}
 
-	@Override
-	public List<LocalDate> getAllAvailableDates() {
-		return accodao.findCheckInDatesByRoomCounter();
-	}
-
-	@Override
-	public void incrementCounter(Accommodation acco) {
-		List<Accommodation> accoList = accodao.findByCheckInDate(acco.getCheckInDate());
-
-		if(!accoList.isEmpty()) {
-		//Accommodation ac = accoList.get(0);
-		accoList.forEach(a -> a.setRoomCounter(a.getRoomCounter()+1));
-		}
-		else 
-			acco.setRoomCounter(1);
-		
-		//return acco.getRoomCounter();
-		
-
-	}
 	
-	@Override
-	public void decrementCounter(Accommodation acco) {
-		List<Accommodation> accoList = accodao.findByCheckInDate(acco.getCheckInDate());
-		System.out.println(accoList.toString());
-		//Accommodation ac = accoList.get(0);
-		accoList.forEach(a -> a.setRoomCounter(a.getRoomCounter()-1));
-		//return ac.getRoomCounter();
-		
-	}
-
+	
+	
+	
 	@Override
 	public Integer getRoomCounterByDate(LocalDate date) {
 		Integer a =accodao.findRoomCounterByCheckInDate(date);
@@ -129,5 +102,40 @@ public class AccommodationServiceImpl implements AccommodationService {
 		
 		return accodao.findAllCheckInDates();
 	}
+	
+
+//	@Override
+//	public void incrementCounter(Accommodation acco) {
+//		List<Accommodation> accoList = accodao.findByCheckInDate(acco.getCheckInDate());
+//
+//		if(!accoList.isEmpty()) {
+//		//Accommodation ac = accoList.get(0);
+//		accoList.forEach(a -> a.setRoomCounter(a.getRoomCounter()+1));
+//		}
+//		else 
+//			acco.setRoomCounter(1);
+//		
+//		//return acco.getRoomCounter();
+//		
+//
+//	}
+//	
+//	@Override
+//	public void decrementCounter(Accommodation acco) {
+//		List<Accommodation> accoList = accodao.findByCheckInDate(acco.getCheckInDate());
+//		System.out.println(accoList.toString());
+//		//Accommodation ac = accoList.get(0);
+//		accoList.forEach(a -> a.setRoomCounter(a.getRoomCounter()-1));
+//		//return ac.getRoomCounter();
+//		
+//	}
+	
+	
+//	@Override
+//	public List<LocalDate> getAllAvailableDates() {
+//		return accodao.findCheckInDatesByRoomCounter();
+//	}
+
+	
 
 }

@@ -44,11 +44,10 @@ public class Accommodation extends BaseEntity {
 	@Column(name = "primary_devotee_name")
 	private String primaryDevoteeName;
 	
-	@Column(name = "adhar_no",length = 12,unique = true)
+	@Column(name = "adhar_no",length = 12)
 	private String adharNo;
 	
 	
-	private Integer roomCounter = 0;
 	
 	public Accommodation(LocalDate checkInDate) {
 		this.checkInDate = checkInDate;
