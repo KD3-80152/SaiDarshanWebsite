@@ -22,4 +22,10 @@ public interface AccommodationDao extends JpaRepository<Accommodation,Long>{
 	
 	@Query("select distinct a.roomCounter from Accommodation a where a.checkInDate =:date")
 	Integer findRoomCounterByCheckInDate(LocalDate date);
+	
+//	@Query("select a.checkInDate from Accommodation a group by a.checkInDate having sum(a.numberOfRooms)>=3 ")
+//	List<LocalDate> findAllCheckInDates();
+	
+	@Query("SELECT a.checkInDate FROM Accommodation a GROUP BY a.checkInDate HAVING SUM(a.numberOfRooms) >= 3")
+	List<LocalDate> findAllCheckInDates();
 }

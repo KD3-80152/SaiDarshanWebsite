@@ -32,7 +32,7 @@ public class TimeSlot extends BaseEntity {
 	
     public Long addDarshan(Darshan darshan) {
 			darshanList.add(darshan);
-			darshan.setTimeSlot(this);
+			//darshan.setTimeSlot(this);
 			return this.getId();
 		}
 	 

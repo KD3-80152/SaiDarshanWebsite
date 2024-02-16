@@ -67,7 +67,7 @@ public class AccommodationServiceImpl implements AccommodationService {
 				orElseThrow(() -> new ResourceNotFoundException("Invalid emp id"));
 		
 		accodao.delete(acco);
-		decrementCounter(acco);
+		//decrementCounter(acco);
 		return new ApiResponse("Accommodation Details of accommodation with Id" + acco.getId() + " deleted....");
 		
 	}
@@ -122,6 +122,12 @@ public class AccommodationServiceImpl implements AccommodationService {
 			return 0;
 		else
 		return a;
+	}
+
+	@Override
+	public List<LocalDate> getAllBookedDates() {
+		
+		return accodao.findAllCheckInDates();
 	}
 
 }

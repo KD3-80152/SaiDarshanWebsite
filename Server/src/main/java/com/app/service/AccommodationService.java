@@ -18,6 +18,8 @@ public interface AccommodationService {
 	
 	List<LocalDate> getAllAvailableDates();
 	
+	List<LocalDate> getAllBookedDates();
+	
 	Integer getRoomCounterByDate(LocalDate date);
 	
 	void incrementCounter(Accommodation acco);

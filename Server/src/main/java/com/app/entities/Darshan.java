@@ -1,4 +1,6 @@
 package com.app.entities;
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -22,22 +24,20 @@ import lombok.ToString;
 public class Darshan extends BaseEntity{
 
 
-	@JoinColumn(name="darshan_date_id")
-	@ManyToOne
-	private BookingDate bookingDate;
+	@Column(name="booking_date")
+	private LocalDate bookingDate;
 	
-	@JoinColumn(name="darshan_timeslot_id")
-	@ManyToOne
-	private TimeSlot timeSlot;
+	@Column(name = "timeslot")
+	private TimeEnum timeSlot;
 	
-	@Column(name="no_of_men")
-	private int men;
+	@Column(name="no_of_persons")
+	private int persons;
 	
-	@Column(name="no_of_women")
-	private int women;
-	
-	@Column(name="no_of_children")
-	private int children;
+//	@Column(name="no_of_women")
+//	private int women;
+//	
+//	@Column(name="no_of_children")
+//	private int children;
 	
 	private float amount;
 	
@@ -52,10 +52,7 @@ public class Darshan extends BaseEntity{
 	@JoinColumn(name = "user_id") // Optional BUT reco , to specify the name of FK col.
 	private UserEntity user;
 	
-	public Integer counter;
+	//public Integer counter;
 
-	public Darshan(TimeSlot timeSlot) {
-		this.timeSlot = timeSlot;
-	}
 	
 }
