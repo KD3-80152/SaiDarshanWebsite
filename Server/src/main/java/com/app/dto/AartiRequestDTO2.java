@@ -3,9 +3,6 @@ package com.app.dto;
 import java.time.LocalDate;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Range;
-
-import com.app.entities.AartiBookingDate;
-import com.app.entities.AartiBookingType;
 import com.app.entities.AartiType;
 
 import lombok.AllArgsConstructor;
@@ -18,13 +15,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class AartiRequestDTO 
+public class AartiRequestDTO2 
 {
 	@NotNull
-	private AartiBookingDate aartiBookingDate;
+	private LocalDate aDate;
 	
 	@NotNull
-	private AartiBookingType aartiBookingType;
+	private AartiType type;
 	
 	@NotNull
 	@Range(max = 4)
