@@ -1,9 +1,14 @@
-
+import { useEffect } from "react";
 import Common from "./Common";
 import DarshanRunningLine from "./DarshanRunningLine";
 import FooterNav from "./FooterNav";
 
 const Darshan =()=>{
+
+  useEffect(()=>{
+    document.title="Darshan";
+  },[]);
+
     return(
         <div style={{margin:'auto'}}>
            <div> 

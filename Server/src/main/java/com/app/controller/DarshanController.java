@@ -76,10 +76,14 @@ public class DarshanController {
 	
 
 	
-	@GetMapping("/availableTimeSlots")
-	public List<TimeSlot> getAllAvailableTimeSlotsByDate(LocalDate bookingDate) {
-		return darshanService.getAllAvailableTimeSlotsByDate(bookingDate);
+	@GetMapping("/booked-timeslots")
+	public ResponseEntity<?> getAllBookedTimeSlotsByDate(LocalDate bookingDate) {
+		return ResponseEntity.ok(darshanService.getAllBookedTimeSlotsByDate(bookingDate));
 	}
 	
+	@GetMapping("/booked-dates")
+	public ResponseEntity<?> getAllBookedDates() {
+		return ResponseEntity.ok(darshanService.getAllBookedDates());
+	}
 
 }

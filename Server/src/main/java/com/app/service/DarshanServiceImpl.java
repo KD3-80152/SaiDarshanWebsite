@@ -18,8 +18,10 @@ import com.app.dao.UserEntityDao;
 import com.app.dto.ApiResponse;
 import com.app.dto.DarshanRequestDTO;
 import com.app.dto.DarshanResponseDTO;
+import com.app.entities.Accommodation;
 import com.app.entities.BookingDate;
 import com.app.entities.Darshan;
+import com.app.entities.TimeEnum;
 import com.app.entities.TimeSlot;
 import com.app.entities.UserEntity;
 
@@ -50,17 +52,20 @@ public class DarshanServiceImpl implements DarshanService {
 	public ApiResponse addDarshanBooking(DarshanRequestDTO darshan,Long userId) {
 		UserEntity curUser= userDao.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Inavalid userId"));
 		Darshan darshanEntity=  mapper.map(darshan, Darshan.class);
+		
+		List<Darshan> list = darshanDao.findByBookingDateAndTimeSlot(darshanEntity.getBookingDate(),darshanEntity.getTimeSlot());
+		
+		int noOfPersonsByDateAndTimeslot = list.stream()
+				.mapToInt(Darshan::getPersons)
+				.sum();
+		
+		if(noOfPersonsByDateAndTimeslot + darshan.getPersons()> 5)
+			return new ApiResponse("No Booking available for Timeslot --" + darshanEntity.getTimeSlot());
 		darshanEntity.setUser(curUser);
 		darshanEntity.setPrimaryDevoteeName(curUser.getFirstName()+" "+curUser.getLastName());
 		darshanEntity.setAdharNo(curUser.getAdharNumber());
-		TimeSlot timeSlot = mapper.map(darshan,TimeSlot.class);
-		BookingDate bookingDate = mapper.map(darshan, BookingDate.class);
+		
 		Darshan persistentDarshan = darshanDao.save(darshanEntity);
-		Long tId = timeSlot.addDarshan(persistentDarshan);
-		Long dId = bookingDate.addDarshan(persistentDarshan);
-		Integer counter = incrementCounter(tId, dId);
-		if(counter==5)
-			return new ApiResponse("No slot avilable");
 		return new ApiResponse("Darshan booking successfully done for given slot");
 	}
 
@@ -83,14 +88,14 @@ public class DarshanServiceImpl implements DarshanService {
 		
 		LocalDate currentDate = LocalDate.now();
 		
-		long differenceInDays = java.time.temporal.ChronoUnit.DAYS.between(currentDate, darshan.getBookingDate().getDarshanDate());
+		long differenceInDays = java.time.temporal.ChronoUnit.DAYS.between(currentDate, darshan.getBookingDate());
 
 		if(differenceInDays >= 15)
-		{	TimeSlot timeslot = timeSlotDao.findById(darshan.getTimeSlot().getId()).orElseThrow(() -> new ResourceNotFoundException("Inavalid TimeSlot id"));
-			BookingDate bookingDate = bookingDateDao.findById(darshan.getBookingDate().getId()).orElseThrow(() -> new ResourceNotFoundException("Inavalid BookingDate id"));
+		{	//TimeSlot timeslot = timeSlotDao.findById(darshan.getTimeSlot().getId()).orElseThrow(() -> new ResourceNotFoundException("Inavalid TimeSlot id"));
+			//BookingDate bookingDate = bookingDateDao.findById(darshan.getBookingDate().getId()).orElseThrow(() -> new ResourceNotFoundException("Inavalid BookingDate id"));
 			darshanDao.delete(darshan);
-			timeslot.removeDarshan(darshan);
-			bookingDate.removeDarshan(darshan);
+			//timeslot.removeDarshan(darshan);
+			//bookingDate.removeDarshan(darshan);
 			return new ApiResponse("Darshan Details of dasrhan with ID " + darshan.getId() + " cancelled....");
 		}
 		
@@ -122,15 +127,23 @@ public class DarshanServiceImpl implements DarshanService {
 		List<Darshan> list= darshanDao.findAll(sortByDate);
 		return list.stream().map(darshan -> mapper.map(darshan, DarshanResponseDTO.class)).collect(Collectors.toList());
 	}
+
+	@Override
+	public List<String> getAllBookedTimeSlotsByDate(LocalDate bookingDate) {
+		 List<TimeEnum> timeslots = darshanDao.findAllTimeSlotsByBookingDate(bookingDate);
+		// timeslots.forEach(t -> t.toString());
+		 return  timeslots.stream().map(t->t.toString()).collect(Collectors.toList());
+		 
+	}
+
+	@Override
+	public List<LocalDate> getAllBookedDates() {
+		return darshanDao.findAllBookingDatesByPersons();
+	}
 		
 
 
-	@Override
-	public List<TimeSlot> getAllAvailableTimeSlotsByDate(LocalDate bookingDate) {
-		return darshanDao.FindTimeSlotsByBookingDateAndCounter(bookingDate);
-	}
-	
-	
+
 
 	
 
