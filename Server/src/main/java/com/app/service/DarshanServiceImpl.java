@@ -127,13 +127,13 @@ public class DarshanServiceImpl implements DarshanService {
 
 
 	
-	@Override
-	public List<TimeEnum> getAllAvailableTimeSlotsByDate(LocalDate bookingDate) {
-		
-		return darshanDao.FindTimeSlotsByBookingDateAndCounter(bookingDate);
-	}
-	
-	
+//	@Override
+//	public List<TimeEnum> getAllAvailableTimeSlotsByDate(LocalDate bookingDate) {
+//		
+//		return darshanDao.FindTimeSlotsByBookingDateAndCounter(bookingDate);
+//	}
+//	
+//	
 	
 	
 //	@Override

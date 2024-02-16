@@ -53,7 +53,7 @@ public class AccommodationServiceImpl implements AccommodationService {
 		accoEntity.setPrimaryDevoteeName(curUser.getFirstName() + " " + curUser.getLastName());
 		accoEntity.setAdharNo(curUser.getAdharNumber());
 		Accommodation persistentAcco = accodao.save(accoEntity);
-		// incrementCounter(persistentAcco);
+
 		return new ApiResponse("Room booking successfully done. with ID " + persistentAcco.getId());
 	}
 		

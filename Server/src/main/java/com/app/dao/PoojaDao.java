@@ -15,9 +15,9 @@ public interface PoojaDao extends JpaRepository<Pooja, Long> {
 
 	List<Pooja> findByDateAndPooja(LocalDate date,PoojaType pooja);
 
-	@Query("select p from Pooja p where p.date:date group by p.pooja having sum(p.noOfPerson)>= 4")
+	@Query("SELECT p FROM Pooja p WHERE p.date = :date GROUP BY p.pooja HAVING SUM(p.noOfPerson) >= 4")
 	List<PoojaType> findPoojaTypeByDate(LocalDate date);
 	
-	@Query("select p from Pooja p group by p.date having sum(p.noOfPerson) >= 8 ")
+	@Query("SELECT p FROM Pooja p GROUP BY p.date HAVING SUM(p.noOfPerson) >= 8 ")
 	List<LocalDate> findAllBookedDatesByNoOfPerson();
  }

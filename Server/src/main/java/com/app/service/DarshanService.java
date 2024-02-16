@@ -25,6 +25,6 @@ public interface DarshanService {
 
 	List<LocalDate> getAllBookedDates();
 
-	List<TimeEnum> getAllAvailableTimeSlotsByDate(LocalDate bookingDate);
+	//List<TimeEnum> getAllAvailableTimeSlotsByDate(LocalDate bookingDate);
 }
 
