@@ -17,15 +17,15 @@ public class DarshanResponseDTO
 	
 	@NotNull
 	@Range(max=4)
-	private int men;
+	private int persons;
 
-	@NotNull
-	@Range(max=4)
-	private int women;
-	
-	@NotNull
-	@Range(max=4)
-	private int children;
+//	@NotNull
+//	@Range(max=4)
+//	private int women;
+//	
+//	@NotNull
+//	@Range(max=4)
+//	private int children;
 	@NotNull
 	private float amount;
 	

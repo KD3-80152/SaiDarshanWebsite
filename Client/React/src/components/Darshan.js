@@ -108,7 +108,7 @@ const Darshan =()=>{
             <sup className="text-danger"> *</sup>
             </label>
             <input type="text" className="form-control ng-binding ng-untouched ng-valid"
-            name="gender" ng-model="pdqc.pageDeatils.userDetails.userFullName" />
+            name="idno" ng-model="pdqc.pageDeatils.userDetails.userFullName" />
            </div>
 
            
