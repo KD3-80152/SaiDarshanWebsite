@@ -6,7 +6,8 @@ import java.util.List;
 import com.app.dto.ApiResponse;
 import com.app.dto.DarshanRequestDTO;
 import com.app.dto.DarshanResponseDTO;
-import com.app.entities.TimeSlot;
+import com.app.entities.TimeEnum;
+
 
 public interface DarshanService {
 	
@@ -24,6 +25,6 @@ public interface DarshanService {
 
 	List<LocalDate> getAllBookedDates();
 
-	List<TimeSlot> getAllAvailableTimeSlotsByDate(LocalDate bookingDate);
+	List<TimeEnum> getAllAvailableTimeSlotsByDate(LocalDate bookingDate);
 }
 

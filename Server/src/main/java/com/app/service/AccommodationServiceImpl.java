@@ -16,9 +16,9 @@ import com.app.dto.AccommodationRequestDTO;
 import com.app.dto.AccommodationResponseDTO;
 import com.app.dto.ApiResponse;
 import com.app.entities.Accommodation;
-import com.app.entities.BookingDate;
+
 import com.app.entities.Darshan;
-import com.app.entities.TimeSlot;
+
 import com.app.entities.UserEntity;
 
 @Service
@@ -101,15 +101,7 @@ public class AccommodationServiceImpl implements AccommodationService {
 	
 	
 	
-	@Override
-	public Integer getRoomCounterByDate(LocalDate date) {
-		Integer a =accodao.findRoomCounterByCheckInDate(date);
-		
-		if(a==null)
-			return 0;
-		else
-		return a;
-	}
+
 
 	@Override
 	public List<LocalDate> getAllBookedDates() {
@@ -150,7 +142,15 @@ public class AccommodationServiceImpl implements AccommodationService {
 //		return accodao.findCheckInDatesByRoomCounter();
 //	}
 
-	
+//	@Override
+//	public Integer getRoomCounterByDate(LocalDate date) {
+//		Integer a =accodao.findRoomCounterByCheckInDate(date);
+//		
+//		if(a==null)
+//			return 0;
+//		else
+//		return a;
+//	}
 
 }
 

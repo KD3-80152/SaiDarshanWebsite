@@ -11,18 +11,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.app.custom_Exceptions.ResourceNotFoundException;
-import com.app.dao.BookingDateDao;
+
 import com.app.dao.DarshanDao;
-import com.app.dao.TimeSlotDao;
+
 import com.app.dao.UserEntityDao;
 import com.app.dto.ApiResponse;
 import com.app.dto.DarshanRequestDTO;
 import com.app.dto.DarshanResponseDTO;
-import com.app.entities.Accommodation;
-import com.app.entities.BookingDate;
+
+
 import com.app.entities.Darshan;
 import com.app.entities.TimeEnum;
-import com.app.entities.TimeSlot;
+
 import com.app.entities.UserEntity;
 
 @Service
@@ -91,11 +91,8 @@ public class DarshanServiceImpl implements DarshanService {
 		long differenceInDays = java.time.temporal.ChronoUnit.DAYS.between(currentDate, darshan.getBookingDate());
 
 		if(differenceInDays >= 15)
-		{	//TimeSlot timeslot = timeSlotDao.findById(darshan.getTimeSlot().getId()).orElseThrow(() -> new ResourceNotFoundException("Inavalid TimeSlot id"));
-			//BookingDate bookingDate = bookingDateDao.findById(darshan.getBookingDate().getId()).orElseThrow(() -> new ResourceNotFoundException("Inavalid BookingDate id"));
+		{	
 			darshanDao.delete(darshan);
-			//timeslot.removeDarshan(darshan);
-			//bookingDate.removeDarshan(darshan);
 			return new ApiResponse("Darshan Details of dasrhan with ID " + darshan.getId() + " cancelled....");
 		}
 		
@@ -105,20 +102,6 @@ public class DarshanServiceImpl implements DarshanService {
 	}
 
 	
-//	@Override
-//	public Integer incrementCounter(Long timeSlotId, Long bookingDateId) {
-//		List<Darshan> darshanList = darshanDao.findByBookingDateAndTimeSlot(bookingDateId, timeSlotId);
-//		Darshan d = darshanList.get(0);
-//		if(d.counter == null)
-//			darshanList.stream().map(darshan -> darshan.counter = 0);
-//		else
-//		    darshanList.stream().map(darshan -> darshan.counter ++);
-//		return d.counter;
-//	}
-
-
-
-
 	
 
 	public List<DarshanResponseDTO> getAllDarshanBookings() {
@@ -131,7 +114,7 @@ public class DarshanServiceImpl implements DarshanService {
 	@Override
 	public List<String> getAllBookedTimeSlotsByDate(LocalDate bookingDate) {
 		 List<TimeEnum> timeslots = darshanDao.findAllTimeSlotsByBookingDate(bookingDate);
-		// timeslots.forEach(t -> t.toString());
+		
 		 return  timeslots.stream().map(t->t.toString()).collect(Collectors.toList());
 		 
 	}
@@ -145,13 +128,25 @@ public class DarshanServiceImpl implements DarshanService {
 
 	
 	@Override
-	public List<TimeSlot> getAllAvailableTimeSlotsByDate(LocalDate bookingDate) {
+	public List<TimeEnum> getAllAvailableTimeSlotsByDate(LocalDate bookingDate) {
 		
 		return darshanDao.FindTimeSlotsByBookingDateAndCounter(bookingDate);
 	}
 	
 	
 	
+	
+//	@Override
+//	public Integer incrementCounter(Long timeSlotId, Long bookingDateId) {
+//		List<Darshan> darshanList = darshanDao.findByBookingDateAndTimeSlot(bookingDateId, timeSlotId);
+//		Darshan d = darshanList.get(0);
+//		if(d.counter == null)
+//			darshanList.stream().map(darshan -> darshan.counter = 0);
+//		else
+//		    darshanList.stream().map(darshan -> darshan.counter ++);
+//		return d.counter;
+//	}
+
 
 
 	

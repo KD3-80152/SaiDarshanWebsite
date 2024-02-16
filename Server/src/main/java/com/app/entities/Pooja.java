@@ -36,7 +36,7 @@ public class Pooja extends BaseEntity{
 	@Column(name = "primary_devotee_name")
 	private String primaryDevoteeName;
 	
-	@Column(name = "adhar_no",length = 12,unique = true)
+	@Column(name = "adhar_no",length = 12)
 	private String adharNo;
 
 }

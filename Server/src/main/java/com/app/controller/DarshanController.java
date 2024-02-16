@@ -21,8 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.DarshanRequestDTO;
-import com.app.entities.PoojaType;
-import com.app.entities.TimeSlot;
+
 import com.app.security.FindUserDetails;
 import com.app.service.DarshanService;
 

@@ -8,10 +8,10 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.app.entities.BookingDate;
+
 import com.app.entities.Darshan;
 import com.app.entities.TimeEnum;
-import com.app.entities.TimeSlot;
+
 
 public interface DarshanDao extends JpaRepository<Darshan, Long> {
 	
@@ -32,7 +32,7 @@ public interface DarshanDao extends JpaRepository<Darshan, Long> {
 
 	//@Query("select new com.app.entities.Darshan( d.timeSlot from Darshan d where d.bookingDate = :date and d.counter < 5" )
 	@Query("select new com.app.entities.Darshan(d.timeSlot) from Darshan d where d.bookingDate = :date and d.counter < 5")
-	List<TimeSlot> FindTimeSlotsByBookingDateAndCounter(LocalDate date);
+	List<TimeEnum> FindTimeSlotsByBookingDateAndCounter(LocalDate date);
 
 	@Query("select d.bookingDate from Darshan d group by d.bookingDate having sum(d.persons)>=30")
 	List<LocalDate> findAllBookingDatesByPersons();
