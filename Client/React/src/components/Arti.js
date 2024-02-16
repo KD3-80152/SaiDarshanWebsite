@@ -2,8 +2,14 @@ import React from "react";
 import Common from "./Common";
 import ArtiRunningLine from "./ArtiRunningLine";
 import FooterNav from "./FooterNav";
+import { useEffect } from "react";
 
 const Arti = () => {
+
+  useEffect(()=>{
+    document.title="Arti";
+  },[]);
+
   return (
     <div style={{ margin: "auto" }}>
       <div>
@@ -11,7 +17,7 @@ const Arti = () => {
         <ArtiRunningLine />
       </div>
 
-      <div id="darshan">
+      <div id="arti">
         <h4 style={{ color: "red", marginLeft: 10, marginTop: 10 }}>Arti</h4>
         <hr />
 
@@ -46,8 +52,8 @@ const Arti = () => {
             <div class="textf col-sm-3">
               <select>
                 <option value="">Arti Type</option>
-                <option value="kakadarti">Kakad Arti (Morning)</option>
-                <option value="madhyamarti">Madhyan Arti(Noon)</option>
+                <option value="kakadarti">Kakad Arti (Morning) 05:00-05:30</option>
+                <option value="madhyamarti">Madhyan Arti(Noon) 12:00-12:30</option>
               </select>
             </div>
           </div>
