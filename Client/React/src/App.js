@@ -12,6 +12,13 @@ import Accomodation from './components/Accomodation';
 import TandC from './components/TandC';
 import Feedback from './components/Feedback';
 import Faq from './components/Faq';
+import SignUp from './components/Signup';
+import Admin from './components/AdminComponent/Admin'
+import AllPooja from './components/AdminComponent/AllPooja';
+import AllAccomodation from './components/AdminComponent/AllAccomodation';
+import AllUsers from './components/AdminComponent/AllUsers';
+import AllDarshan from './components/AdminComponent/AllDarshan';
+import AllArti from './components/AdminComponent/AllArti';
 
 
 
@@ -22,6 +29,15 @@ function App() {
     <div>
      
         <Routes>
+          <Route exact path="/admin" element={<Admin/>}>
+            <Route exact path="allpooja" element={<AllPooja/>}/>
+            <Route exact path="allarti" element={<AllArti/>}/>
+            <Route exact path="alldarshan" element={<AllDarshan/>}/>
+            <Route exact path="allaccomodation" element={<AllAccomodation/>}/>
+            <Route exact path="allusers" element={<AllUsers/>}/>
+          </Route>
+          
+
           <Route exact path="/" element={<Home/>} />
           <Route exact path="/home" element={<Home/>} /> 
           <Route exact path="/copyright" element={<Copyright/>} />
@@ -31,12 +47,10 @@ function App() {
           <Route exact path="/pooja" element={<Pooja/>} /> 
           <Route exact path="/contactus" element={<ContactUs/>} /> 
           <Route exact path="/login" element={<Home/>} />  
-          <Route exact path ="/registration" element={<Registration/>}/>
+          <Route exact path ="/signup" element={<SignUp/>}/>
           <Route exact path="/faq" element={<Faq/>} /> 
           <Route exact path="/feedback" element={<Feedback/>} /> 
           <Route exact path="/tandc" element={<TandC/>} /> 
-
-
           <Route path="*" element={<NotFound/>} />
           
         </Routes>

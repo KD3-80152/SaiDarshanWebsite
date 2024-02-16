@@ -2,11 +2,8 @@ package com.app.dto;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-
 import javax.validation.constraints.NotNull;
-
 import org.hibernate.validator.constraints.Range;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
