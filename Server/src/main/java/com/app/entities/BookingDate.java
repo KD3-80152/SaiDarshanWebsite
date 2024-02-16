@@ -35,7 +35,7 @@ public class BookingDate extends BaseEntity {
     
     public Long addDarshan(Darshan darshan) {
 		darshanList.add(darshan);
-		darshan.setBookingDate(this);
+		//darshan.setBookingDate(this);
 		return this.getId();
 	}
 	public void removeDarshan(Darshan darshan) {

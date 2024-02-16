@@ -31,12 +31,13 @@ public class DarshanServiceImpl implements DarshanService {
 	@Autowired
 	private DarshanDao darshanDao;
 	
-	@Autowired
-	private TimeSlotDao timeSlotDao;
 	
-	@Autowired
-	private BookingDateDao bookingDateDao;
-
+//	@Autowired
+//	private TimeSlotDao timeSlotDao;
+//	
+//	@Autowired
+//	private BookingDateDao bookingDateDao;
+	
 	
 	@Autowired
 	private UserEntityDao userDao; 
@@ -99,16 +100,16 @@ public class DarshanServiceImpl implements DarshanService {
 	}
 
 	
-	@Override
-	public Integer incrementCounter(Long timeSlotId, Long bookingDateId) {
-		List<Darshan> darshanList = darshanDao.findByBookingDateAndTimeSlot(bookingDateId, timeSlotId);
-		Darshan d = darshanList.get(0);
-		if(d.counter == null)
-			darshanList.stream().map(darshan -> darshan.counter = 0);
-		else
-		    darshanList.stream().map(darshan -> darshan.counter ++);
-		return d.counter;
-	}
+//	@Override
+//	public Integer incrementCounter(Long timeSlotId, Long bookingDateId) {
+//		List<Darshan> darshanList = darshanDao.findByBookingDateAndTimeSlot(bookingDateId, timeSlotId);
+//		Darshan d = darshanList.get(0);
+//		if(d.counter == null)
+//			darshanList.stream().map(darshan -> darshan.counter = 0);
+//		else
+//		    darshanList.stream().map(darshan -> darshan.counter ++);
+//		return d.counter;
+//	}
 
 
 
