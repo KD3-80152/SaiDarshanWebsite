@@ -36,6 +36,7 @@ public class AccommodationServiceImpl implements AccommodationService {
 		
 		
 		UserEntity curUser = userDao.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Invalid User"));
+
 		List<Accommodation> list = accodao.findByCheckInDate(acco.getCheckInDate());
 
 		int noOfRoomsBooksByDate = list.stream()
@@ -48,7 +49,7 @@ public class AccommodationServiceImpl implements AccommodationService {
 		accoEntity.setPrimaryDevoteeName(curUser.getFirstName() + " " + curUser.getLastName());
 		accoEntity.setAdharNo(curUser.getAdharNumber());
 		Accommodation persistentAcco = accodao.save(accoEntity);
-		
+		// incrementCounter(persistentAcco);
 		return new ApiResponse("Room booking successfully done. with ID " + persistentAcco.getId());
 	}
 
@@ -90,13 +91,17 @@ public class AccommodationServiceImpl implements AccommodationService {
 	@Override
 	public void incrementCounter(Accommodation acco) {
 		List<Accommodation> accoList = accodao.findByCheckInDate(acco.getCheckInDate());
+
 		if(!accoList.isEmpty()) {
 		//Accommodation ac = accoList.get(0);
 		accoList.forEach(a -> a.setRoomCounter(a.getRoomCounter()+1));
 		}
 		else 
 			acco.setRoomCounter(1);
-			
+		
+		//return acco.getRoomCounter();
+		
+
 	}
 	
 	@Override

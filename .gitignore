@@ -3,7 +3,7 @@
 .application.properties
 /Servers
 # dependencies
-/node_modules
+/Client/React/node_modules
 /.pnp
 .pnp.js
 
