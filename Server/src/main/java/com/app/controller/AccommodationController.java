@@ -78,11 +78,12 @@ public class AccommodationController {
 //	}
 	
 	
+
 	//GET ALL BOOKED DATES
 		//method=GET
 		// http://host:port/accommodation/booked-dates
-	@GetMapping("/bookedDates")
-	public ResponseEntity<?> getAllBookedDates()
+	@GetMapping("/booked-dates")
+	public ResponseEntity<?> getAllAvailableDates()
 	{
 		System.out.println("Get All booked Accommodation Dates");
 		return ResponseEntity.ok(accoService.getAllBookedDates());

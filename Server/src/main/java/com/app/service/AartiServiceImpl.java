@@ -32,8 +32,14 @@ public class AartiServiceImpl implements AartiService
 	private ModelMapper mapper;
 
 	@Override
-	public AartiResponseDTO addAartiBooking(AartiRequestDTO aarti,Long userId) {
-		UserEntity curUser= userDao.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Inavalid userId"));
+	public ApiResponse addAartiBooking(AartiRequestDTO aarti,Long userId) {
+		UserEntity curUser= userDao.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Invalid userId"));
+		
+		List<Aarti> list = aartiDao.findByAartiBookingDate(aarti.getAartiBookingDate());
+		
+//		int noOfAartiSlotsByDate = 
+				
+		
 		Aarti artiEntity = mapper.map(aarti, Aarti.class);
 		artiEntity.setUser(curUser);
 		artiEntity.setPrimaryDevoteeName(curUser.getFirstName()+" "+curUser.getLastName());
@@ -41,7 +47,7 @@ public class AartiServiceImpl implements AartiService
 		
 		Aarti persistentEnt = aartiDao.save(artiEntity);
 			
-		return mapper.map(persistentEnt, AartiResponseDTO.class);
+		return new ApiResponse();
 	}
 
 	@Override
@@ -73,19 +79,6 @@ public class AartiServiceImpl implements AartiService
 	}
 	
 }
-
-
-//@Override
-//public List<PoojaDTO> getAllPoojaBookings() {
-//	Sort sortByDate = Sort.by(Sort.Direction.ASC, "date"); // Sort by the 'date' property in ascending order
-//	List<Pooja> list= poojaDao.findAll(sortByDate);
-//	return list.stream().map(pooja -> mapper.map(pooja, PoojaDTO.class)).collect(Collectors.toList());
-//}
-
-//List<Aarti> sortedAartiList = aartiDao.findAllByOrderByADateAsc();
-//return sortedAartiList.stream()
-//        .map(aarti -> mapper.map(aarti, AartiDTO.class))
-//        .collect(Collectors.toList());
 
 
 

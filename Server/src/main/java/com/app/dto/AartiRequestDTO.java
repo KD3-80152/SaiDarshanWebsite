@@ -18,18 +18,14 @@ import lombok.NoArgsConstructor;
 public class AartiRequestDTO 
 {
 	@NotNull
-	private LocalDate aDate;
+	private LocalDate aartiBookingDate;
 	
 	@NotNull
-	private AartiType type;
-	
-	@NotNull
-	@Range(max = 4)
-	private int men;
+	private AartiType aartiBookingType;
 	
 	@NotNull
 	@Range(max = 4)
-	private int women;
+	private int noOfPerson;
 	
 	@NotNull
 	private double amount;

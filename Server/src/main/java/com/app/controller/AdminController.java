@@ -73,7 +73,7 @@ public class AdminController {
 				//ADMIN POV GETTING ALL POOJA BOOKINGS
 				//method=GET
 				// http://host:port/pooja/all
-				@GetMapping("/allPooja")
+				@GetMapping("/pooja/all")
 				public ResponseEntity<?> getAllPoojaBookings() throws IOException 
 				{
 					
@@ -86,7 +86,7 @@ public class AdminController {
 				//ADMIN POV GETTING ALL ACCOMMODATION BOOKINGS
 				//method=GET
 				// http://host:port/accommodation/all
-				@GetMapping("/allAccommodation")
+				@GetMapping("/accommodation/all")
 				public ResponseEntity<?> getAllAccommodationBookings()
 				{
 					System.out.println("Get All Accommodation Bookings");
@@ -97,7 +97,7 @@ public class AdminController {
 				//ADMIN POV GETTING ALL DARSHAN BOOKINGS
 				//method=GET
 						// http://host:port/darshan/all
-				@GetMapping("/allDarshan")
+				@GetMapping("/darshan/all")
 				public ResponseEntity<?> getAllDarshanBookings()
 				{
 					System.out.println("Get All Darshan Bookings");
@@ -108,7 +108,7 @@ public class AdminController {
 				//ADMIN POV GETTING ALL AARTI BOOKINGS
 				//method=GET
 				// http://host:port/aarti/all
-				@GetMapping("/allAarti")
+				@GetMapping("/aarti/all")
 				public ResponseEntity<?> getAllAartiBookings()
 				{
 					System.out.println("Get All Aarti Bookings");

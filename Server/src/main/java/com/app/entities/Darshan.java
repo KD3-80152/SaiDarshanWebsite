@@ -45,7 +45,7 @@ public class Darshan extends BaseEntity{
 	private String primaryDevoteeName;
 	
 
-	@Column(name= "adhar_no",unique=true)
+	@Column(name= "adhar_no")
 	private String adharNo;
 
 	@ManyToOne
