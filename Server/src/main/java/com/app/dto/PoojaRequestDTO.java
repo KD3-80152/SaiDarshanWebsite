@@ -26,9 +26,6 @@ public class PoojaRequestDTO {
 	private LocalDate date;
 	
 	@NotNull
-	private LocalDateTime slot;
-	
-	@NotNull
 	@Range(max = 2)
 	private int noofperson;
 	

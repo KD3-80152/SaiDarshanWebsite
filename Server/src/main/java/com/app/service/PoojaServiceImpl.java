@@ -17,6 +17,7 @@ import com.app.dto.ApiResponse;
 import com.app.dto.PoojaRequestDTO;
 import com.app.dto.PoojaResponseDTO;
 import com.app.entities.Pooja;
+import com.app.entities.PoojaType;
 import com.app.entities.UserEntity;
 
 
@@ -34,14 +35,26 @@ public class PoojaServiceImpl implements PoojaService{
 	private ModelMapper mapper;
 
 	@Override
-	public PoojaResponseDTO addPoojaBooking(PoojaRequestDTO pooja,Long userId) {
+	public ApiResponse addPoojaBooking(PoojaRequestDTO pooja,Long userId) {
 		UserEntity curUser= userDao.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Inavalid userId"));
 		Pooja poojaEntity=  mapper.map(pooja, Pooja.class);
+		
+		List<Pooja> poojaList= poojaDao.findByDateAndPooja(poojaEntity.getDate(),poojaEntity.getPooja());
+		
+		int noOfPoojaBookingsByDate = poojaList.stream()
+				.mapToInt(Pooja::getNoOfPerson)
+				.sum();
+		
+		if(noOfPoojaBookingsByDate +poojaEntity.getNoOfPerson() > 4)
+			return new ApiResponse("Booking not available for the specified pooja type on this date :( ");
+		
+		
 		poojaEntity.setUser(curUser);
 		poojaEntity.setPrimaryDevoteeName(curUser.getFirstName()+" "+curUser.getLastName());
 		poojaEntity.setAdharNo(curUser.getAdharNumber());
 		Pooja persistentpooja = poojaDao.save(poojaEntity);
-		return mapper.map(persistentpooja, PoojaResponseDTO.class);
+		System.out.println(persistentpooja);
+		return new ApiResponse("Pooja Booking done successfully!!!");
 	}
 
 	@Override
@@ -76,9 +89,31 @@ public class PoojaServiceImpl implements PoojaService{
 		List<Pooja> list= poojaDao.findAll(sortByDate);
 		return list.stream().map(pooja -> mapper.map(pooja, PoojaResponseDTO.class)).collect(Collectors.toList());
 	}
-
+	
 	
 
+	@Override
+	public List<LocalDate> getAllBookedDates() {
+		return poojaDao.findAllBookedDatesByNoOfPerson();
+	}
+
+	
+	@Override
+	public List<PoojaType> getBookedPoojaTypeForTheDate(LocalDate date) {
+
+		
+		return poojaDao.findPoojaTypeByDate(date);
+	}
+
+	
+	
+	
+/*
+ * [20:39, 16/02/2024] Unnati Joshi SBK: @Query("select d.bookingDate from Darshan d group by d.bookingDate having sum(d.persons)>=30")
+	List<LocalDate> findAllBookingDatesByPersons();
+[20:39, 16/02/2024] Unnati Joshi SBK: @Query("select d.timeSlot from Darshan d where d.bookingDate = :date group by a.timeSlot having sum(d.persons)>=5")
+	List<TimeEnum> findAllTimeSlotsByBookingDate(LocalDate date);
+ */
 
 	
 

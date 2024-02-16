@@ -1,6 +1,10 @@
 package com.app.controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.ApiResponse;
 import com.app.dto.PoojaRequestDTO;
+import com.app.entities.PoojaType;
 import com.app.security.FindUserDetails;
 import com.app.service.PoojaService;
 
@@ -70,5 +75,46 @@ public class PoojaController {
 			return poojaService.deletePoojaBookingById(poojaId);
 		}
 		
+		
+	//GET ALL BOOKED DATES i.e. UNAVAILABLE DATES
+	//method: GET
+	// https://localhost:8443/pooja/get-booked-dates
+		@GetMapping("/get-booked-dates")
+		public List<LocalDate> getBookedDates()
+		{
+			return poojaService.getAllBookedDates();
+		}
+		
+	//GET ALL BOOKED DATES i.e. UNAVAILABLE DATES
+	//method: GET
+	// https://localhost:8443/pooja/get-booked-dates/{date}
+		@GetMapping("/get-booked-dates/{date}")
+		public List<String> getBookedPoojaTypeForDate(@PathVariable String date)
+		{
+			System.out.println("date:" + date);
+		        // Define the date formatter (optional, but recommended)
+		        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+		        try {
+		            // Parse the string to LocalDate
+		            LocalDate lDate = LocalDate.parse(date, formatter);
+		         // Print the LocalDate
+		            System.out.println("Parsed LocalDate: " + lDate);
+		         // get the enum list to string list
+		            List<PoojaType> list=poojaService.getBookedPoojaTypeForTheDate(lDate);
+		            List<String> stringList= new ArrayList<String>();
+		            for (PoojaType poojaType : list) {
+						stringList.add(poojaType.toString());
+					}
+		           
+		            return stringList;
+		            
+		        } catch (Exception e) {
+		            // Handle parsing exception
+		            System.out.println("Error parsing date: " + e.getMessage());
+		            return null;
+		        }
+			
+		}
 		
 }

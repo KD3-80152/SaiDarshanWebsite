@@ -16,6 +16,9 @@ import com.app.dto.AccommodationRequestDTO;
 import com.app.dto.AccommodationResponseDTO;
 import com.app.dto.ApiResponse;
 import com.app.entities.Accommodation;
+import com.app.entities.BookingDate;
+import com.app.entities.Darshan;
+import com.app.entities.TimeSlot;
 import com.app.entities.UserEntity;
 
 @Service
@@ -68,9 +71,18 @@ public class AccommodationServiceImpl implements AccommodationService {
 		Accommodation acco = accodao.findById(id).
 				orElseThrow(() -> new ResourceNotFoundException("Invalid emp id"));
 		
-		accodao.delete(acco);
-		//decrementCounter(acco);
-		return new ApiResponse("Accommodation Details of accommodation with Id" + acco.getId() + " deleted....");
+		LocalDate currentDate = LocalDate.now();
+		
+		long differenceInDays = java.time.temporal.ChronoUnit.DAYS.between(currentDate, acco.getCheckInDate());
+
+		if(differenceInDays >= 15)
+		{
+			accodao.delete(acco);
+			return new ApiResponse("Accommodation Details of accommodation with Id" + acco.getId() + " deleted....");
+		}
+		else
+			return new ApiResponse("Accommodation can't be cancelled as the buffer limit of 15 days has crossed....");
+		
 		
 	}
 	
@@ -133,3 +145,6 @@ public class AccommodationServiceImpl implements AccommodationService {
 	}
 
 }
+
+
+

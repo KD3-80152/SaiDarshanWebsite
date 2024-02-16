@@ -13,19 +13,19 @@ import lombok.*;
 @ToString
 public class Pooja extends BaseEntity{
 	
-	@Column(name = "Pooja_Time")
-	private LocalDateTime slot;
 	
-	@Column(name = "Pooja_Date")
+	
+	@Column(name = "pooja_date")
 	private LocalDate date;
 	
-	@Column(name = "No_Of_Person")
-	private int noofperson;
+	@Column(name = "no_of_person")
+	private int noOfPerson;
 	
-	@Column(name = "Amount")
+	
 	private double amount;
 	
 	@Enumerated(EnumType.STRING)
+	@Column(name="pooja_type")
 	private PoojaType pooja;
 	
 	@ManyToOne
@@ -37,7 +37,6 @@ public class Pooja extends BaseEntity{
 	private String primaryDevoteeName;
 	
 	@Column(name = "adhar_no",length = 12,unique = true)
-
 	private String adharNo;
 
 }
