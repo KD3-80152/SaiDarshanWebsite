@@ -4,8 +4,7 @@ import FooterNav from "./FooterNav";
 import LoginAndBooking from "./LoginAndBooking";
 import Navbar from "./NavBar";
 import WelcomeNote from "./WelcomeNote";
-import Login from "./Login";
-import RunningLine from "./RunningLine";
+
 
 const Home = () =>
 {

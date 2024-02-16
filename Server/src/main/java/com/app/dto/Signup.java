@@ -30,6 +30,8 @@ public class Signup {
 	private String firstName;
 	
 	private String lastName;
+	
+	
 	@Email(message = "Invalid Email!!!")
 	private String email;
 	
@@ -52,7 +54,7 @@ public class Signup {
 	private Gender gender;
 
 	@NotBlank(message = "Please enter your aadhar number in order to proceed!")
-	@NotNull(message="this field can't contain null values")
+	//@NotNull(message="this field can't contain null values")
 	private String adharNumber;
 
 }
