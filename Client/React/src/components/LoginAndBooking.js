@@ -63,7 +63,7 @@ const LoginAndBooking =()=>
                     <div>
                         Devotee who does not have access to Mobile/OTP services can click 
                         on 
-                        <a href="/registration" className="footer-links" tabIndex={"6"}
+                        <a href="/signup" className="footer-links" tabIndex={"6"}
                             > Register</a> .
                     </div>
 
