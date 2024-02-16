@@ -87,15 +87,15 @@ public class AccommodationServiceImpl implements AccommodationService {
 	
 	
 	
-	@Override
-	public Integer getRoomCounterByDate(LocalDate date) {
-		Integer a =accodao.findRoomCounterByCheckInDate(date);
-		
-		if(a==null)
-			return 0;
-		else
-		return a;
-	}
+//	@Override
+//	public Integer getRoomCounterByDate(LocalDate date) {
+//		Integer a =accodao.findRoomCounterByCheckInDate(date);
+//		
+//		if(a==null)
+//			return 0;
+//		else
+//		return a;
+//	}
 
 	@Override
 	public List<LocalDate> getAllBookedDates() {

@@ -44,27 +44,27 @@ public class AartiController
 				.body(artiService.addAartiBooking(aarti,userId));
 	}
 	
-//	//GET ALL AARTI BOKINGS BY THE USER
-//	//method=GET
-//	// http://host:port/aarti/
-//	@GetMapping(value = "/")
-//	public ResponseEntity<?> getAartiBookingsByUser() throws IOException {
-//		Long userId = authUserDetails.getUserId();
-//		System.out.println("get aarti bookings by user " + userId);
-//		return ResponseEntity.ok(artiService.getAllAartiBookingsByUserId(userId));
-//		
-//	}
-//	
-//
-//	//CANCEL PARTICULAR USER'S AARTI BOOKINGS
-//	//method=DELETE
-//	// http://host:port/aarti/{id}
-//	@DeleteMapping("/{id}")
-//	public ResponseEntity<?> cancelAartiBooking(@PathVariable Long id)
-//	{
-//		System.out.println("In Delete Aarti: " + id);
-//		return ResponseEntity.ok(artiService.deleteAartiBookingById(id));
-//	}
+	//GET ALL AARTI BOKINGS BY THE USER
+	//method=GET
+	// http://host:port/aarti/
+	@GetMapping(value = "/")
+	public ResponseEntity<?> getAartiBookingsByUser() throws IOException {
+		Long userId = authUserDetails.getUserId();
+		System.out.println("get aarti bookings by user " + userId);
+		return ResponseEntity.ok(artiService.getAllAartiBookingsByUserId(userId));
+		
+	}
+	
+
+	//CANCEL PARTICULAR USER'S AARTI BOOKINGS
+	//method=DELETE
+	// http://host:port/aarti/{id}
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> cancelAartiBooking(@PathVariable Long id)
+	{
+		System.out.println("In Delete Aarti: " + id);
+		return ResponseEntity.ok(artiService.deleteAartiBookingById(id));
+	}
 	
 	
 	

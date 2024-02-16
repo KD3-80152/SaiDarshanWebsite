@@ -128,13 +128,13 @@ public class DarshanServiceImpl implements DarshanService {
 		return list.stream().map(darshan -> mapper.map(darshan, DarshanResponseDTO.class)).collect(Collectors.toList());
 	}
 
-	@Override
+	/*@Override
 	public List<String> getAllBookedTimeSlotsByDate(LocalDate bookingDate) {
 		 List<TimeEnum> timeslots = darshanDao.findAllTimeSlotsByBookingDate(bookingDate);
 		// timeslots.forEach(t -> t.toString());
 		 return  timeslots.stream().map(t->t.toString()).collect(Collectors.toList());
 		 
-	}
+	}*/
 
 	@Override
 	public List<LocalDate> getAllBookedDates() {

@@ -103,9 +103,9 @@ public class AdminController {
 				}
 				
 				
-				//ADMIN POV GETTING ALL AARTI BOOKINGS
-				//method=GET
-				// http://host:port/aarti/all
+//				//ADMIN POV GETTING ALL AARTI BOOKINGS
+//				//method=GET
+//				// http://host:port/aarti/all
 				@GetMapping("/allAarti")
 				public ResponseEntity<?> getAllAartiBookings()
 				{
