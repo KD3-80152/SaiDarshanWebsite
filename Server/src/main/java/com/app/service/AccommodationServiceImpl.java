@@ -33,17 +33,25 @@ public class AccommodationServiceImpl implements AccommodationService {
 	
 	@Override
 	public ApiResponse addAccomodationBooking(AccommodationRequestDTO acco,Long userId) {
-	    UserEntity curUser = userDao.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Invalid User"));
-		Accommodation accoEntity = mapper.map(acco,Accommodation.class);
+
+		
+		
+		UserEntity curUser = userDao.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Invalid User"));
+
+		List<Accommodation> list = accodao.findByCheckInDate(acco.getCheckInDate());
+
+		int noOfRoomsBooksByDate = list.stream()
+				.mapToInt(Accommodation::getNumberOfRooms)
+				.sum();
+		if(noOfRoomsBooksByDate+acco.getNumberOfRooms()> 3)
+			return new ApiResponse("No booking avilable on given date");
+		Accommodation accoEntity = mapper.map(acco, Accommodation.class);
 		accoEntity.setUser(curUser);
-		accoEntity.setPrimaryDevoteeName(curUser.getFirstName()+" "+curUser.getLastName());
+		accoEntity.setPrimaryDevoteeName(curUser.getFirstName() + " " + curUser.getLastName());
 		accoEntity.setAdharNo(curUser.getAdharNumber());
 		Accommodation persistentAcco = accodao.save(accoEntity);
-	    incrementCounter(persistentAcco);
-	    if(persistentAcco.getRoomCounter()==3)
-			return new ApiResponse("No booking avilable on given date");
-		return new ApiResponse("Room booking successfully done.");
-
+		// incrementCounter(persistentAcco);
+		return new ApiResponse("Room booking successfully done. with ID " + persistentAcco.getId());
 	}
 		
 
@@ -61,7 +69,7 @@ public class AccommodationServiceImpl implements AccommodationService {
 				orElseThrow(() -> new ResourceNotFoundException("Invalid emp id"));
 		
 		accodao.delete(acco);
-		decrementCounter(acco);
+		//decrementCounter(acco);
 		return new ApiResponse("Accommodation Details of accommodation with Id" + acco.getId() + " deleted....");
 		
 	}
@@ -83,28 +91,45 @@ public class AccommodationServiceImpl implements AccommodationService {
 	}
 
 	@Override
-	public Integer incrementCounter(Accommodation acco) {
+	public void incrementCounter(Accommodation acco) {
 		List<Accommodation> accoList = accodao.findByCheckInDate(acco.getCheckInDate());
-		if(accoList!=null) {
-		Accommodation ac = accoList.get(0);
-		//accoList.forEach(a -> a.setRoomCounter(ac.getRoomCounter()+a.getNumberOfRooms()));
+
+		if(!accoList.isEmpty()) {
+		//Accommodation ac = accoList.get(0);
 		accoList.forEach(a -> a.setRoomCounter(a.getRoomCounter()+1));
-		return ac.getRoomCounter();
 		}
 		else 
 			acco.setRoomCounter(1);
-		return acco.getRoomCounter();
 		
+		//return acco.getRoomCounter();
+		
+
 	}
 	
 	@Override
-	public Integer decrementCounter(Accommodation acco) {
+	public void decrementCounter(Accommodation acco) {
 		List<Accommodation> accoList = accodao.findByCheckInDate(acco.getCheckInDate());
-		Accommodation ac = accoList.get(0);
-		//accoList.forEach(a -> a.setRoomCounter(a.getRoomCounter()-acco.getNumberOfRooms()));
+		System.out.println(accoList.toString());
+		//Accommodation ac = accoList.get(0);
 		accoList.forEach(a -> a.setRoomCounter(a.getRoomCounter()-1));
-		return ac.getRoomCounter();
+		//return ac.getRoomCounter();
 		
+	}
+
+	@Override
+	public Integer getRoomCounterByDate(LocalDate date) {
+		Integer a =accodao.findRoomCounterByCheckInDate(date);
+		
+		if(a==null)
+			return 0;
+		else
+		return a;
+	}
+
+	@Override
+	public List<LocalDate> getAllBookedDates() {
+		
+		return accodao.findAllCheckInDates();
 	}
 
 }
