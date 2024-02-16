@@ -2,6 +2,8 @@ package com.app.controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.DarshanRequestDTO;
+import com.app.entities.PoojaType;
 import com.app.entities.TimeSlot;
 import com.app.security.FindUserDetails;
 import com.app.service.DarshanService;
@@ -39,7 +42,7 @@ public class DarshanController {
 	
 	//ADD NEW DARSHAN BOOKING
 	//method=POST
-	// http://host:port/darshan/add
+	// https://localhost:8443/darshan/add
 	@PostMapping("/add")
 	public ResponseEntity<?> addDarshanBooking(@RequestBody
 			@Valid DarshanRequestDTO darshan) {	
@@ -53,7 +56,7 @@ public class DarshanController {
 	
 	//GET PARTICULAR USER'S DARSHAN BOOKINGS
 	//method=GET
-	// http://host:port/darshan/
+	// https://localhost:8443/darshan/
 	@GetMapping(value = "/")
 	public ResponseEntity<?> getDarshanBookingsByUser() throws IOException 
 	{
@@ -64,7 +67,7 @@ public class DarshanController {
 	
 	//CANCEL PARTICULAR USER'S DARSHAN BOOKINGS
 	//method=DELETE
-	// http://host:port/darshan/{id}
+	// https://localhost:8443/darshan/{id}
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> cancelDarshanBooking(@PathVariable Long id) 
 	{
@@ -75,12 +78,33 @@ public class DarshanController {
 	}
 	
 
-	
-	@GetMapping("/booked-timeslots")
-	public ResponseEntity<?> getAllBookedTimeSlotsByDate(LocalDate bookingDate) {
-		return ResponseEntity.ok(darshanService.getAllBookedTimeSlotsByDate(bookingDate));
+	//GET ALL BOOKED DATES i.e. UNAVAILABLE DATES
+	//method: GET
+	// https://localhost:8443/darshan//booked-timeslots/{date}
+	@GetMapping("/booked-timeslots/{date}")
+	public ResponseEntity<?> getAllBookedTimeSlotsByDate(@PathVariable String date) {
+		System.out.println("date:" + date);
+        // Define the date formatter (optional, but recommended)
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        try {
+            // Parse the string to LocalDate
+            LocalDate lDate = LocalDate.parse(date, formatter);
+         // Print the LocalDate
+            System.out.println("Parsed LocalDate: " + lDate);
+         
+            return ResponseEntity.ok(darshanService.getAllBookedTimeSlotsByDate(lDate));
+            
+        } catch (Exception e) {
+            // Handle parsing exception
+            System.out.println("Error parsing date: " + e.getMessage());
+            return null;
+        }
 	}
 	
+	//GET ALL BOOKED DATES i.e. UNAVAILABLE DATES
+	//method: GET
+	// https://localhost:8443/darshan/booked-dates
 	@GetMapping("/booked-dates")
 	public ResponseEntity<?> getAllBookedDates() {
 		return ResponseEntity.ok(darshanService.getAllBookedDates());

@@ -33,7 +33,7 @@ public class AartiController
 	
 	//ADD NEW AARTI BOOKING 
 	//method=POST
-	// http://host:port/aarti/add
+	// https://localhost:8443/aarti/add
 	@PostMapping("/add")
 	public ResponseEntity<?> addAartiBooking(@RequestBody
 			@Valid AartiRequestDTO aarti) {
@@ -46,7 +46,7 @@ public class AartiController
 	
 //	//GET ALL AARTI BOKINGS BY THE USER
 //	//method=GET
-//	// http://host:port/aarti/
+//	// https://localhost:8443/aarti/
 //	@GetMapping(value = "/")
 //	public ResponseEntity<?> getAartiBookingsByUser() throws IOException {
 //		Long userId = authUserDetails.getUserId();
@@ -58,7 +58,7 @@ public class AartiController
 //
 //	//CANCEL PARTICULAR USER'S AARTI BOOKINGS
 //	//method=DELETE
-//	// http://host:port/aarti/{id}
+//	// https://localhost:8443/aarti/{id}
 //	@DeleteMapping("/{id}")
 //	public ResponseEntity<?> cancelAartiBooking(@PathVariable Long id)
 //	{

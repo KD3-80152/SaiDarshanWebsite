@@ -44,7 +44,7 @@ public class AdminController {
 	
 	//ADMIN POV GET ALL USERS
 			//method=get
-			// http://host:port/signin/user
+			// https://localhost:8443/signin/user
 			@GetMapping("/all-users")
 			public ResponseEntity<?> getAllUsers()
 			{
@@ -55,7 +55,7 @@ public class AdminController {
 			
 			//ADMIN POV DELETE USER BY ID
 			//method=delete
-			// http://host:port/signin/user/{id}
+			// https://localhost:8443/signin/user/{id}
 				
 				@DeleteMapping("/all-users/{id}")
 
@@ -72,7 +72,7 @@ public class AdminController {
 				
 				//ADMIN POV GETTING ALL POOJA BOOKINGS
 				//method=GET
-				// http://host:port/pooja/all
+				// https://localhost:8443/admin/pooja/all
 				@GetMapping("/pooja/all")
 				public ResponseEntity<?> getAllPoojaBookings() throws IOException 
 				{
@@ -85,7 +85,7 @@ public class AdminController {
 				
 				//ADMIN POV GETTING ALL ACCOMMODATION BOOKINGS
 				//method=GET
-				// http://host:port/accommodation/all
+				// https://localhost:8443/admin/accommodation/all
 				@GetMapping("/accommodation/all")
 				public ResponseEntity<?> getAllAccommodationBookings()
 				{
@@ -96,7 +96,7 @@ public class AdminController {
 				
 				//ADMIN POV GETTING ALL DARSHAN BOOKINGS
 				//method=GET
-						// http://host:port/darshan/all
+						// https://localhost:8443/admin/darshan/all
 				@GetMapping("/darshan/all")
 				public ResponseEntity<?> getAllDarshanBookings()
 				{
@@ -107,7 +107,7 @@ public class AdminController {
 				
 				//ADMIN POV GETTING ALL AARTI BOOKINGS
 				//method=GET
-				// http://host:port/aarti/all
+				// https://localhost:8443/admin/aarti/all
 				@GetMapping("/aarti/all")
 				public ResponseEntity<?> getAllAartiBookings()
 				{

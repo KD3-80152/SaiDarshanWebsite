@@ -99,21 +99,15 @@ public class PoojaServiceImpl implements PoojaService{
 
 	
 	@Override
-	public List<PoojaType> getBookedPoojaTypeForTheDate(LocalDate date) {
-
+	public List<String> getBookedPoojaTypeForTheDate(LocalDate date) {
+		List<PoojaType> typeList=poojaDao.findPoojaTypeByDate(date);
 		
-		return poojaDao.findPoojaTypeByDate(date);
+		return typeList.stream().map(t->t.toString()).collect(Collectors.toList()); 
 	}
 
 	
 	
 	
-/*
- * [20:39, 16/02/2024] Unnati Joshi SBK: @Query("select d.bookingDate from Darshan d group by d.bookingDate having sum(d.persons)>=30")
-	List<LocalDate> findAllBookingDatesByPersons();
-[20:39, 16/02/2024] Unnati Joshi SBK: @Query("select d.timeSlot from Darshan d where d.bookingDate = :date group by a.timeSlot having sum(d.persons)>=5")
-	List<TimeEnum> findAllTimeSlotsByBookingDate(LocalDate date);
- */
 
 	
 

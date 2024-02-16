@@ -20,6 +20,6 @@ public interface PoojaService {
 	
 	List<LocalDate> getAllBookedDates();
 
-	List<PoojaType> getBookedPoojaTypeForTheDate(LocalDate date);
+	List<String> getBookedPoojaTypeForTheDate(LocalDate date);
 
 }

@@ -55,10 +55,13 @@ public class SecurityConfig {
 				"/v*/api-doc*/**","/swagger-ui/**").permitAll()
 		// only required for JS clnts (react / angular) : for the pre flight requests
 		.antMatchers(HttpMethod.OPTIONS).permitAll()
-		.antMatchers("/user/my-profile","/user/my-profile/update-user","/user/change-password","/user/my-profile/address/**","/darshan/add",
-				"/darshan/","/darshan/{id}",
-				"/darshan/booked-dates","/darshan/booked-timeslots","/pooja/add","/pooja/","/pooja/{id}","/aarti/add","/aarti/","/aarti/{id}","/accommodation/add","/accommodation/","/accommodation/{id}","/accommodation/booked-dates").hasRole("USER")  
-		.antMatchers("/admin/all-users","/admin/all-users/{id}","/admin/allDarshan","/admin/allPooja","/admin/allAccommodation","/admin/allAarti","/admin/booked-dates").hasRole("ADMIN")
+		.antMatchers("/user/my-profile","/user/my-profile/update-user","/user/change-password","/user/my-profile/address/**"
+				,"/darshan/add","/darshan/","/darshan/{id}","/darshan/booked-dates","/darshan/booked-timeslots/{date}"
+				,"/pooja/add","/pooja/","/pooja/{id}","/pooja/get-booked-type/{date}","/pooja/get-booked-dates"
+				,"/aarti/add","/aarti/","/aarti/{id}"
+				,"/accommodation/add","/accommodation/","/accommodation/{id}","/accommodation/booked-dates").hasRole("USER")  
+		.antMatchers("/admin/all-users","/admin/all-users/{id}","/admin/accommodation/all","/admin/darshan/all","/admin/aarti/all","/admin/pooja/all"
+				,"/pooja/get-booked-type/{date}","/pooja/get-booked-dates","/darshan/booked-timeslots/{date}","/darshan/booked-dates").hasRole("ADMIN")
 		.anyRequest().authenticated()
 		.and()
 		//to tell spring sec : not to use HttpSession to store user's auth details

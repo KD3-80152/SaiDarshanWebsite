@@ -39,7 +39,7 @@ public class PoojaController {
 	
 	//ADD NEW POOJA BOOKING
 	//method=POST
-	// http://host:port/pooja/add
+	// https://localhost:8443/pooja/add
 	//UPDATE URL ACCORDING TO THE FRONT END FOR SIGNED IN USER
 	@PostMapping("/add")
 	public ResponseEntity<?> addNewPoojaBooking(@RequestBody
@@ -53,7 +53,7 @@ public class PoojaController {
 	
 	//GET PARTICULAR USER'S POOJA BOOKINGS
 	//method=GET
-	// http://host:port/pooja/
+	// https://localhost:8443/pooja/
 	@GetMapping("/")
 	public ResponseEntity<?> getPoojaBookingsByUser() throws IOException 
 	{
@@ -66,7 +66,7 @@ public class PoojaController {
 	
 	//CANCEL PARTICULAR USER'S POOJA BOOKINGS
 	//method=DELETE
-	// http://host:port/pooja/{id}
+	// https://localhost:8443/pooja/{id}
 		
 		@DeleteMapping("/{poojaId}")
 		public ApiResponse cancelPoojaBooking(@PathVariable Long poojaId) {
@@ -85,11 +85,11 @@ public class PoojaController {
 			return poojaService.getAllBookedDates();
 		}
 		
-	//GET ALL BOOKED DATES i.e. UNAVAILABLE DATES
+	//GET ALL BOOKED POOJA TYPES i.e. UNAVAILABLE POOJA SLOTS
 	//method: GET
-	// https://localhost:8443/pooja/get-booked-dates/{date}
-		@GetMapping("/get-booked-dates/{date}")
-		public List<String> getBookedPoojaTypeForDate(@PathVariable String date)
+	// https://localhost:8443/pooja/get-booked-type/{date}
+		@GetMapping("/get-booked-type/{date}")
+		public ResponseEntity<?> getBookedPoojaTypeForDate(@PathVariable String date)
 		{
 			System.out.println("date:" + date);
 		        // Define the date formatter (optional, but recommended)
@@ -100,14 +100,7 @@ public class PoojaController {
 		            LocalDate lDate = LocalDate.parse(date, formatter);
 		         // Print the LocalDate
 		            System.out.println("Parsed LocalDate: " + lDate);
-		         // get the enum list to string list
-		            List<PoojaType> list=poojaService.getBookedPoojaTypeForTheDate(lDate);
-		            List<String> stringList= new ArrayList<String>();
-		            for (PoojaType poojaType : list) {
-						stringList.add(poojaType.toString());
-					}
-		           
-		            return stringList;
+		            return ResponseEntity.ok(poojaService.getBookedPoojaTypeForTheDate(lDate));
 		            
 		        } catch (Exception e) {
 		            // Handle parsing exception
