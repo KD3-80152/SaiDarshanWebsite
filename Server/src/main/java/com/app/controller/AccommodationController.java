@@ -79,7 +79,7 @@ public class AccommodationController {
 	
 	
 	
-	@GetMapping("/bookedDates")
+	@GetMapping("/booked-dates")
 	public ResponseEntity<?> getAllAvailableDates()
 	{
 		System.out.println("Get All booked Accommodation Dates");

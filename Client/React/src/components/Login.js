@@ -2,11 +2,14 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 
 const Login = () => {
     
-   
+  useEffect(()=>{
+    document.title="Login";
+  },[]);
    
     let navigate = useNavigate();
 
@@ -50,7 +53,7 @@ const Login = () => {
                 if (res.jwt !== null) {
                   toast.success(res.mesg, {
                     position: "top-right",
-                    autoClose: 1000,
+                    autoClose: 3000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -60,11 +63,11 @@ const Login = () => {
                   setTimeout(() => {
                     window.location.href = "/pooja";
                      
-                  }, 1000); 
+                  }, 5000); 
                 } else {
                   toast.error(res.mesg, {
                     position: "top-right",
-                    autoClose: 1000,
+                    autoClose: 3000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -80,7 +83,7 @@ const Login = () => {
             console.error(error);
             toast.error("It seems server is down", {
               position: "top-right",
-              autoClose: 1000,
+              autoClose: 3000,
               hideProgressBar: false,
               closeOnClick: true,
               pauseOnHover: true,

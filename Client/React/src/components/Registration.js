@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Navbar from './NavBar';
 import Common from './Common';
 
 const Registration = () => {
 
-  const url = 'http://localhost:3000/registration';
+  const url = 'http://localhost:8443/users/signup';
   
   const [formData, setFormData] = useState({
     fname: '',
@@ -68,9 +67,7 @@ const Registration = () => {
     setErrors(validationErrors);
     setValid(isValid);
 
-    // if (Object.keys(validationErrors).length === 0) {
-    //   alert("Registered Successfully")
-    // }
+ 
 
     if (Object.keys(validationErrors).length === 0) {
       axios.post(url, formData)
@@ -84,9 +81,6 @@ const Registration = () => {
 
   };
   return (
-    // <div>
-    //   Registration  
-    // </div>
     <div class="container" >
             <div>
               <Common/>
