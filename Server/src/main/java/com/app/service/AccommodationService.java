@@ -20,7 +20,7 @@ public interface AccommodationService {
 	
 	List<LocalDate> getAllBookedDates();
 	
-	Integer getRoomCounterByDate(LocalDate date);
+//	Integer getRoomCounterByDate(LocalDate date);
 	
 //	void incrementCounter(Accommodation acco);
 //	

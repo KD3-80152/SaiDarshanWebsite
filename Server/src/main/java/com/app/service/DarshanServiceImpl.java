@@ -140,16 +140,16 @@ public class DarshanServiceImpl implements DarshanService {
 	public List<LocalDate> getAllBookedDates() {
 		return darshanDao.findAllBookingDatesByPersons();
 	}
-		
-
 
 	
-	@Override
-	public List<TimeSlot> getAllAvailableTimeSlotsByDate(LocalDate bookingDate) {
-		
-		return darshanDao.FindTimeSlotsByBookingDateAndCounter(bookingDate);
-	}
+
 	
+//	@Override
+//	public List<TimeSlot> getAllAvailableTimeSlotsByDate(LocalDate bookingDate) {
+//		
+//		return darshanDao.FindTimeSlotsByBookingDateAndCounter(bookingDate);
+//	}
+//	
 	
 	
 
