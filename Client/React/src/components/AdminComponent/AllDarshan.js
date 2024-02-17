@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
 
-function AllDarshan() {
+const AllDarshan = () => {
   return (
-    <div>AllDarshan</div>
-  )
-}
+    <div>
+      <div style={{ color: "red", fontStyle: "italic" }}>
+        <h4>All Darshan</h4>
+      </div>
+      <hr />
+    </div>
+  );
+};
 
-export default AllDarshan
+export default AllDarshan;
