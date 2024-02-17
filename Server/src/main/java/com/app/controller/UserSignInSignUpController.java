@@ -37,7 +37,7 @@ public class UserSignInSignUpController {
 
 	// SIGN UP
 	//method= GET 
-	// http://host:port/users/signup
+	// https://localhost:8443/users/signup
 	@PostMapping("/signup")
 	public ResponseEntity<?> userSignup(@RequestBody @Valid Signup dto) {
 		System.out.println("in sign up " + dto);
@@ -60,7 +60,7 @@ public class UserSignInSignUpController {
 	
 	//SIGN IN
 	//method= POST
-	// http://host:port/users/signin
+	// https://localhost:8443/users/signin
 	@PostMapping("/signin")
 	public ResponseEntity<?> signinUser(@RequestBody @Valid SigninRequest reqDTO) {
 		System.out.println("in signin " + reqDTO);
