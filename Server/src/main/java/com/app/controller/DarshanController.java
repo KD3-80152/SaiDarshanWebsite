@@ -100,6 +100,7 @@ public class DarshanController {
             return null;
         }
 	}
+
 	
 	//GET ALL BOOKED DATES i.e. UNAVAILABLE DATES
 	//method: GET

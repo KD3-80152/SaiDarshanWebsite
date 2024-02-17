@@ -105,6 +105,7 @@ public class AdminController {
 				}
 				
 				
+
 				//ADMIN POV GETTING ALL AARTI BOOKINGS
 				//method=GET
 				// https://localhost:8443/admin/aarti/all
