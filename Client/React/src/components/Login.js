@@ -42,8 +42,12 @@ const Login = () => {
               console.log(res.mesg);
               
               console.log(role);
-              if (res.mesg === "ROLE_ADMIN") {
+              if (res.mesg === "ROLE_ADMIN")  /* Write Code  For Admin To Route  */
+              {
                 console.log("Got the success response");
+                
+              
+             
     
                 if (res.jwt != null) {
                   sessionStorage.setItem("jwtToken", res.jwt);
@@ -77,6 +81,13 @@ const Login = () => {
                 }
               
               }
+              else /* Write Code  For User To Route  */
+              {
+
+              }
+
+
+
             });
           })
           .catch((error) => {

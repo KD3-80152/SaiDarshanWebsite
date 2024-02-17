@@ -1,8 +1,16 @@
 import React from 'react'
 
-function AllUsers() {
-  return (
-    <div>AllUsers</div>
+
+
+
+const AllUsers =()=>{
+
+
+
+  return(
+      <div>
+        <div style={{color:"red" , fontStyle:"italic"}}><h4>All Users</h4></div><hr/>
+      </div>
   )
 }
 
