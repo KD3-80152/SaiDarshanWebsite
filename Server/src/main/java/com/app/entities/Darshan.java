@@ -23,7 +23,6 @@ import lombok.ToString;
 @NoArgsConstructor
 public class Darshan extends BaseEntity{
 
-
 	@Column(name="booking_date")
 	private LocalDate bookingDate;
 	
@@ -53,6 +52,16 @@ public class Darshan extends BaseEntity{
 	private UserEntity user;
 	
 	//public Integer counter;
+	
+	public Darshan(TimeEnum timeSlot) {
+		
+		this.timeSlot = timeSlot;
+	}
+
+	public Darshan(LocalDate bookingDate) {
+		
+		this.bookingDate = bookingDate;
+	}
 
 	
 }
