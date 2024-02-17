@@ -1,6 +1,10 @@
 package com.app.entities;
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -20,35 +24,30 @@ import lombok.Setter;
 public class Aarti extends BaseEntity
 {
 	
-	@ManyToOne
-	@JoinColumn(name = "arti_date_id")
-	private AartiBookingDate aartiBookingDate;
+	
+	@Column(name = "arti_date")
+	private LocalDate aartiBookingDate;
 	
 	
-	@ManyToOne
-	@JoinColumn(name = "aarti_booking_id")
-	private AartiBookingType aartiBookingType;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "aarti_type")
+	private AartiType aartiBookingType;
 	
-	@Column(name = "no_of_men")
-	private int men;
-	
-	@Column(name = "no_of_women")
-	private int women;
+	@Column(name = "no_of_person")
+	private int noOfPerson;
 	
 	private double amount;
 	
 	@Column(name = "primary_devotee_name")
 	private String primaryDevoteeName;
 	
-	@Column(name = "adhar_no",length = 12,unique = true)
+	@Column(name = "adhar_no",length = 12)
 	private String adharNo;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private UserEntity user;
 	
-
-	public Integer counter;
 
 	
 }
