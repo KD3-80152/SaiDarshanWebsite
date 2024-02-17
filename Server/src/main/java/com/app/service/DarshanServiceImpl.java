@@ -11,15 +11,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.app.custom_Exceptions.ResourceNotFoundException;
-import com.app.dao.BookingDateDao;
+
 import com.app.dao.DarshanDao;
-import com.app.dao.TimeSlotDao;
+
 import com.app.dao.UserEntityDao;
 import com.app.dto.ApiResponse;
 import com.app.dto.DarshanRequestDTO;
 import com.app.dto.DarshanResponseDTO;
+
 import com.app.entities.Darshan;
 import com.app.entities.TimeEnum;
+
 import com.app.entities.UserEntity;
 
 @Service
@@ -88,11 +90,8 @@ public class DarshanServiceImpl implements DarshanService {
 		long differenceInDays = java.time.temporal.ChronoUnit.DAYS.between(currentDate, darshan.getBookingDate());
 
 		if(differenceInDays >= 15)
-		{	//TimeSlot timeslot = timeSlotDao.findById(darshan.getTimeSlot().getId()).orElseThrow(() -> new ResourceNotFoundException("Inavalid TimeSlot id"));
-			//BookingDate bookingDate = bookingDateDao.findById(darshan.getBookingDate().getId()).orElseThrow(() -> new ResourceNotFoundException("Inavalid BookingDate id"));
+		{	
 			darshanDao.delete(darshan);
-			//timeslot.removeDarshan(darshan);
-			//bookingDate.removeDarshan(darshan);
 			return new ApiResponse("Darshan Details of dasrhan with ID " + darshan.getId() + " cancelled....");
 		}
 		
@@ -101,6 +100,40 @@ public class DarshanServiceImpl implements DarshanService {
 			
 	}
 
+	
+	
+
+	public List<DarshanResponseDTO> getAllDarshanBookings() {
+		
+		Sort sortByDate = Sort.by(Sort.Direction.ASC, "bookingDate"); // Sort by the 'date' property in ascending order
+		List<Darshan> list= darshanDao.findAll(sortByDate);
+		return list.stream().map(darshan -> mapper.map(darshan, DarshanResponseDTO.class)).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<String> getAllBookedTimeSlotsByDate(LocalDate bookingDate) {
+		 List<TimeEnum> timeslots = darshanDao.findAllTimeSlotsByBookingDate(bookingDate);
+		
+		 return  timeslots.stream().map(t->t.toString()).collect(Collectors.toList());
+		 
+	}
+
+	@Override
+	public List<LocalDate> getAllBookedDates() {
+		return darshanDao.findAllBookingDatesByPersons();
+	}
+		
+
+
+	
+//	@Override
+//	public List<TimeEnum> getAllAvailableTimeSlotsByDate(LocalDate bookingDate) {
+//		
+//		return darshanDao.FindTimeSlotsByBookingDateAndCounter(bookingDate);
+//	}
+//	
+//	
+	
 	
 //	@Override
 //	public Integer incrementCounter(Long timeSlotId, Long bookingDateId) {
@@ -118,31 +151,6 @@ public class DarshanServiceImpl implements DarshanService {
 
 	
 
-	public List<DarshanResponseDTO> getAllDarshanBookings() {
-		
-		Sort sortByDate = Sort.by(Sort.Direction.ASC, "bookingDate"); // Sort by the 'date' property in ascending order
-		List<Darshan> list= darshanDao.findAll(sortByDate);
-		return list.stream().map(darshan -> mapper.map(darshan, DarshanResponseDTO.class)).collect(Collectors.toList());
-	}
-
-	@Override
-	public List<String> getAllBookedTimeSlotsByDate(LocalDate bookingDate) {
-		 List<TimeEnum> timeslots = darshanDao.findAllTimeSlotsByBookingDate(bookingDate);
-		// timeslots.forEach(t -> t.toString());
-		 return  timeslots.stream().map(t->t.toString()).collect(Collectors.toList());
-		 
-	}
-
-	@Override
-	public List<LocalDate> getAllBookedDates() {
-		return darshanDao.findAllBookingDatesByPersons();
-	}
-		
-
-
-
-
-	
 
 
 	

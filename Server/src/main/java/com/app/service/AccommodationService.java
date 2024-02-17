@@ -16,13 +16,15 @@ public interface AccommodationService {
 	ApiResponse deleteAccomodationBookingById(Long id);
 	List<AccommodationResponseDTO> getAllAccommodationBookings();
 	
-	List<LocalDate> getAllAvailableDates();
+	
 	
 	List<LocalDate> getAllBookedDates();
 	
-	Integer getRoomCounterByDate(LocalDate date);
+//	Integer getRoomCounterByDate(LocalDate date);
 	
-	void incrementCounter(Accommodation acco);
+//	void incrementCounter(Accommodation acco);
+//	
+//	void decrementCounter(Accommodation acco);
 	
-	void decrementCounter(Accommodation acco);
+//	List<LocalDate> getAllAvailableDates();
 }

@@ -33,11 +33,6 @@ public class Darshan extends BaseEntity{
 	@Column(name="no_of_persons")
 	private int persons;
 	
-//	@Column(name="no_of_women")
-//	private int women;
-//	
-//	@Column(name="no_of_children")
-//	private int children;
 	
 	private float amount;
 	
@@ -52,6 +47,14 @@ public class Darshan extends BaseEntity{
 	@JoinColumn(name = "user_id") // Optional BUT reco , to specify the name of FK col.
 	private UserEntity user;
 	
+	
+	
+	
+//	@Column(name="no_of_women")
+//	private int women;
+//	
+//	@Column(name="no_of_children")
+//	private int children;
 	//public Integer counter;
 
 	
