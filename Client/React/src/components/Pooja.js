@@ -71,8 +71,8 @@ const Pooja = () => {
               // value={user.gender}
               >
                 <option value="">Select Pooja</option>
-                <option value="ABHISHEK_POOJA">ABHISHEK POOJA</option>
-                <option value="SAI_SATYAVRAT_POOJA">SAI SATYAVRAT POOJA</option>
+                <option value="ABHISHEK_POOJA_5_AM">ABHISHEK POOJA</option>
+                <option value="SAI_SATYAVRAT_POOJA_12_PM">SAI SATYAVRAT POOJA</option>
               </select>
             </div>
           </div>
