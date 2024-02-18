@@ -64,9 +64,10 @@ const AllDarshan = () => {
                 <td>{d.primaryDevoteeName}</td>
                 <td>{d.adharNo}</td>
                 <td>
-                  <button
-                    className={"btn"}
-                    style={{ backgroundColor: "orange" }}
+                <button
+                    type="button"
+                    className={"btn btn-danger"}
+                    style={{ backgroundColor: "" }}
                   >
                     DELETE
                   </button>

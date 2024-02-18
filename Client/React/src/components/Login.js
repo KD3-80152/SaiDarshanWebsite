@@ -45,8 +45,8 @@ const Login = () => {
               if (res.mesg === "ROLE_ADMIN")  /* Write Code  For Admin To Route  */
               {
                 console.log("Got the success response");
+                navigate("/admin")
                 
-              
              
     
                 if (res.jwt != null) {

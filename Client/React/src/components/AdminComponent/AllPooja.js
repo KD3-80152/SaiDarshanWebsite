@@ -64,9 +64,10 @@ const AllPooja = () => {
                 <td>{p.adharNo}</td>
                 <td>{p.id}</td>
                 <td>
-                  <button
-                    className={"btn"}
-                    style={{ backgroundColor: "orange" }}
+                <button
+                    type="button"
+                    className={"btn btn-danger"}
+                    style={{ backgroundColor: "" }}
                   >
                     DELETE
                   </button>

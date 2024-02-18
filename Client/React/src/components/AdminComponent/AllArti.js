@@ -6,6 +6,21 @@ import { useState,useEffect } from "react";
 
 const AllArti = () => {
 
+  const deleteArtiById=(id)=>{
+    console.log(id);
+    axios.delete(`https://localhost:8443/admin/user/all/${id}`,{
+      headers:{
+        "Authorization":"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcmFzaGFudEBnbWFpbC5jb20iLCJpYXQiOjE3MDgxNzIwMDIsImV4cCI6MTcwODI1ODQwMiwiYXV0aG9yaXRpZXMiOiJST0xFX0FETUlOIiwidXNlcklkIjoxfQ.SzgR0Ef2Ijdylo1YolMLFvhWzAw059TnJl-qqFWUXc91oWnTOZ2SXBnZtiS7UYY8gsYJFxhXuhFpw5-6ZK2Mbg"
+      }
+    }).then((response)=>{
+      console.log(response.data)
+      toast.success("Id Deleted")
+    },error=>{
+      console.log("Error");
+      toast.error("Something Went Wrong");
+    });
+  }
+
   const getAllArti=()=>{
     axios.get("https://localhost:8443/admin/aarti/all",{
       headers:{
@@ -13,6 +28,7 @@ const AllArti = () => {
       }
     }).then(
         (response) => {
+          console.log(response.data);
           console.log("Successfull");
           toast.success("All Aarti");
           setAarti(response.data);
@@ -20,7 +36,7 @@ const AllArti = () => {
         (error) => {
           //For Failure
           console.log("Error!!!!!");
-          toast.error("Something Went Wrong In Pooja");
+          toast.error("Something Went Wrong In Arti");
         }
       );
   }
@@ -60,9 +76,12 @@ const AllArti = () => {
                 <td>{a.primaryDevoteeName}</td>
                 <td>{a.adharNo}</td>
                 <td>
-                  <button
-                    className={"btn"}
-                    style={{ backgroundColor: "orange" }}
+                <button
+
+                    onClick={()=>deleteArtiById(a.id)}
+                    type="button"
+                    className={"btn btn-danger"}
+                    style={{ backgroundColor: "" }}
                   >
                     DELETE
                   </button>
