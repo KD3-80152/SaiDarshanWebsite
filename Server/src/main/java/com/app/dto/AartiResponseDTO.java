@@ -18,6 +18,8 @@ import lombok.NoArgsConstructor;
 
 public class AartiResponseDTO 
 {
+	private Long id;
+	
 	@NotNull
 	private LocalDate aartiBookingDate;
 	

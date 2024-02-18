@@ -35,6 +35,7 @@ public class UserDTO {
 	private String firstName;
 	
 	private String lastName;
+	
 	@Email(message = "Invalid Email!!!")
 	private String email;
 	

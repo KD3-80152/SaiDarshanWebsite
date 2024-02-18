@@ -27,7 +27,7 @@ import com.app.service.DarshanService;
 
 
 @RestController
-@RequestMapping("/darshan")
+@RequestMapping("/user/darshan")
 @Validated
 
 

@@ -26,16 +26,34 @@ const UserAllPooja = () => {
         }
     );
     } 
-  useEffect(()=>{
+
+
+    const deletePoojaById=(poojaId)=>{
+        console.log(poojaId);
+        axios.delete(` https://localhost:8443/user/pooja/${poojaId}`,{
+          headers:{
+            "Authorization":"Bearer "+jwt 
+          }
+        }).then((response)=>{
+          console.log(response.data);
+          toast.success(response.data);
+          setPooja(pooja.filter((p) => p.id !== poojaId));
+        },error=>{
+          console.log("Error");
+          toast.error("Something went wrong");
+        });
+      }
+
+  useEffect(()=>{   
     getUserAllPooja();
-  },[]) //For Success
+},[]) //For Success
          
 
 
   const [pooja, setPooja] = useState([]);
 
   return (
-    <div className="">
+    <div>
       <div style={{ color: "red", fontStyle: "italic" }}>
         <h4>My All Pooja</h4>
       </div>
@@ -51,8 +69,8 @@ const UserAllPooja = () => {
               <th scope="col">Amount</th>
               <th scope="col">Primary Devotee Name</th>
               <th scope="col">AadharNo</th>
-              {/* <th scope="col">Id</th> */}
-              {/* <th> Action</th> */}
+              <th scope="col">Id</th>
+               <th> Action</th>
             </tr>
           </thead>
 
@@ -68,6 +86,8 @@ const UserAllPooja = () => {
                 <td>{p.id}</td>
                 <td>
                 <button
+
+                    onClick={()=>deletePoojaById(p.id)}
                     type="button"
                     className={"btn btn-danger"}
                     style={{ backgroundColor: "" }}

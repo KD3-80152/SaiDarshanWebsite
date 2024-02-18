@@ -26,7 +26,7 @@ import com.app.security.FindUserDetails;
 import com.app.service.PoojaService;
 
 @RestController
-@RequestMapping("/pooja")
+@RequestMapping("/user/pooja")
 public class PoojaController {
 	
 	@Autowired
