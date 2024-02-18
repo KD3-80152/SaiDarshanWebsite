@@ -21,7 +21,7 @@ import com.app.security.FindUserDetails;
 import com.app.service.AccommodationService;
 
 @RestController
-@RequestMapping("/accommodation")
+@RequestMapping("/user/accommodation")
 @Validated
 public class AccommodationController {
 	 

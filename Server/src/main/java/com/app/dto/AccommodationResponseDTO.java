@@ -17,6 +17,8 @@ import lombok.NoArgsConstructor;
 
 public class AccommodationResponseDTO 
 {
+	private Long id;
+	
 	@NotNull
 	@Range(max=2)
 	private int numberOfDays;

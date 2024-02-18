@@ -19,6 +19,7 @@ import lombok.*;
 @ToString
 public class PoojaResponseDTO {
 	
+	private Long id;
 	
 	@NotNull
 	private PoojaType pooja;

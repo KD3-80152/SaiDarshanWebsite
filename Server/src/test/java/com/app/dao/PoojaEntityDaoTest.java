@@ -30,9 +30,9 @@ public class PoojaEntityDaoTest
 	void testAddPooja()
 	{
 		List<Pooja> list = List.of(
-				new Pooja(LocalDate.parse("2024-03-10"),2, 400.0f,PoojaType.ABHISHEK_POOJA, "Unnati Joshi", "146372983563"),
-				new Pooja(LocalDate.parse("2024-03-12"), 1, 200.0f,PoojaType.SAI_SATYAVRAT_POOJA, "Mugdha Moghe", "146372983562"),
-				new Pooja(LocalDate.parse("2024-03-15"), 2, 400.0f, PoojaType.ABHISHEK_POOJA, "Himanshu Rathore", "146372983567"));
+				new Pooja(LocalDate.parse("2024-03-10"),2, 400.0f,PoojaType.ABHISHEK_POOJA_5_AM, "Unnati Joshi", "146372983563"),
+				new Pooja(LocalDate.parse("2024-03-12"), 1, 200.0f,PoojaType.SAI_SATYAVRAT_POOJA_12_PM, "Mugdha Moghe", "146372983562"),
+				new Pooja(LocalDate.parse("2024-03-15"), 2, 400.0f, PoojaType.ABHISHEK_POOJA_5_AM, "Himanshu Rathore", "146372983567"));
 
 		List<Pooja> list2 = poojaDao.saveAll(list);
 		assertEquals(3, list2.size());

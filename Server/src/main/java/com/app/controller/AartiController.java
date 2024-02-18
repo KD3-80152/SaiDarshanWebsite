@@ -22,7 +22,7 @@ import com.app.service.AartiService;
 //https://localhost:8443/swagger-ui/index.html#/
 
 @RestController
-@RequestMapping("/aarti")
+@RequestMapping("/user/aarti")
 public class AartiController 
 {
 	@Autowired
