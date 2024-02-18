@@ -4,53 +4,77 @@ import { Link, Outlet } from "react-router-dom";
 
 const Content = () => {
   return (
+
     <div  className="row">
       <div className="col-3">
         <ListGroup>
+         <Link
+            className="list-group-item list-group-item-action"
+            tag="a"
+            to="/user/my-profile"
+            action
+          >
+            My Profile
+          </Link>
+      
+
+          {/* <Link
+            className="list-group-item list-group-item-action"
+            tag="a"
+            to="/user/my-profile/update-user"
+            action
+          >
+            UPDATE MY PROFILE
+          </Link> */}
+
           <Link
             className="list-group-item list-group-item-action"
             tag="a"
-            to="/admin/all-users"
+            to="/user/change-password"
             action
           >
-            All Users
+            Change Password
+          </Link>
+
+          
+
+
+          <Link
+            className="list-group-item list-group-item-action"
+            tag="a"
+            to="/user/pooja/"
+            action
+          >
+            All Pooja Bookings
           </Link>
 
           <Link
             className="list-group-item list-group-item-action"
             tag="a"
-            to="/admin/all-dashan"
+            to="/user/darshan/"
             action
           >
-            All Darshan
+            All Darshan Bookings
           </Link>
 
           <Link
             className="list-group-item list-group-item-action"
             tag="a"
-            to="/admin/all-pooja"
+            to="/user/accommodation/"
             action
           >
-            All Pooja
+            All Accomodation Bookings
           </Link>
-
+          
           <Link
             className="list-group-item list-group-item-action"
             tag="a"
-            to="/admin/all-aarti"
+            to="/admin/aarti/"
             action
           >
-            All Arti
+            All Aarti Bookings
           </Link>
 
-          <Link
-            className="list-group-item list-group-item-action"
-            tag="a"
-            to="/admin/all-accommodation"
-            action
-          >
-            All Accomodation
-          </Link>
         </ListGroup>
       </div>
       <div className="col-9">

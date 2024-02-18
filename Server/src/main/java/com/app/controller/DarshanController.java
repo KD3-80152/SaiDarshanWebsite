@@ -41,7 +41,7 @@ public class DarshanController {
 	
 	//ADD NEW DARSHAN BOOKING
 	//method=POST
-	// https://localhost:8443/darshan/add
+	// https://localhost:8443/user/darshan/add
 	@PostMapping("/add")
 	public ResponseEntity<?> addDarshanBooking(@RequestBody
 			@Valid DarshanRequestDTO darshan) {	
@@ -55,7 +55,7 @@ public class DarshanController {
 	
 	//GET PARTICULAR USER'S DARSHAN BOOKINGS
 	//method=GET
-	// https://localhost:8443/darshan/
+	// https://localhost:8443/user/darshan/
 	@GetMapping(value = "/")
 	public ResponseEntity<?> getDarshanBookingsByUser() throws IOException 
 	{
@@ -66,7 +66,7 @@ public class DarshanController {
 	
 	//CANCEL PARTICULAR USER'S DARSHAN BOOKINGS
 	//method=DELETE
-	// https://localhost:8443/darshan/{darshanId}
+	// https://localhost:8443/user/darshan/{darshanId}
 	@DeleteMapping("/{darshanId}")
 	public ResponseEntity<?> cancelDarshanBooking(@PathVariable Long darshanId) 
 	{
@@ -79,7 +79,7 @@ public class DarshanController {
 
 	//GET ALL BOOKED DATES i.e. UNAVAILABLE DATES
 	//method: GET
-	// https://localhost:8443/darshan//booked-timeslots/{date}
+	// https://localhost:8443/user/darshan/booked-timeslots/{date}
 	@GetMapping("/booked-timeslots/{date}")
 	public ResponseEntity<?> getAllBookedTimeSlotsByDate(@PathVariable String date) {
 		System.out.println("date:" + date);
@@ -104,7 +104,7 @@ public class DarshanController {
 	
 	//GET ALL BOOKED DATES i.e. UNAVAILABLE DATES
 	//method: GET
-	// https://localhost:8443/darshan/booked-dates
+	// https://localhost:8443/user/darshan/booked-dates
 	@GetMapping("/booked-dates")
 	public ResponseEntity<?> getAllBookedDates() {
 		return ResponseEntity.ok(darshanService.getAllBookedDates());

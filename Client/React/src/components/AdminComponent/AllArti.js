@@ -3,28 +3,31 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState,useEffect } from "react";
+import { setSelectionRange } from "@testing-library/user-event/dist/utils";
 
 const AllArti = () => {
 
-  const deleteArtiById=(id)=>{
-    console.log(id);
-    axios.delete(`https://localhost:8443/admin/user/all/${id}`,{
-      headers:{
-        "Authorization":"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcmFzaGFudEBnbWFpbC5jb20iLCJpYXQiOjE3MDgxNzIwMDIsImV4cCI6MTcwODI1ODQwMiwiYXV0aG9yaXRpZXMiOiJST0xFX0FETUlOIiwidXNlcklkIjoxfQ.SzgR0Ef2Ijdylo1YolMLFvhWzAw059TnJl-qqFWUXc91oWnTOZ2SXBnZtiS7UYY8gsYJFxhXuhFpw5-6ZK2Mbg"
-      }
-    }).then((response)=>{
-      console.log(response.data)
-      toast.success("Id Deleted")
-    },error=>{
-      console.log("Error");
-      toast.error("Something Went Wrong");
-    });
-  }
+  // const deleteArtiById=(id)=>{
+  //   console.log(id);
+  //   axios.delete(`https://localhost:8443/admin/user/all/${id}`,{
+  //     headers:{
+  //       "Authorization":"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcmFzaGFudEBnbWFpbC5jb20iLCJpYXQiOjE3MDgxNzIwMDIsImV4cCI6MTcwODI1ODQwMiwiYXV0aG9yaXRpZXMiOiJST0xFX0FETUlOIiwidXNlcklkIjoxfQ.SzgR0Ef2Ijdylo1YolMLFvhWzAw059TnJl-qqFWUXc91oWnTOZ2SXBnZtiS7UYY8gsYJFxhXuhFpw5-6ZK2Mbg"
+  //     }
+  //   }).then((response)=>{
+  //     console.log(response.data)
+  //     toast.success("Id Deleted")
+  //   },error=>{
+  //     console.log("Error");
+  //     toast.error("Something Went Wrong");
+  //   });
+  // }
 
   const getAllArti=()=>{
-    axios.get("https://localhost:8443/admin/aarti/all",{
+    
+    const jwt = sessionStorage.getItem("jwtToken")
+    axios.get("https://localhost:8443/admin/all-aarti",{
       headers:{
-        "Authorization":"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcmFzaGFudEBnbWFpbC5jb20iLCJpYXQiOjE3MDgxNzIwMDIsImV4cCI6MTcwODI1ODQwMiwiYXV0aG9yaXRpZXMiOiJST0xFX0FETUlOIiwidXNlcklkIjoxfQ.SzgR0Ef2Ijdylo1YolMLFvhWzAw059TnJl-qqFWUXc91oWnTOZ2SXBnZtiS7UYY8gsYJFxhXuhFpw5-6ZK2Mbg"
+        "Authorization":"Bearer "+jwt
       }
     }).then(
         (response) => {
@@ -62,7 +65,7 @@ const AllArti = () => {
               <th scope="col">Amount</th>
               <th scope="col">Primary Devotee Name</th>
               <th scope="col">AadharNo</th>
-              <th>Action</th>
+              {/* <th>Action</th> */}
             </tr>
           </thead>
 
@@ -76,7 +79,7 @@ const AllArti = () => {
                 <td>{a.primaryDevoteeName}</td>
                 <td>{a.adharNo}</td>
                 <td>
-                <button
+                {/* <button
 
                     onClick={()=>deleteArtiById(a.id)}
                     type="button"
@@ -84,7 +87,7 @@ const AllArti = () => {
                     style={{ backgroundColor: "" }}
                   >
                     DELETE
-                  </button>
+                  </button> */}
                 </td>
               </tr>
             ))}

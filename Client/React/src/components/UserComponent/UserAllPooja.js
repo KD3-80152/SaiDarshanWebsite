@@ -3,13 +3,13 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState} from "react";
 
-const AllPooja = () => {
+const UserAllPooja = () => {
   
 
   const jwt = sessionStorage.getItem("jwtToken")  
 
-  const getAllPooja=()=>{
-    axios.get("https://localhost:8443/admin/all-pooja",{
+  const getUserAllPooja=()=>{
+    axios.get("https://localhost:8443/user/pooja/",{
       headers:{
         "Authorization":"Bearer "+jwt
       }
@@ -18,16 +18,16 @@ const AllPooja = () => {
           console.log("Successfull");
           toast.success("All Pooja");
           setPooja(response.data);
-        },
+        }).catch(
         (error) => {
           //For Failure
           console.log("Error!!!!!");
           toast.error("Something Went Wrong In Pooja");
         }
-      );
-  }
+    );
+    } 
   useEffect(()=>{
-    getAllPooja();
+    getUserAllPooja();
   },[]) //For Success
          
 
@@ -37,7 +37,7 @@ const AllPooja = () => {
   return (
     <div className="">
       <div style={{ color: "red", fontStyle: "italic" }}>
-        <h4>AllPooja</h4>
+        <h4>My All Pooja</h4>
       </div>
       <hr />
 
@@ -67,13 +67,13 @@ const AllPooja = () => {
                 <td>{p.adharNo}</td>
                 <td>{p.id}</td>
                 <td>
-                {/* <button
+                <button
                     type="button"
                     className={"btn btn-danger"}
                     style={{ backgroundColor: "" }}
                   >
                     DELETE
-                  </button> */}
+                  </button>
                 </td>
               </tr>
             ))}
@@ -84,4 +84,4 @@ const AllPooja = () => {
   );
 };
 
-export default AllPooja;
+export default UserAllPooja;

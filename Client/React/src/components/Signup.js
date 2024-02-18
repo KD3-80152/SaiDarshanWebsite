@@ -54,7 +54,7 @@ const SignUp = () => {
               progress: undefined,
             });
             setTimeout(() => {
-              window.location.href = "/user/login";
+              window.location.href = "/user/home";
             }, 1000);
           } else {
             toast.error("Something Went Wrong!", {

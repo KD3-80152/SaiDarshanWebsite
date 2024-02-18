@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
-const Admin = () => {
+const User = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -27,7 +27,7 @@ const Admin = () => {
   };
 
   return (
-    <div id="adminmain">
+    <div id="user">
       <div>
         <div>
           <div
@@ -67,4 +67,4 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+export default User;

@@ -5,12 +5,15 @@ import "react-toastify/dist/ReactToastify.css";
 import { useState,useEffect } from "react";
 
 const AllUsers =()=>{
+   
+  
+  const jwt = sessionStorage.getItem("jwtToken");
 
   const deleteUserById=(id)=>{
     console.log(id);
-    axios.delete(`https://localhost:8443/admin/user/all/${id}`,{
+    axios.delete(` https://localhost:8443/admin/all-users/${id}`,{
       headers:{
-        "Authorization":"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcmFzaGFudEBnbWFpbC5jb20iLCJpYXQiOjE3MDgxNzIwMDIsImV4cCI6MTcwODI1ODQwMiwiYXV0aG9yaXRpZXMiOiJST0xFX0FETUlOIiwidXNlcklkIjoxfQ.SzgR0Ef2Ijdylo1YolMLFvhWzAw059TnJl-qqFWUXc91oWnTOZ2SXBnZtiS7UYY8gsYJFxhXuhFpw5-6ZK2Mbg"
+        "Authorization":"Bearer "+jwt 
       }
     }).then((response)=>{
       console.log(response.data)
@@ -24,9 +27,9 @@ const AllUsers =()=>{
 
 
   const getAllUsers=()=>{
-    axios.get("https://localhost:8443/admin/user/all",{
+    axios.get(" https://localhost:8443/admin/all-users",{
       headers:{
-        "Authorization":"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcmFzaGFudEBnbWFpbC5jb20iLCJpYXQiOjE3MDgxNzIwMDIsImV4cCI6MTcwODI1ODQwMiwiYXV0aG9yaXRpZXMiOiJST0xFX0FETUlOIiwidXNlcklkIjoxfQ.SzgR0Ef2Ijdylo1YolMLFvhWzAw059TnJl-qqFWUXc91oWnTOZ2SXBnZtiS7UYY8gsYJFxhXuhFpw5-6ZK2Mbg"
+        "Authorization":"Bearer "+jwt
       }
     }).then(
         (response) => {
