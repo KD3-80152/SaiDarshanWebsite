@@ -55,7 +55,21 @@ public class Darshan extends BaseEntity{
 //	
 //	@Column(name="no_of_children")
 //	private int children;
-	//public Integer counter;
+//	public Integer counter;
+	
+	
+	public Darshan(LocalDate bookingDate, TimeEnum timeSlot, int persons, float amount, String primaryDevoteeName,
+			String adharNo) {
+		super();
+		this.bookingDate = bookingDate;
+		this.timeSlot = timeSlot;
+		this.persons = persons;
+		this.amount = amount;
+		this.primaryDevoteeName = primaryDevoteeName;
+		this.adharNo = adharNo;
+	}
 
+	
+	
 	
 }

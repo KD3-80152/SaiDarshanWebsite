@@ -77,6 +77,8 @@ private List<Accommodation> accomodations = new ArrayList<>();
 @OneToMany(mappedBy="user",cascade= CascadeType.ALL,orphanRemoval = true)
 private List<Pooja> poojas = new ArrayList<>();
 
+@Column(name="verification_otp",length=6)
+private String otp;
 
 
 public UserEntity(String firstName, String lastName, String email, String password, String mobileNo, UserRole role,
