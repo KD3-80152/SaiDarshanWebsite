@@ -6,7 +6,7 @@ import { useEffect, useState} from "react";
 const UserAllPooja = () => {
   
     const [pooja, setPooja] = useState([]);
-  const [refresh, setRefresh] = useState(false); // State variable for triggering useEffect
+  //const [refresh, setRefresh] = useState(false); // State variable for triggering useEffect
   const jwt = sessionStorage.getItem("jwtToken")  
 
   const getUserAllPooja=()=>{
