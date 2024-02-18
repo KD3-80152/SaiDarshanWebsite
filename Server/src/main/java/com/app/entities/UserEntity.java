@@ -24,7 +24,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString(exclude = "password") // toString excluding password
+
 public class UserEntity extends BaseEntity {
 	
 
@@ -93,6 +93,12 @@ public UserEntity(String firstName, String lastName, String email, String passwo
 	this.dob = dob;
 	this.gender = gender;
 	this.adharNumber = adharNumber;
+}
+
+@Override
+public String toString() {
+	return "UserEntity [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", mobileNo="
+			+ mobileNo + ", role=" + role + ", dob=" + dob + ", gender=" + gender + ", adharNumber=" + adharNumber + ",  otp=" + otp + "]";
 }
 
 
