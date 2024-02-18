@@ -4,11 +4,14 @@ import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState} from "react";
 
 const AllPooja = () => {
- 
+  
+
+  const jwt = sessionStorage.getItem("jwtToken")  
+
   const getAllPooja=()=>{
-    axios.get("https://localhost:8443/admin/pooja/all",{
+    axios.get("https://localhost:8443/admin/all-pooja",{
       headers:{
-        "Authorization":"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcmFzaGFudEBnbWFpbC5jb20iLCJpYXQiOjE3MDgxNzIwMDIsImV4cCI6MTcwODI1ODQwMiwiYXV0aG9yaXRpZXMiOiJST0xFX0FETUlOIiwidXNlcklkIjoxfQ.SzgR0Ef2Ijdylo1YolMLFvhWzAw059TnJl-qqFWUXc91oWnTOZ2SXBnZtiS7UYY8gsYJFxhXuhFpw5-6ZK2Mbg"
+        "Authorization":"Bearer "+jwt
       }
     }).then(
         (response) => {
@@ -48,8 +51,8 @@ const AllPooja = () => {
               <th scope="col">Amount</th>
               <th scope="col">Primary Devotee Name</th>
               <th scope="col">AadharNo</th>
-              <th scope="col">Id</th>
-              <th> Action</th>
+              {/* <th scope="col">Id</th> */}
+              {/* <th> Action</th> */}
             </tr>
           </thead>
 
@@ -64,13 +67,13 @@ const AllPooja = () => {
                 <td>{p.adharNo}</td>
                 <td>{p.id}</td>
                 <td>
-                <button
+                {/* <button
                     type="button"
                     className={"btn btn-danger"}
                     style={{ backgroundColor: "" }}
                   >
                     DELETE
-                  </button>
+                  </button> */}
                 </td>
               </tr>
             ))}

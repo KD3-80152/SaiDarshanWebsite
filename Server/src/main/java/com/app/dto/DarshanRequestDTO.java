@@ -34,6 +34,6 @@ public class DarshanRequestDTO
 
 	
 	@NotNull
-	private float amount;
+	private double amount;
 	
 }

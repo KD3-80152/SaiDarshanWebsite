@@ -6,10 +6,12 @@ import { useState,useEffect } from "react";
 
 const AllDarshan = () => {
 
+  const jwt = sessionStorage.getItem("jwtToken")
+
   const getAllDarshan=()=>{
-    axios.get("https://localhost:8443/admin/darshan/all",{
+    axios.get("https://localhost:8443/admin/all-dashan",{
       headers:{
-        "Authorization":"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcmFzaGFudEBnbWFpbC5jb20iLCJpYXQiOjE3MDgxNzIwMDIsImV4cCI6MTcwODI1ODQwMiwiYXV0aG9yaXRpZXMiOiJST0xFX0FETUlOIiwidXNlcklkIjoxfQ.SzgR0Ef2Ijdylo1YolMLFvhWzAw059TnJl-qqFWUXc91oWnTOZ2SXBnZtiS7UYY8gsYJFxhXuhFpw5-6ZK2Mbg"
+        "Authorization":"Bearer "+jwt
       }
     }).then(
         (response) => {
@@ -43,34 +45,33 @@ const AllDarshan = () => {
         <table className="table table-striped table-hover">
           <thead>
             <tr>
-              <th scope="col"></th> 
-              <th scope="col"></th>
-              <th scope="col"></th>
-              <th scope="col"></th>
-              <th scope="col"></th>
-              <th scope="col"></th>
-              <th scope="col"></th> 
-              <th>Action</th>
+              <th scope="col">Date</th> 
+              <th scope="col">Time Slot</th>
+              <th scope="col">Persons</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Primary Devotee Name</th>
+              <th scope="col">Aadhar No.</th>
+              {/* <th>Action</th> */}
             </tr>
           </thead>
 
           <tbody>
             {darshan.map((d) => (
               <tr key={d.id}>
-                <td>{d.numberOfDays}</td>
-                <td>{d.checkInDate}</td>
-                <td>{d.checkInTime}</td>
-                <td>{d.numberOfRooms}</td>
+                <td>{d.bookingDate}</td>
+                <td>{d.timeSlot}</td>
+                <td>{d.persons}</td>
+                <td>{d.amount}</td>
                 <td>{d.primaryDevoteeName}</td>
                 <td>{d.adharNo}</td>
                 <td>
-                <button
+                {/* <button
                     type="button"
                     className={"btn btn-danger"}
                     style={{ backgroundColor: "" }}
                   >
                     DELETE
-                  </button>
+                  </button> */}
                 </td>
               </tr>
             ))}
