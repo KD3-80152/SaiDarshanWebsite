@@ -57,7 +57,7 @@ public class AdminController {
 			//method=delete
 			// https://localhost:8443/admin/all-users/{id}
 				
-				@DeleteMapping("/all-users/{id}")
+				@DeleteMapping("/all-users/{userId}")
 
 				public ResponseEntity<?> deleteUser(@PathVariable Long userId)
 

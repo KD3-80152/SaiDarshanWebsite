@@ -66,14 +66,14 @@ public class DarshanController {
 	
 	//CANCEL PARTICULAR USER'S DARSHAN BOOKINGS
 	//method=DELETE
-	// https://localhost:8443/darshan/{id}
-	@DeleteMapping("/{id}")
-	public ResponseEntity<?> cancelDarshanBooking(@PathVariable Long id) 
+	// https://localhost:8443/darshan/{darshanId}
+	@DeleteMapping("/{darshanId}")
+	public ResponseEntity<?> cancelDarshanBooking(@PathVariable Long darshanId) 
 	{
 		
 		
-		System.out.println("in delete darshan " + id);
-		return ResponseEntity.ok(darshanService.deleteDarshanBookingById(id));
+		System.out.println("in delete darshan " + darshanId);
+		return ResponseEntity.ok(darshanService.deleteDarshanBookingById(darshanId));
 	}
 	
 

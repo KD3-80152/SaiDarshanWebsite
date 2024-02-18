@@ -57,11 +57,11 @@ public class AccommodationController {
 	
 	//CANCEL PARTICULAR USER'S ACCOMMODATION BOOKINGS
 	//method=DELETE
-		// https://localhost:8443/accommodation/{id}
-	@DeleteMapping("/{id}")
-	public ResponseEntity<?> deleteAccommodationDetails(@PathVariable Long id) {
-		System.out.println("in update accommodation" + id);
-		return ResponseEntity.ok(accoService.deleteAccomodationBookingById(id));
+		// https://localhost:8443/accommodation/{accommodationId}
+	@DeleteMapping("/{accommodationId}")
+	public ResponseEntity<?> deleteAccommodationDetails(@PathVariable Long accommodationId) {
+		System.out.println("in update accommodation" + accommodationId);
+		return ResponseEntity.ok(accoService.deleteAccomodationBookingById(accommodationId));
 	}
 	
 	

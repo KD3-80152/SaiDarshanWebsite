@@ -50,7 +50,7 @@ https://localhost:8443/accommodation
 
 //ADMIN POV DELETE USER BY ID
 			//method=delete
-			https://localhost:8443/admin/all-users/{id}
+			https://localhost:8443/admin/all-users/{userId}
 
 
 //ADMIN POV GETTING ALL POOJA BOOKINGS
@@ -85,7 +85,7 @@ https://localhost:8443/accommodation
 
 //CANCEL PARTICULAR USER'S DARSHAN BOOKINGS
 	//method=DELETE
-	https://localhost:8443/darshan/{id}
+	https://localhost:8443/darshan/{darshanId}
 
 
 //GET ALL BOOKED DATES i.e. UNAVAILABLE DATES
@@ -111,7 +111,7 @@ https://localhost:8443/accommodation
 
 //CANCEL PARTICULAR USER'S AARTI BOOKINGS
 	//method=DELETE
-	https://localhost:8443/aarti/{id}
+	https://localhost:8443/aarti/{aartiId}
 
 -------------------------------------------------------Pooja--------------------------------------------
 //ADD NEW POOJA BOOKING
@@ -126,7 +126,7 @@ https://localhost:8443/accommodation
 
 //CANCEL PARTICULAR USER'S POOJA BOOKINGS
 	//method=DELETE
-	https://localhost:8443/pooja/{id}
+	https://localhost:8443/pooja/{poojaId}
 
 //GET ALL BOOKED DATES i.e. UNAVAILABLE DATES
 	//method: GET
@@ -150,7 +150,7 @@ https://localhost:8443/accommodation
 
 //CANCEL PARTICULAR USER'S ACCOMMODATION BOOKINGS
 	//method=DELETE
-		https://localhost:8443/accommodation/{id}
+		https://localhost:8443/accommodation/{accommodationId}
 
 //GET ALL BOOKED DATES
 		//method=GET
