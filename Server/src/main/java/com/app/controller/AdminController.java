@@ -44,8 +44,8 @@ public class AdminController {
 	
 	//ADMIN POV GET ALL USERS
 			//method=get
-			// https://localhost:8443/signin/user
-			@GetMapping("/user/all")
+			// https://localhost:8443/admin/all-users
+			@GetMapping("/all-users")
 			public ResponseEntity<?> getAllUsers()
 			{
 				System.out.println("in get all users admin pov");
@@ -55,9 +55,9 @@ public class AdminController {
 			
 			//ADMIN POV DELETE USER BY ID
 			//method=delete
-			// https://localhost:8443/signin/user/{id}
+			// https://localhost:8443/admin/all-users/{id}
 				
-				@DeleteMapping("user/all/{id}")
+				@DeleteMapping("/all-users/{id}")
 
 				public ResponseEntity<?> deleteUser(@PathVariable Long userId)
 
@@ -72,8 +72,8 @@ public class AdminController {
 				
 				//ADMIN POV GETTING ALL POOJA BOOKINGS
 				//method=GET
-				// https://localhost:8443/admin/pooja/all
-				@GetMapping("/pooja/all")
+				// https://localhost:8443/admin/all-pooja
+				@GetMapping("/all-pooja")
 				public ResponseEntity<?> getAllPoojaBookings() throws IOException 
 				{
 					
@@ -85,8 +85,8 @@ public class AdminController {
 				
 				//ADMIN POV GETTING ALL ACCOMMODATION BOOKINGS
 				//method=GET
-				// https://localhost:8443/admin/accommodation/all
-				@GetMapping("/accommodation/all")
+				// https://localhost:8443/admin/all-accommodation
+				@GetMapping("/all-accommodation")
 				public ResponseEntity<?> getAllAccommodationBookings()
 				{
 					System.out.println("Get All Accommodation Bookings");
@@ -96,8 +96,8 @@ public class AdminController {
 				
 				//ADMIN POV GETTING ALL DARSHAN BOOKINGS
 				//method=GET
-						// https://localhost:8443/admin/darshan/all
-				@GetMapping("/darshan/all")
+						// https://localhost:8443/admin/all-dashan
+				@GetMapping("/all-dashan")
 				public ResponseEntity<?> getAllDarshanBookings()
 				{
 					System.out.println("Get All Darshan Bookings");
@@ -108,8 +108,8 @@ public class AdminController {
 
 				//ADMIN POV GETTING ALL AARTI BOOKINGS
 				//method=GET
-				// https://localhost:8443/admin/aarti/all
-				@GetMapping("/aarti/all")
+				// https://localhost:8443/admin/all-aarti
+				@GetMapping("/all-aarti")
 				public ResponseEntity<?> getAllAartiBookings()
 				{
 					System.out.println("Get All Aarti Bookings");

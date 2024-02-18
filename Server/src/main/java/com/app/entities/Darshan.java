@@ -34,7 +34,7 @@ public class Darshan extends BaseEntity{
 	private int persons;
 	
 	
-	private float amount;
+	private double amount;
 	
 	@Column(name="primary_devotee_name")
 	private String primaryDevoteeName;

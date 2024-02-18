@@ -76,7 +76,7 @@ public class UserController {
     }
 
 	
-	//FORGOT PASSWORD
+	//VERIFY OTP
 	//method=POST
 	// https://localhost:8443/user//verify-otp
     @PostMapping("/verify-otp")

@@ -65,17 +65,6 @@ public class AccommodationController {
 	}
 	
 	
-
-
-//	//ADMIN POV GETTING ALL ACCOMMODATION BOOKINGS
-//			//method=GET
-//			// https://localhost:8443/accommodation/all
-//	@GetMapping("/all")
-//	public ResponseEntity<?> getAllAccommodationBookings()
-//	{
-//		System.out.println("Get All Accommodation Bookings");
-//		return ResponseEntity.ok(accoService.getAllAccommodationBookings());
-//	}
 	
 	
 

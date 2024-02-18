@@ -17,6 +17,8 @@ import lombok.ToString;
 @NoArgsConstructor
 public class AddressRequestDTO {
 
+	
+	
 	@NotBlank(message="This field can't be empty")
 	private String lineOne;
 	
