@@ -5,7 +5,8 @@ import { useEffect, useState} from "react";
 
 const UserAllPooja = () => {
   
-
+    const [pooja, setPooja] = useState([]);
+  const [refresh, setRefresh] = useState(false); // State variable for triggering useEffect
   const jwt = sessionStorage.getItem("jwtToken")  
 
   const getUserAllPooja=()=>{
@@ -22,7 +23,7 @@ const UserAllPooja = () => {
         (error) => {
           //For Failure
           console.log("Error!!!!!");
-          toast.error("Something Went Wrong In Pooja");
+          toast.error();
         }
     );
     } 
@@ -36,12 +37,15 @@ const UserAllPooja = () => {
           }
         }).then((response)=>{
           console.log(response.data);
-          toast.success(response.data);
-          setPooja(pooja.filter((p) => p.id !== poojaId));
-        },error=>{
+          toast.success(response.data.message);
+          setRefresh(!refresh);
+          //setPooja(pooja.filter((p) => p.id !== poojaId));
+        }).catch(
+            (error)=>{
           console.log("Error");
-          toast.error("Something went wrong");
-        });
+          toast.error(error.message);
+        }
+        );
       }
 
   useEffect(()=>{   
@@ -50,7 +54,7 @@ const UserAllPooja = () => {
          
 
 
-  const [pooja, setPooja] = useState([]);
+  
 
   return (
     <div>

@@ -62,10 +62,8 @@ const Arti = () => {
                     // value={user.gender}
                   >
                     <option value="">Select Type</option>
-                    <option value="kakadarti">Kakad Arti </option>
-                    <option value="madhyamarti">Madhyan Arti</option>
-                    <option value="dhooparti">Dhoop Arti</option>
-                    <option value="shejarti">Shej Arti</option>
+                    <option value="KAKAD_AARTI">Kakad Arti </option>
+                    <option value="DHOOP_AARTI">Dhoop Arti</option>
                   </select>
                 </div>
           </div>

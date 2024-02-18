@@ -3,6 +3,8 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -27,6 +29,7 @@ public class Darshan extends BaseEntity{
 	private LocalDate bookingDate;
 	
 	@Column(name = "timeslot")
+	@Enumerated(EnumType.STRING)
 	private TimeEnum timeSlot;
 	
 	@Column(name="no_of_persons")
