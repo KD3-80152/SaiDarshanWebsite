@@ -3,19 +3,20 @@ package com.app.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.AuthenticatedPrincipal;
-import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.dto.ApiResponse;
+import com.app.dto.OtpDTO;
+import com.app.dto.ResetPassword;
 import com.app.dto.UserChangePasswordDTO;
 import com.app.dto.UserDTO;
 import com.app.security.FindUserDetails;
@@ -33,7 +34,7 @@ public class UserController {
 	
 	//GET USER PROFILE
 	//method=GET
-	// https://localhost:8443/user/my_profile
+	// https://localhost:8443/user/my-profile
 	@GetMapping("/my-profile")
 	public ResponseEntity<?> showUserProfile() {
 		Long userId = authUserDetails.getUserId();
@@ -44,7 +45,7 @@ public class UserController {
 	
 	//UPDATE USER PROFILE
 	  //method=PUT
-	  // https://localhost:8443/user/my_profile/update_user
+	  // https://localhost:8443/user/my-profile/update-user
 	//update the url according to front end
 		@PutMapping("/my-profile/update-user")
 		public ResponseEntity<?> updateUserDetails( @RequestBody @Valid UserDTO dto) {
@@ -55,7 +56,7 @@ public class UserController {
 		
 	//CHANGE PASSWORD
 	//method =patch
-	// https://localhost:8443/user/change_password
+	// https://localhost:8443/user/change-password
 	@PatchMapping("/change-password")
 	public ResponseEntity<?> changePassword(@RequestBody @Valid UserChangePasswordDTO dto)
 	{
@@ -65,4 +66,33 @@ public class UserController {
 	}
 	
 	
+	//FORGOT PASSWORD
+	//method=POST
+	// https://localhost:8443/user/forgot-password
+	@PostMapping("/forgot-password")
+    public ResponseEntity<ApiResponse> forgotPassword(@RequestParam String email) {
+        ApiResponse response = userService.forgotPassword(email);
+        return ResponseEntity.ok(response);
+    }
+
+	
+	//FORGOT PASSWORD
+	//method=POST
+	// https://localhost:8443/user//verify-otp
+    @PostMapping("/verify-otp")
+    public ResponseEntity<OtpDTO> verifyOtp(@RequestBody OtpDTO userRequest) {
+        OtpDTO response = userService.verifyOtp(userRequest);
+        return ResponseEntity.ok(response);
+    }
+	
+	
+	//RESET PASSWORD
+	//method=PUT
+	// https://localhost:8443/user/reset-password
+	@PutMapping("/reset-password")
+	public	ResponseEntity<ApiResponse> resetPassword(@Valid @RequestBody ResetPassword object)
+	{
+		return new ResponseEntity<ApiResponse>(userService.resetPassword(object),HttpStatus.OK);
+	}
+
 }
