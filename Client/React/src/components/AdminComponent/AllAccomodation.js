@@ -6,11 +6,11 @@ import { useState,useEffect } from "react";
 
 const AllAccomodation = () => {
 
-
+  const jwt = sessionStorage.getItem("jwtToken")
   const getAllAccomodation=()=>{
-    axios.get("https://localhost:8443/admin/accommodation/all",{
+    axios.get("https://localhost:8443/admin/all-accommodation",{
       headers:{
-        "Authorization":"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcmFzaGFudEBnbWFpbC5jb20iLCJpYXQiOjE3MDgxNzIwMDIsImV4cCI6MTcwODI1ODQwMiwiYXV0aG9yaXRpZXMiOiJST0xFX0FETUlOIiwidXNlcklkIjoxfQ.SzgR0Ef2Ijdylo1YolMLFvhWzAw059TnJl-qqFWUXc91oWnTOZ2SXBnZtiS7UYY8gsYJFxhXuhFpw5-6ZK2Mbg"
+        "Authorization":"Bearer "+jwt
       }
     }).then(
         (response) => {
@@ -48,7 +48,7 @@ const AllAccomodation = () => {
               <th scope="col">No of Rooms</th>
               <th scope="col">Primary Devotee Name</th>
               <th scope="col">AadharNo</th>
-              <th>Action</th>
+              {/* <th>Action</th> */}
             </tr>
           </thead>
 
@@ -62,12 +62,13 @@ const AllAccomodation = () => {
                 <td>{ac.primaryDevoteeName}</td>
                 <td>{ac.adharNo}</td>
                 <td>
-                  <button
-                    className={"btn"}
-                    style={{ backgroundColor: "orange" }}
+                {/* <button
+                    type="button"
+                    className={"btn btn-danger"}
+                    style={{ backgroundColor: "" }}
                   >
                     DELETE
-                  </button>
+                  </button> */}
                 </td>
               </tr>
             ))}

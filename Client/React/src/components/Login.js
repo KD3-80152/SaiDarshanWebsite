@@ -13,8 +13,6 @@ const Login = () => {
    
     let navigate = useNavigate();
 
-   
-
     const [loginRequest, setLoginRequest] = useState({
         email: "",
         password: "",
@@ -42,18 +40,15 @@ const Login = () => {
               console.log(res.mesg);
               
               console.log(role);
+              if (res.jwt != null) {
+                sessionStorage.setItem("jwtToken", res.jwt);
+                
+              }
               if (res.mesg === "ROLE_ADMIN")  /* Write Code  For Admin To Route  */
               {
                 console.log("Got the success response");
                 
-              
-             
-    
-                if (res.jwt != null) {
-                  sessionStorage.setItem("jwtToken", res.jwt);
-                  
-                }
-    
+                
                 if (res.jwt !== null) {
                   toast.success(res.mesg, {
                     position: "top-right",
@@ -65,7 +60,7 @@ const Login = () => {
                     progress: undefined,
                   });
                   setTimeout(() => {
-                    window.location.href = "/pooja";
+                    window.location.href = "/admin";
                      
                   }, 5000); 
                 } else {
@@ -83,7 +78,34 @@ const Login = () => {
               }
               else /* Write Code  For User To Route  */
               {
-
+                console.log("Got the success response");
+                
+                
+                if (res.jwt !== null) {
+                  toast.success(res.mesg, {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                  });
+                  setTimeout(() => {
+                    window.location.href = "/darshan";
+                     
+                  }, 5000); 
+                } else {
+                  toast.error(res.mesg, {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                  });
+                }
               }
 
 

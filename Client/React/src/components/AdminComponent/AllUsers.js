@@ -4,15 +4,32 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState,useEffect } from "react";
 
-
-
-
 const AllUsers =()=>{
+   
+  
+  const jwt = sessionStorage.getItem("jwtToken");
+
+  const deleteUserById=(id)=>{
+    console.log(id);
+    axios.delete(` https://localhost:8443/admin/all-users/${id}`,{
+      headers:{
+        "Authorization":"Bearer "+jwt 
+      }
+    }).then((response)=>{
+      console.log(response.data)
+      toast.success("User Deleted")
+    },error=>{
+      console.log("Error");
+      toast.error("Something Went Wrong");
+    });
+  }
+
+
 
   const getAllUsers=()=>{
-    axios.get("https://localhost:8443/admin/user/all",{
+    axios.get(" https://localhost:8443/admin/all-users",{
       headers:{
-        "Authorization":"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcmFzaGFudEBnbWFpbC5jb20iLCJpYXQiOjE3MDgxNzIwMDIsImV4cCI6MTcwODI1ODQwMiwiYXV0aG9yaXRpZXMiOiJST0xFX0FETUlOIiwidXNlcklkIjoxfQ.SzgR0Ef2Ijdylo1YolMLFvhWzAw059TnJl-qqFWUXc91oWnTOZ2SXBnZtiS7UYY8gsYJFxhXuhFpw5-6ZK2Mbg"
+        "Authorization":"Bearer "+jwt
       }
     }).then(
         (response) => {
@@ -70,8 +87,11 @@ const AllUsers =()=>{
                 <td>{u.adharNumber}</td>
                 <td>
                   <button
-                    className={"btn"}
-                    style={{ backgroundColor: "orange" }}
+
+                    onClick={()=>deleteUserById(u.id)}
+                    type="button"
+                    className={"btn btn-danger"}
+                    style={{ backgroundColor: "" }}
                   >
                     DELETE
                   </button>

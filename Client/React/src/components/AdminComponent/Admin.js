@@ -8,6 +8,8 @@ const Admin = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
+
+    sessionStorage.removeItem("jwtToken");
     toast.success("Come Back Agin!!!", {
       position: "top-center",
       autoClose: 3000,

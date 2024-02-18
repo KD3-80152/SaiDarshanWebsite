@@ -10,7 +10,7 @@ const Content = () => {
           <Link
             className="list-group-item list-group-item-action"
             tag="a"
-            to="/admin/user/all"
+            to="/admin/all-users"
             action
           >
             All Users
@@ -19,7 +19,7 @@ const Content = () => {
           <Link
             className="list-group-item list-group-item-action"
             tag="a"
-            to="/admin/darshan/all"
+            to="/admin/all-dashan"
             action
           >
             All Darshan
@@ -28,7 +28,7 @@ const Content = () => {
           <Link
             className="list-group-item list-group-item-action"
             tag="a"
-            to="/admin/pooja/all"
+            to="/admin/all-pooja"
             action
           >
             All Pooja
@@ -37,7 +37,7 @@ const Content = () => {
           <Link
             className="list-group-item list-group-item-action"
             tag="a"
-            to="/admin/aarti/all"
+            to="/admin/all-aarti"
             action
           >
             All Arti
@@ -46,7 +46,7 @@ const Content = () => {
           <Link
             className="list-group-item list-group-item-action"
             tag="a"
-            to="/admin/accommodation/all"
+            to="/admin/all-accommodation"
             action
           >
             All Accomodation

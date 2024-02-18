@@ -3,7 +3,6 @@ import Home from './components/Home';
 import {Routes,Route, BrowserRouter } from 'react-router-dom';
 import NotFound from './components/NotFound';
 import Copyright from './components/Copyright';
-import Registration from './components/Registration';
 import ContactUs from './components/ContactUs';
 import Darshan from './components/Darshan';
 import Arti from './components/Arti';
@@ -30,11 +29,11 @@ function App() {
      
         <Routes>
           <Route exact path="/admin" element={<Admin/>}>
-            <Route exact path="pooja/all" element={<AllPooja/>}/>
-            <Route exact path="aarti/all" element={<AllArti/>}/>
-            <Route exact path="darshan/all" element={<AllDarshan/>}/>
-            <Route exact path="accommodation/all" element={<AllAccomodation/>}/>
-            <Route exact path="user/all" element={<AllUsers/>}/>
+            <Route exact path="all-pooja" element={<AllPooja/>}/>
+            <Route exact path="all-aarti" element={<AllArti/>}/>
+            <Route exact path="all-dashan" element={<AllDarshan/>}/>
+            <Route exact path="all-accommodation" element={<AllAccomodation/>}/>
+            <Route exact path="all-users" element={<AllUsers/>}/>
           </Route>
           
 
