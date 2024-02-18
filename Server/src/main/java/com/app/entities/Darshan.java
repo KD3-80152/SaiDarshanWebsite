@@ -17,7 +17,7 @@ import lombok.ToString;
 @Entity
 @Table(name="darshan")
 
-@ToString
+
 
 @Getter
 @Setter
@@ -70,6 +70,16 @@ public class Darshan extends BaseEntity{
 		this.amount = amount;
 		this.primaryDevoteeName = primaryDevoteeName;
 		this.adharNo = adharNo;
+	}
+
+
+
+
+	@Override
+	public String toString() {
+		return "Darshan [bookingDate=" + bookingDate + ", timeSlot=" + timeSlot + ", persons=" + persons + ", amount="
+				+ amount + ", primaryDevoteeName=" + primaryDevoteeName + ", adharNo=" + adharNo + ", user=" + user
+				+ "]";
 	}
 
 	

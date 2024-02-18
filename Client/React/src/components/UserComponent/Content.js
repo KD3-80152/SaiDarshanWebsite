@@ -69,7 +69,7 @@ const Content = () => {
           <Link
             className="list-group-item list-group-item-action"
             tag="a"
-            to="/admin/aarti/"
+            to="/user/aarti/"
             action
           >
             All Aarti Bookings

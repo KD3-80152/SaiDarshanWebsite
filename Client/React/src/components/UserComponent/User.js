@@ -2,7 +2,7 @@ import Content from "./Content";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import NavBar from "../NavBar";
 
 const User = () => {
   const navigate = useNavigate();
@@ -54,6 +54,10 @@ const User = () => {
           >
             Log Out
           </button>
+        </div>
+
+        <div>
+        <NavBar/>
         </div>
 
         <div>

@@ -1,13 +1,12 @@
 package com.app.dto;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Range;
 
-import com.app.entities.State;
+import com.app.entities.TimeEnum;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -30,7 +29,7 @@ public class DarshanRequestDTO
 	private LocalDate bookingDate;
 	
 	@NotNull
-	private String timeSlot;
+	private TimeEnum timeSlot;
 	
 	@NotNull
 	@Range(max=4)

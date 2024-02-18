@@ -6,7 +6,7 @@ import { useEffect, useState} from "react";
 const UserAllPooja = () => {
   
     const [pooja, setPooja] = useState([]);
-  const [refresh, setRefresh] = useState(false); // State variable for triggering useEffect
+  
   const jwt = sessionStorage.getItem("jwtToken")  
 
   const getUserAllPooja=()=>{
@@ -17,13 +17,13 @@ const UserAllPooja = () => {
     }).then(
         (response) => {
           console.log("Successfull");
-          toast.success("All Pooja");
+          toast.success("All Pooja Booking");
           setPooja(response.data);
         }).catch(
         (error) => {
           //For Failure
           console.log("Error!!!!!");
-          toast.error();
+          toast.error("Something went wrong  :(");
         }
     );
     } 
@@ -38,7 +38,7 @@ const UserAllPooja = () => {
         }).then((response)=>{
           console.log(response.data);
           toast.success(response.data.message);
-          setRefresh(!refresh);
+          
           //setPooja(pooja.filter((p) => p.id !== poojaId));
         }).catch(
             (error)=>{
@@ -59,7 +59,7 @@ const UserAllPooja = () => {
   return (
     <div>
       <div style={{ color: "red", fontStyle: "italic" }}>
-        <h4>My All Pooja</h4>
+        <h4>My All Pooja Bookings</h4>
       </div>
       <hr />
 
@@ -73,7 +73,7 @@ const UserAllPooja = () => {
               <th scope="col">Amount</th>
               <th scope="col">Primary Devotee Name</th>
               <th scope="col">AadharNo</th>
-              <th scope="col">Id</th>
+              {/* <th scope="col">Id</th> */}
                <th> Action</th>
             </tr>
           </thead>
@@ -87,7 +87,7 @@ const UserAllPooja = () => {
                 <td>{p.amount}</td>
                 <td>{p.primaryDevoteeName}</td>
                 <td>{p.adharNo}</td>
-                <td>{p.id}</td>
+                {/* <td>{p.id}</td> */}
                 <td>
                 <button
 
