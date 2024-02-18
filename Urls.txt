@@ -36,7 +36,7 @@ https://localhost:8443/accommodation
 
 //VERIFY OTP
 	//method=POST
-	https://localhost:8443/user//verify-otp
+	https://localhost:8443/user/verify-otp
 
 
 //RESET PASSWORD
@@ -77,83 +77,83 @@ https://localhost:8443/accommodation
 -----------------------------------------------Darshan-----------------------------------------------
 //ADD NEW DARSHAN BOOKING
 	//method=POST
-	https://localhost:8443/darshan/add
+	https://localhost:8443/user/darshan/add
 
 //GET PARTICULAR USER'S DARSHAN BOOKINGS
 	//method=GET
-	 https://localhost:8443/darshan/
+	 https://localhost:8443/user/darshan/
 
 //CANCEL PARTICULAR USER'S DARSHAN BOOKINGS
 	//method=DELETE
-	https://localhost:8443/darshan/{darshanId}
+	https://localhost:8443/user/darshan/{darshanId}
 
 
 //GET ALL BOOKED DATES i.e. UNAVAILABLE DATES
 	//method: GET
-	https://localhost:8443/darshan//booked-timeslots/{date}
+	https://localhost:8443/user/darshan/booked-timeslots/{date}
 
 
 //GET ALL BOOKED DATES i.e. UNAVAILABLE DATES
 	//method: GET
-	https://localhost:8443/darshan/booked-dates
+	https://localhost:8443/user/darshan/booked-dates
 
 
 -----------------------------------------------------Aarti-----------------------------------------------
 //ADD NEW AARTI BOOKING 
 	//method=POST
-	https://localhost:8443/aarti/add
+	https://localhost:8443/user/aarti/add
 
 
 //GET ALL AARTI BOKINGS BY THE USER
 	//method=GET
-	 https://localhost:8443/aarti/
+	 https://localhost:8443/user/aarti/
 
 
 //CANCEL PARTICULAR USER'S AARTI BOOKINGS
 	//method=DELETE
-	https://localhost:8443/aarti/{aartiId}
+	https://localhost:8443/user/aarti/{aartiId}
 
 -------------------------------------------------------Pooja--------------------------------------------
 //ADD NEW POOJA BOOKING
 	//method=POST
-	 https://localhost:8443/pooja/add
+	 https://localhost:8443/user/pooja/add
 
 
 //GET PARTICULAR USER'S POOJA BOOKINGS
 	//method=GET
-	https://localhost:8443/pooja/
+	https://localhost:8443/user/pooja/
 
 
 //CANCEL PARTICULAR USER'S POOJA BOOKINGS
 	//method=DELETE
-	https://localhost:8443/pooja/{poojaId}
+	https://localhost:8443/user/pooja/{poojaId}
 
 //GET ALL BOOKED DATES i.e. UNAVAILABLE DATES
 	//method: GET
-	https://localhost:8443/pooja/get-booked-dates
+	https://localhost:8443/user/pooja/get-booked-dates
 
 
 //GET ALL BOOKED POOJA TYPES i.e. UNAVAILABLE POOJA SLOTS
 	//method: GET
-	https://localhost:8443/pooja/get-booked-type/{date}
+	https://localhost:8443/user/pooja/get-booked-type/{date}
 
 
 
 -----------------------------------------------Accommodation------------------------------------
 //ADD NEW ACCOMMODATION BOOKING
 	//method=POST
-	https://localhost:8443/accommodation/add
+	https://localhost:8443/user/accommodation/add
 
 //GET PARTICULAR USER'S ACCOMMODATION BOOKINGS
 	//method=GET
-	https://localhost:8443/accommodation/
+	https://localhost:8443/user/accommodation/
 
 //CANCEL PARTICULAR USER'S ACCOMMODATION BOOKINGS
 	//method=DELETE
-		https://localhost:8443/accommodation/{accommodationId}
+		https://localhost:8443/user/accommodation/{accommodationId}
 
 //GET ALL BOOKED DATES
 		//method=GET
-		 https://localhost:8443/accommodation/booked-dates
+		 https://localhost:8443/user/accommodation/booked-dates
 
 -------------------------------------------------------------------------------------------------------------

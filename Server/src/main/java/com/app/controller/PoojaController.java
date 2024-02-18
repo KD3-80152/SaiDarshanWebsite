@@ -39,7 +39,7 @@ public class PoojaController {
 	
 	//ADD NEW POOJA BOOKING
 	//method=POST
-	// https://localhost:8443/pooja/add
+	// https://localhost:8443/user/pooja/add
 	//UPDATE URL ACCORDING TO THE FRONT END FOR SIGNED IN USER
 	@PostMapping("/add")
 	public ResponseEntity<?> addNewPoojaBooking(@RequestBody
@@ -53,7 +53,7 @@ public class PoojaController {
 	
 	//GET PARTICULAR USER'S POOJA BOOKINGS
 	//method=GET
-	// https://localhost:8443/pooja/
+	// https://localhost:8443/user/pooja/
 	@GetMapping("/")
 	public ResponseEntity<?> getPoojaBookingsByUser() throws IOException 
 	{
@@ -66,7 +66,7 @@ public class PoojaController {
 	
 	//CANCEL PARTICULAR USER'S POOJA BOOKINGS
 	//method=DELETE
-	// https://localhost:8443/pooja/{poojaId}
+	// https://localhost:8443/user/pooja/{poojaId}
 		
 		@DeleteMapping("/{poojaId}")
 		public ApiResponse cancelPoojaBooking(@PathVariable Long poojaId) {
@@ -78,7 +78,7 @@ public class PoojaController {
 		
 	//GET ALL BOOKED DATES i.e. UNAVAILABLE DATES
 	//method: GET
-	// https://localhost:8443/pooja/get-booked-dates
+	// https://localhost:8443/user/pooja/get-booked-dates
 		@GetMapping("/get-booked-dates")
 		public List<LocalDate> getBookedDates()
 		{
@@ -87,7 +87,7 @@ public class PoojaController {
 		
 	//GET ALL BOOKED POOJA TYPES i.e. UNAVAILABLE POOJA SLOTS
 	//method: GET
-	// https://localhost:8443/pooja/get-booked-type/{date}
+	// https://localhost:8443/user/pooja/get-booked-type/{date}
 		@GetMapping("/get-booked-type/{date}")
 		public ResponseEntity<?> getBookedPoojaTypeForDate(@PathVariable String date)
 		{

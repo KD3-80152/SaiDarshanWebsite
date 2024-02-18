@@ -34,7 +34,7 @@ public class AccommodationController {
 	
 	//ADD NEW ACCOMMODATION BOOKING
 	//method=POST
-	// https://localhost:8443/accommodation/add
+	// https://localhost:8443/user/accommodation/add
 	@PostMapping("/add")
 	public ResponseEntity<?> addAccommodationBooking(@RequestBody
 			@Valid AccommodationRequestDTO acco) {
@@ -47,7 +47,7 @@ public class AccommodationController {
 	
 	//GET PARTICULAR USER'S ACCOMMODATION BOOKINGS
 	//method=GET
-	// https://localhost:8443/accommodation/
+	// https://localhost:8443/user/accommodation/
 	@GetMapping(value = "/")
 	public ResponseEntity<?> getAccommodationBookingsByUser() throws IOException {
 		Long userId = authUserDetails.getUserId();
@@ -57,7 +57,7 @@ public class AccommodationController {
 	
 	//CANCEL PARTICULAR USER'S ACCOMMODATION BOOKINGS
 	//method=DELETE
-		// https://localhost:8443/accommodation/{accommodationId}
+		// https://localhost:8443/user/accommodation/{accommodationId}
 	@DeleteMapping("/{accommodationId}")
 	public ResponseEntity<?> deleteAccommodationDetails(@PathVariable Long accommodationId) {
 		System.out.println("in update accommodation" + accommodationId);
@@ -70,7 +70,7 @@ public class AccommodationController {
 
 	//GET ALL BOOKED DATES
 		//method=GET
-		// https://localhost:8443/accommodation/booked-dates
+		// https://localhost:8443/user/accommodation/booked-dates
 	@GetMapping("/booked-dates")
 	public ResponseEntity<?> getAllAvailableDates()
 	{

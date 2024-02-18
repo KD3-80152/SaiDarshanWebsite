@@ -56,9 +56,9 @@ public class SecurityConfig {
 		// only required for JS clnts (react / angular) : for the pre flight requests
 		.antMatchers(HttpMethod.OPTIONS).permitAll()
 		.antMatchers("/user/my-profile","/user/my-profile/update-user","/user/change-password","/user/my-profile/address/**"
-				,"/darshan/add","/darshan/","/darshan/{darshanId}","/darshan/booked-dates","/darshan/booked-timeslots/{date}"
-				,"/pooja/add","/pooja/","/pooja/{poojaId}","/pooja/get-booked-type/{date}","/pooja/get-booked-dates"
-				,"/aarti/add","/aarti/","/aarti/{aartiId}"
+				,"/user/darshan/add","/user/darshan/","/user/darshan/{darshanId}","/user/darshan/booked-dates","/user/darshan/booked-timeslots/{date}"
+				,"/user/pooja/add","/user/pooja/","/user/pooja/{poojaId}","/user/pooja/get-booked-type/{date}","/user/pooja/get-booked-dates"
+				,"/user/aarti/add","/user/aarti/","/user/aarti/{aartiId}"
 				,"/accommodation/add","/accommodation/","/accommodation/{accommodationId}","/accommodation/booked-dates").hasRole("USER")  
 		.antMatchers("/admin/all-users","/admin/all-users/{userId}","/admin/all-accommodation","/admin/all-dashan","/admin/all-aarti","/admin/all-pooja"
 				,"/pooja/get-booked-type/{date}","/pooja/get-booked-dates","/darshan/booked-timeslots/{date}","/darshan/booked-dates").hasRole("ADMIN")
