@@ -55,7 +55,7 @@ public class AdminController {
 			
 			//ADMIN POV DELETE USER BY ID
 			//method=delete
-			// https://localhost:8443/admin/all-users/{id}
+			// https://localhost:8443/admin/all-users/{userId}
 				
 				@DeleteMapping("/all-users/{userId}")
 
