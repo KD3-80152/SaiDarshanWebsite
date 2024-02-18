@@ -43,7 +43,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Signup userRegistration(Signup reqDTO) {
 		
-		
 		UserEntity user=mapper.map(reqDTO, UserEntity.class);
 		user.setPassword(encoder.encode(user.getPassword()));//pwd : encrypted using SHA
 		return mapper.map(userDao.save(user), Signup.class);

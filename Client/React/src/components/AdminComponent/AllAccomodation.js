@@ -2,22 +2,33 @@ import React from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 const AllAccomodation = () => {
-  axios.get("https://localhost:8443/admin/allAccomodation").then(
-    (response) => {
-      //For Success
-      console.log("Successfull");
-      toast.success("All Accomodation");
-      setAccomodation(response.data);
-    },
-    (error) => {
-      //For Failure
-      console.log("Error!!!!!");
-      toast.error("Something Went Wrong In Accomodation");
-    }
-  );
+
+
+  const getAllAccomodation=()=>{
+    axios.get("https://localhost:8443/admin/accommodation/all",{
+      headers:{
+        "Authorization":"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcmFzaGFudEBnbWFpbC5jb20iLCJpYXQiOjE3MDgxNzIwMDIsImV4cCI6MTcwODI1ODQwMiwiYXV0aG9yaXRpZXMiOiJST0xFX0FETUlOIiwidXNlcklkIjoxfQ.SzgR0Ef2Ijdylo1YolMLFvhWzAw059TnJl-qqFWUXc91oWnTOZ2SXBnZtiS7UYY8gsYJFxhXuhFpw5-6ZK2Mbg"
+      }
+    }).then(
+        (response) => {
+          console.log("Successfull");
+          toast.success("All Accommodation");
+          setAccomodation(response.data);
+        },
+        (error) => {
+          //For Failure
+          console.log("Error!!!!!");
+          toast.error("Something Went Wrong In Pooja");
+        }
+      );
+  }
+
+  useEffect(()=>{
+    getAllAccomodation();
+  },[]) //For Success
 
   const [accomodation, setAccomodation] = useState([]);
 

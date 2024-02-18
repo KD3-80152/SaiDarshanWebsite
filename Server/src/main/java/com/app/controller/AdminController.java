@@ -45,7 +45,7 @@ public class AdminController {
 	//ADMIN POV GET ALL USERS
 			//method=get
 			// https://localhost:8443/signin/user
-			@GetMapping("/all-users")
+			@GetMapping("/user/all")
 			public ResponseEntity<?> getAllUsers()
 			{
 				System.out.println("in get all users admin pov");
@@ -57,7 +57,7 @@ public class AdminController {
 			//method=delete
 			// https://localhost:8443/signin/user/{id}
 				
-				@DeleteMapping("/all-users/{id}")
+				@DeleteMapping("user/all/{id}")
 
 				public ResponseEntity<?> deleteUser(@PathVariable Long userId)
 
