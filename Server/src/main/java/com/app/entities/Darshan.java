@@ -33,7 +33,7 @@ public class Darshan extends BaseEntity{
 	private int persons;
 	
 	
-	private float amount;
+	private double amount;
 	
 	@Column(name="primary_devotee_name")
 	private String primaryDevoteeName;
@@ -54,6 +54,7 @@ public class Darshan extends BaseEntity{
 //	
 //	@Column(name="no_of_children")
 //	private int children;
+
 	//public Integer counter;
 	
 	public Darshan(TimeEnum timeSlot) {
@@ -65,6 +66,22 @@ public class Darshan extends BaseEntity{
 		
 		this.bookingDate = bookingDate;
 	}
+//	public Integer counter;
+	
+	
+	public Darshan(LocalDate bookingDate, TimeEnum timeSlot, int persons, float amount, String primaryDevoteeName,
+			String adharNo) {
+		super();
+		this.bookingDate = bookingDate;
+		this.timeSlot = timeSlot;
+		this.persons = persons;
+		this.amount = amount;
+		this.primaryDevoteeName = primaryDevoteeName;
+		this.adharNo = adharNo;
 
+	}
+
+	
+	
 	
 }

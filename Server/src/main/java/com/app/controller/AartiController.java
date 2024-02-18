@@ -59,12 +59,12 @@ public class AartiController
 
 	//CANCEL PARTICULAR USER'S AARTI BOOKINGS
 	//method=DELETE
-	// https://localhost:8443/aarti/{id}
-	@DeleteMapping("/{id}")
-	public ResponseEntity<?> cancelAartiBooking(@PathVariable Long id)
+	// https://localhost:8443/aarti/{aartiId}
+	@DeleteMapping("/{aartiId}")
+	public ResponseEntity<?> cancelAartiBooking(@PathVariable Long aartiId)
 	{
-		System.out.println("In Delete Aarti: " + id);
-		return ResponseEntity.ok(artiService.deleteAartiBookingById(id));
+		System.out.println("In Delete Aarti: " + aartiId);
+		return ResponseEntity.ok(artiService.deleteAartiBookingById(aartiId));
 	}
 	
 	

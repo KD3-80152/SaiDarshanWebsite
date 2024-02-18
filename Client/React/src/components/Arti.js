@@ -45,17 +45,29 @@ const Arti = () => {
             style={{ marginLeft: 2 }}
           >
             <label class="dropdf ng-binding" for="inputLarge">
-              Pooja Type
+              Type
               <sup className="text-danger"> *</sup>
             </label>{" "}
-            <br />
-            <div class="textf col-sm-3">
-              <select>
-                <option value="">Arti Type</option>
-                <option value="kakadarti">Kakad Arti (Morning) 05:00-05:30</option>
-                <option value="madhyamarti">Madhyan Arti(Noon) 12:00-12:30</option>
-              </select>
-            </div>
+            {/* <br /> */}
+
+            <div className="col-md-6 mb-3" style={{marginTop:-23}}>
+                  <label htmlFor="artitype" className="form-label">
+                    {/* <b>Type</b> */}
+                  </label>
+                  <select
+                    className="form-select"
+                    id="artitype"
+                    name="artitype"
+                    // onChange={handleUserInput}
+                    // value={user.gender}
+                  >
+                    <option value="">Select Type</option>
+                    <option value="kakadarti">Kakad Arti </option>
+                    <option value="madhyamarti">Madhyan Arti</option>
+                    <option value="dhooparti">Dhoop Arti</option>
+                    <option value="shejarti">Shej Arti</option>
+                  </select>
+                </div>
           </div>
 
           <div

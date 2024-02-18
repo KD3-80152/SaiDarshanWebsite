@@ -1,0 +1,159 @@
+
+
+
+
+
+----------------------------------------------URLS For all------------------------------------------
+https://localhost:8443/darshan
+https://localhost:8443/users/signup
+https://localhost:8443/users/signin
+https://localhost:8443/aarti
+https://localhost:8443/pooja
+https://localhost:8443/accommodation
+
+
+-------------------------------------------------------Users------------------------------------------
+//GET USER PROFILE
+	//method=GET
+	 https://localhost:8443/user/my-profile
+
+
+
+//UPDATE USER PROFILE
+	  //method=PUT
+	   https://localhost:8443/user/my-profile/update-user
+
+
+//CHANGE PASSWORD
+	//method =patch
+	 https://localhost:8443/user/change-password
+
+
+//FORGOT PASSWORD
+	//method=POST
+	https://localhost:8443/user/forgot-password
+
+
+//VERIFY OTP
+	//method=POST
+	https://localhost:8443/user//verify-otp
+
+
+//RESET PASSWORD
+	//method=PUT
+	 https://localhost:8443/user/reset-password
+
+--------------------------------------------------------Admin--------------------------------------
+//ADMIN POV GET ALL USERS
+			//method=get
+			 https://localhost:8443/admin/all-users
+
+//ADMIN POV DELETE USER BY ID
+			//method=delete
+			https://localhost:8443/admin/all-users/{userId}
+
+
+//ADMIN POV GETTING ALL POOJA BOOKINGS
+				//method=GET
+				 https://localhost:8443/admin/all-pooja
+
+
+//ADMIN POV GETTING ALL ACCOMMODATION BOOKINGS
+				//method=GET
+				https://localhost:8443/admin/all-accommodation
+
+
+//ADMIN POV GETTING ALL DARSHAN BOOKINGS
+				//method=GET
+						 https://localhost:8443/admin/all-dashan
+
+
+//ADMIN POV GETTING ALL AARTI BOOKINGS
+				//method=GET
+				https://localhost:8443/admin/all-aarti
+
+
+
+-----------------------------------------------Darshan-----------------------------------------------
+//ADD NEW DARSHAN BOOKING
+	//method=POST
+	https://localhost:8443/darshan/add
+
+//GET PARTICULAR USER'S DARSHAN BOOKINGS
+	//method=GET
+	 https://localhost:8443/darshan/
+
+//CANCEL PARTICULAR USER'S DARSHAN BOOKINGS
+	//method=DELETE
+	https://localhost:8443/darshan/{darshanId}
+
+
+//GET ALL BOOKED DATES i.e. UNAVAILABLE DATES
+	//method: GET
+	https://localhost:8443/darshan//booked-timeslots/{date}
+
+
+//GET ALL BOOKED DATES i.e. UNAVAILABLE DATES
+	//method: GET
+	https://localhost:8443/darshan/booked-dates
+
+
+-----------------------------------------------------Aarti-----------------------------------------------
+//ADD NEW AARTI BOOKING 
+	//method=POST
+	https://localhost:8443/aarti/add
+
+
+//GET ALL AARTI BOKINGS BY THE USER
+	//method=GET
+	 https://localhost:8443/aarti/
+
+
+//CANCEL PARTICULAR USER'S AARTI BOOKINGS
+	//method=DELETE
+	https://localhost:8443/aarti/{aartiId}
+
+-------------------------------------------------------Pooja--------------------------------------------
+//ADD NEW POOJA BOOKING
+	//method=POST
+	 https://localhost:8443/pooja/add
+
+
+//GET PARTICULAR USER'S POOJA BOOKINGS
+	//method=GET
+	https://localhost:8443/pooja/
+
+
+//CANCEL PARTICULAR USER'S POOJA BOOKINGS
+	//method=DELETE
+	https://localhost:8443/pooja/{poojaId}
+
+//GET ALL BOOKED DATES i.e. UNAVAILABLE DATES
+	//method: GET
+	https://localhost:8443/pooja/get-booked-dates
+
+
+//GET ALL BOOKED POOJA TYPES i.e. UNAVAILABLE POOJA SLOTS
+	//method: GET
+	https://localhost:8443/pooja/get-booked-type/{date}
+
+
+
+-----------------------------------------------Accommodation------------------------------------
+//ADD NEW ACCOMMODATION BOOKING
+	//method=POST
+	https://localhost:8443/accommodation/add
+
+//GET PARTICULAR USER'S ACCOMMODATION BOOKINGS
+	//method=GET
+	https://localhost:8443/accommodation/
+
+//CANCEL PARTICULAR USER'S ACCOMMODATION BOOKINGS
+	//method=DELETE
+		https://localhost:8443/accommodation/{accommodationId}
+
+//GET ALL BOOKED DATES
+		//method=GET
+		 https://localhost:8443/accommodation/booked-dates
+
+-------------------------------------------------------------------------------------------------------------

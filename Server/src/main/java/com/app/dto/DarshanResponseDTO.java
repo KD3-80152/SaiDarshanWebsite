@@ -34,5 +34,5 @@ public class DarshanResponseDTO
 	@NotNull
 	private String adharNo;
 	
-	private Long id;
+	
 }

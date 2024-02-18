@@ -47,11 +47,24 @@ public class Accommodation extends BaseEntity {
 	@Column(name = "adhar_no",length = 12)
 	private String adharNo;
 	
-	
+	private double amount;
 	
 	public Accommodation(LocalDate checkInDate) {
 		this.checkInDate = checkInDate;
 	}
-	
+
+	public Accommodation(int numberOfDays, LocalDate checkInDate, LocalTime checkInTime, int numberOfRooms,
+			String primaryDevoteeName, String adharNo, double amount) {
+		super();
+		this.numberOfDays = numberOfDays;
+		this.checkInDate = checkInDate;
+		this.checkInTime = checkInTime;
+		this.numberOfRooms = numberOfRooms;
+		this.primaryDevoteeName = primaryDevoteeName;
+		this.adharNo = adharNo;
+		this.amount = amount;
+	}
+
+
 	
 }

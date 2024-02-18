@@ -28,7 +28,7 @@ public class PoojaResponseDTO {
 	
 	@NotNull
 	@Range(max = 2)
-	private int noofperson;
+	private int noOfPerson;
 	
 	@NotNull
 	private double amount;
@@ -41,5 +41,5 @@ public class PoojaResponseDTO {
 	@NotNull
 	private String adharNo;
 	
-	private Long id;
+	
 }

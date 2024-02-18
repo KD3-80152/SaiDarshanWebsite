@@ -66,7 +66,7 @@ public class PoojaController {
 	
 	//CANCEL PARTICULAR USER'S POOJA BOOKINGS
 	//method=DELETE
-	// https://localhost:8443/pooja/{id}
+	// https://localhost:8443/pooja/{poojaId}
 		
 		@DeleteMapping("/{poojaId}")
 		public ApiResponse cancelPoojaBooking(@PathVariable Long poojaId) {
