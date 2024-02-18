@@ -27,7 +27,7 @@ public class PoojaRequestDTO {
 	
 	@NotNull
 	@Range(max = 2)
-	private int noofperson;
+	private int noOfPerson;
 	
 	@NotNull
 	private double amount;

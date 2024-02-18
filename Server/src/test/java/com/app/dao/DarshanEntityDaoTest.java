@@ -14,6 +14,7 @@ import org.springframework.test.annotation.Rollback;
 
 import com.app.entities.Darshan;
 import com.app.entities.Gender;
+import com.app.entities.TimeEnum;
 import com.app.entities.UserEntity;
 import com.app.entities.UserRole;
 
@@ -22,27 +23,23 @@ import com.app.entities.UserRole;
 @Rollback(false)
 public class DarshanEntityDaoTest {
 
-	
-	
-		// dep
 		@Autowired
 		private DarshanDao darshanDao;
 
 		
 
-//		@Test
-//		void testAddUsers() {
-//
-//			List<Darshan> list = List.of(
-//					new Darshan("Prashant", "Kumar", "prashant@gmail.com", enc.encode("prashant"),"9465823452", UserRole.ROLE_ADMIN,LocalDate.parse("2000-11-04"),Gender.MALE,"146372983563"),
-//					new Darshan("Mugdha", "Moghe", "mugdha@gmail.com", enc.encode("mugdha"),"9465823451", UserRole.ROLE_USER,LocalDate.parse("1999-10-28"),Gender.FEMALE,"146372983562"),
-//					new Darshan("Unnati", "Joshi", "unnati@gmail.com", enc.encode("unnati"), "9465823453",UserRole.ROLE_USER,LocalDate.parse("1999-08-17"),Gender.FEMALE,"146372983561"),
-//					new Darshan("Himanshu", "Rathore", "himanshu@gmail.com", enc.encode("himanshu"), "9465823454",UserRole.ROLE_USER,LocalDate.parse("1999-08-04"),Gender.MALE,"146372983567"));
-//
-//			List<UserEntity> list2 = darshanDao.saveAll(list);
-//			assertEquals(4, list2.size());
-//
-//
-//		}
+		@Test
+		void testAddDarshan() {
+
+			List<Darshan> list = List.of(
+					new Darshan(LocalDate.parse("2024-03-10"), TimeEnum.SIX_AM, 3, 600.0f,"Unnati Joshi", "146372983563"),
+					new Darshan(LocalDate.parse("2024-03-12"), TimeEnum.EIGHT_AM, 3, 600.0f,"Mugdha Moghe", "146372983562"),
+					new Darshan(LocalDate.parse("2024-03-15"), TimeEnum.SIX_PM, 2, 400.0f,"Himanshu Rathore", "146372983567"));
+
+			List<Darshan> list2 = darshanDao.saveAll(list);
+			assertEquals(3, list2.size());
+
+
+		}
 
 }

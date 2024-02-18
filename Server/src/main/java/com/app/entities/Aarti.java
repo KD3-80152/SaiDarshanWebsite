@@ -47,7 +47,22 @@ public class Aarti extends BaseEntity
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private UserEntity user;
+
+	public Aarti(LocalDate aartiBookingDate, AartiType aartiBookingType, int noOfPerson, double amount,
+			String primaryDevoteeName, String adharNo) {
+		super();
+		this.aartiBookingDate = aartiBookingDate;
+		this.aartiBookingType = aartiBookingType;
+		this.noOfPerson = noOfPerson;
+		this.amount = amount;
+		this.primaryDevoteeName = primaryDevoteeName;
+		this.adharNo = adharNo;
+//		this.user = user;
+	}
 	
 
+	
+	
+	
 	
 }

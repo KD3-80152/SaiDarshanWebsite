@@ -39,4 +39,15 @@ public class Pooja extends BaseEntity{
 	@Column(name = "adhar_no",length = 12)
 	private String adharNo;
 
+	public Pooja(LocalDate date, int noOfPerson, double amount, PoojaType pooja, String primaryDevoteeName,
+			String adharNo) {
+		super();
+		this.date = date;
+		this.noOfPerson = noOfPerson;
+		this.amount = amount;
+		this.pooja = pooja;
+		this.primaryDevoteeName = primaryDevoteeName;
+		this.adharNo = adharNo;
+	}
+
 }

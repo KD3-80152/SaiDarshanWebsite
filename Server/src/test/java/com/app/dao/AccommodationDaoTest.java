@@ -3,6 +3,7 @@ package com.app.dao;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -12,30 +13,26 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 
-import com.app.entities.Darshan;
-import com.app.entities.Pooja;
-import com.app.entities.PoojaType;
-import com.app.entities.TimeEnum;
+import com.app.entities.Accommodation;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @Rollback(false)
-public class PoojaEntityDaoTest 
+public class AccommodationDaoTest 
 {
-
 	@Autowired
-	private PoojaDao poojaDao;
+	private AccommodationDao accommodationDao;
 	
 	@Test
-	void testAddPooja()
+	void testAddAccommdation()
 	{
-		List<Pooja> list = List.of(
-				new Pooja(LocalDate.parse("2024-03-10"),2, 400.0f,PoojaType.ABHISHEK_POOJA, "Unnati Joshi", "146372983563"),
-				new Pooja(LocalDate.parse("2024-03-12"), 1, 200.0f,PoojaType.SAI_SATYAVRAT_POOJA, "Mugdha Moghe", "146372983562"),
-				new Pooja(LocalDate.parse("2024-03-15"), 2, 400.0f, PoojaType.ABHISHEK_POOJA, "Himanshu Rathore", "146372983567"));
-
-		List<Pooja> list2 = poojaDao.saveAll(list);
+		List<Accommodation> list = List.of(
+				new Accommodation(2, LocalDate.parse("2024-03-10"), LocalTime.parse("12:00:00"), 1, "Unnati Joshi", "146372983563", 400),
+				new Accommodation(1, LocalDate.parse("2024-03-12"), LocalTime.parse("11:00:00"), 1, "Mugdha Moghe", "146372983562", 200),
+				new Accommodation(2, LocalDate.parse("2024-03-15"), LocalTime.parse("12:00:00"), 2, "Himanshu Rathore", "146372983567", 400));
+		
+		List<Accommodation> list2 = accommodationDao.saveAll(list);
 		assertEquals(3, list2.size());
+		
 	}
-	
 }
