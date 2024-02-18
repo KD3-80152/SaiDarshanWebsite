@@ -5,6 +5,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.app.dto.ApiResponse;
+import com.app.dto.OtpDTO;
+import com.app.dto.ResetPassword;
 import com.app.dto.Signup;
 import com.app.dto.UserChangePasswordDTO;
 import com.app.dto.UserDTO;
@@ -27,4 +29,10 @@ public interface UserService {
 
 
 	List<UserDTO> getAllUsers();
+	
+	ApiResponse forgotPassword(String email);
+	
+	OtpDTO verifyOtp(OtpDTO userRequest);
+	
+	ApiResponse resetPassword(ResetPassword object);
 }

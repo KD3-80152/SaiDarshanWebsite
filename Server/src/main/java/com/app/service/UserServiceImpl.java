@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,12 +18,15 @@ import com.app.custom_Exceptions.ResourceNotFoundException;
 import com.app.dao.AddressDao;
 import com.app.dao.UserEntityDao;
 import com.app.dto.ApiResponse;
-
+import com.app.dto.OtpDTO;
+import com.app.dto.ResetPassword;
 import com.app.dto.Signup;
 import com.app.dto.UserChangePasswordDTO;
 import com.app.dto.UserDTO;
 import com.app.entities.Address;
 import com.app.entities.UserEntity;
+import com.app.utils.EmailUtil;
+import com.app.utils.OtpUtil;
 
 @Service
 @Transactional
@@ -38,6 +43,12 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private AddressDao addDao;
+	
+	@Autowired
+	private EmailUtil emailUtil;
+	
+	@Autowired
+	private OtpUtil optUtil;
 
 	//SIGNUP
 	@Override
@@ -119,6 +130,62 @@ public class UserServiceImpl implements UserService {
 			return new ApiResponse("User with ID" +user.getId() +" deleted.");
 		}
 
+		
+		//FORGOT PASSWORD USING EMAIL
+
+		@Override
+		public ApiResponse forgotPassword(String email) {
+			
+			String otp=optUtil.generateOtp();
+			UserEntity user=userDao.findByEmail(email).orElseThrow(()->new UsernameNotFoundException(email));
+			if(user!=null)
+			{
+				try {
+					emailUtil.sendOtpEmail(email,otp);
+					user.setOtp(otp);
+				} catch (MessagingException e) {
+					// TODO Auto-generated catch block
+					throw new RuntimeException("Unable to send otp,please try again");
+				}
+			}
+			return new ApiResponse("email sent successfully,check you email");
+
+		}
+
+		
+		/**
+		 * Otp will be verified and store in the DB
+		 * */
+		@Override
+		public OtpDTO verifyOtp(OtpDTO userRequest) {
+			String email=userRequest.getEmail();
+			UserEntity user=userDao.findByEmail(email).orElseThrow(()->new UsernameNotFoundException(email));
+			String otp=user.getOtp();
+			if(user!=null)
+			{
+				if(userRequest.getOtp().equals(otp))
+				{
+					return new OtpDTO(email,otp);
+				}
+			}
+			return new OtpDTO("invalid email","or otp");
+		}
+		
+		/**
+		 * We will fetch the OTP from the DB and the url and
+		 * then the password will be updated
+		 * */
+		@Override
+		public ApiResponse resetPassword( ResetPassword object) {
+			UserEntity user=userDao.findByEmail(object.getEmail()).orElseThrow(()->new UsernameNotFoundException(object.getEmail()));
+			String dbSavedOtp=user.getOtp();
+			if(object.getOtp().equals(dbSavedOtp))
+			{
+				user.setPassword(encoder.encode(object.getPassword()));
+				return new ApiResponse("password updated successfully");
+			}
+			return new ApiResponse("password updation failed");
+		}
 
 
 
