@@ -30,11 +30,11 @@ function App() {
      
         <Routes>
           <Route exact path="/admin" element={<Admin/>}>
-            <Route exact path="allpooja" element={<AllPooja/>}/>
-            <Route exact path="allarti" element={<AllArti/>}/>
-            <Route exact path="alldarshan" element={<AllDarshan/>}/>
-            <Route exact path="allaccomodation" element={<AllAccomodation/>}/>
-            <Route exact path="allusers" element={<AllUsers/>}/>
+            <Route exact path="pooja/all" element={<AllPooja/>}/>
+            <Route exact path="aarti/all" element={<AllArti/>}/>
+            <Route exact path="darshan/all" element={<AllDarshan/>}/>
+            <Route exact path="accommodation/all" element={<AllAccomodation/>}/>
+            <Route exact path="user/all" element={<AllUsers/>}/>
           </Route>
           
 

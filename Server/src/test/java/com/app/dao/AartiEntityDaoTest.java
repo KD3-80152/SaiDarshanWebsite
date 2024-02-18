@@ -29,8 +29,8 @@ public class AartiEntityDaoTest
 	void testAddAarti()
 	{
 		List<Aarti> list = List.of(
-				new Aarti(LocalDate.parse("2024-03-12"),AartiType.Kakad_Aarti,2,400.00,"Himanshu Rathore","146372983563"),
-				new Aarti(LocalDate.parse("2024-03-12"),AartiType.Dhoop_Aarti,1,200.00,"Mugdha Moghe","146372983562"));
+				new Aarti(LocalDate.parse("2024-03-12"),AartiType.KAKAD_AARTI,2,400.00,"Himanshu Rathore","146372983563"),
+				new Aarti(LocalDate.parse("2024-03-12"),AartiType.DHOOP_AARTI,1,200.00,"Mugdha Moghe","146372983562"));
 		
 		
 		

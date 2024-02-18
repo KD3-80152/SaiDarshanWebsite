@@ -1,22 +1,32 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useState} from "react";
+import { useEffect, useState} from "react";
 
 const AllPooja = () => {
-  axios.get("https://localhost:8443/admin/allPooja").then(
-    (response) => {
-      //For Success
-      console.log("Successfull");
-      toast.success("All Pooja");
-      setPooja(response.data);
-    },
-    (error) => {
-      //For Failure
-      console.log("Error!!!!!");
-      toast.error("Something Went Wrong In Pooja");
-    }
-  );
+ 
+  const getAllPooja=()=>{
+    axios.get("https://localhost:8443/admin/pooja/all",{
+      headers:{
+        "Authorization":"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcmFzaGFudEBnbWFpbC5jb20iLCJpYXQiOjE3MDgxNzIwMDIsImV4cCI6MTcwODI1ODQwMiwiYXV0aG9yaXRpZXMiOiJST0xFX0FETUlOIiwidXNlcklkIjoxfQ.SzgR0Ef2Ijdylo1YolMLFvhWzAw059TnJl-qqFWUXc91oWnTOZ2SXBnZtiS7UYY8gsYJFxhXuhFpw5-6ZK2Mbg"
+      }
+    }).then(
+        (response) => {
+          console.log("Successfull");
+          toast.success("All Pooja");
+          setPooja(response.data);
+        },
+        (error) => {
+          //For Failure
+          console.log("Error!!!!!");
+          toast.error("Something Went Wrong In Pooja");
+        }
+      );
+  }
+  useEffect(()=>{
+    getAllPooja();
+  },[]) //For Success
+         
 
 
   const [pooja, setPooja] = useState([]);
@@ -48,7 +58,7 @@ const AllPooja = () => {
               <tr key={p.id}>
                 <td>{p.pooja}</td>
                 <td>{p.date}</td>
-                <td>{p.noofperson}</td>
+                <td>{p.noOfPerson}</td>
                 <td>{p.amount}</td>
                 <td>{p.primaryDevoteeName}</td>
                 <td>{p.adharNo}</td>
