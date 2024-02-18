@@ -33,6 +33,9 @@ public class AccommodationResponseDTO
 	@Range(max=2)
 	private int numberOfRooms;
 	
+	@NotNull
+	private double amount;
+	
 	@NotBlank
 	@NotNull
 	private String primaryDevoteeName;
