@@ -1,8 +1,17 @@
-import NavBar from "./NavBar"
-import Header from "./Header"
+import { toast } from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "react-toastify/dist/ReactToastify.css";
+import LoginNavbar from "./UserComponent/LoginNavBar";
+import { isCompositeComponent } from 'react-dom/test-utils';
 
 
 const Common = () =>{
+
+    
+
+
+
+
     return(
        <div>
         <div id="div1" style={{ backgroundColor: 'orange'}} className="text-center">
@@ -14,8 +23,10 @@ const Common = () =>{
         </div>
         
         <div>
-        <NavBar/>
+        <LoginNavbar/>
         </div>
+
+        
        </div>
     )
 }

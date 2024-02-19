@@ -1,14 +1,48 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Common from "./Common";
 import ArtiRunningLine from "./ArtiRunningLine";
 import FooterNav from "./FooterNav";
-import { useEffect } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Arti = () => {
+  const jwt = sessionStorage.getItem("jwtToken");
 
-  useEffect(()=>{
-    document.title="Arti";
-  },[]);
+  const [formData, setFormData] = useState({
+    aartiBookingDate: "",
+    aartiBookingType: "",
+    noOfPerson: "",
+    amount: "",
+    //idNo: "",
+  });
+  const [responseMessage, setResponseMessage] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios.post("https://localhost:8443/user/aarti/add", formData, {
+      headers: {
+        "Authorization":"Bearer "+jwt
+      },
+    })
+      .then((response) => {
+        setResponseMessage("Data submitted successfully");
+        console.log("Response:", response.data);
+        toast.success("Arti Booked Successfully Done");
+      })
+      .catch((error) => {
+        setResponseMessage("Error submitting data");
+        console.error("Error:", error);
+        toast.error("Arti, Try Again Something Went Wrong");
+      });
+  };
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  useEffect(() => {
+    document.title = "Arti";
+  }, []);
 
   return (
     <div style={{ margin: "auto" }}>
@@ -22,179 +56,65 @@ const Arti = () => {
         <hr />
 
         <div id="darshandetailsentry" className="row">
-          <div
-            id="datebutton"
-            class="textf col-sm-2"
-            style={{ marginLeft: 10 }}
-          >
-            <label class="textf ng-binding" for="inputLarge">
-              Date
-              <sup className="text-danger"> *</sup>
-            </label>
-            <input
-              type="date"
-              className="form-control ng-binding ng-untouched ng-valid"
-              name="name"
-              ng-model="pdqc.pageDeatils.userDetails.userFullName"
-            />
+          {/* Form fields */}
+          <div id="datebutton" className="textf col-sm-2" style={{ marginLeft: 10 }}>
+            <label className="textf ng-binding" htmlFor="inputLarge">Date<sup className="text-danger"> *</sup></label>
+            <input type="date" className="form-control ng-binding ng-untouched ng-valid" name="aartiBookingDate" value={formData.aartiBookingDate} onChange={handleInputChange} />
           </div>
 
-          <div
-            id="tepooja"
-            class="textf col-sm-3"
-            style={{ marginLeft: 2 }}
-          >
-            <label class="dropdf ng-binding" for="inputLarge">
-              Type
-              <sup className="text-danger"> *</sup>
-            </label>{" "}
-            {/* <br /> */}
-
-            <div className="col-md-6 mb-3" style={{marginTop:-23}}>
-                  <label htmlFor="artitype" className="form-label">
-                    {/* <b>Type</b> */}
-                  </label>
-                  <select
-                    className="form-select"
-                    id="artitype"
-                    name="artitype"
-                    // onChange={handleUserInput}
-                    // value={user.gender}
-                  >
-                    <option value="">Select Type</option>
-                    <option value="KAKAD_AARTI">Kakad Arti </option>
-                    <option value="DHOOP_AARTI">Dhoop Arti</option>
-                  </select>
-                </div>
+          <div id="tepooja" className="textf col-sm-3" style={{ marginLeft: 2 }}>
+            <label className="dropdf ng-binding" htmlFor="inputLarge"><sup className="text-danger"> *</sup></label>
+            <div className="col-md-6 mb-3" style={{ marginTop: -23 }}>
+              <select className="form-select" id="aartiBookingType" name="aartiBookingType" value={formData.aartiBookingType} onChange={handleInputChange}>
+                <option value="">Select Type</option>
+                <option value="KAKAD_AARTI">KAKAD ARTI</option>
+                <option value="DHOOP_AARTI">DHOOP ARTI</option>
+              </select>
+            </div>
           </div>
 
-          <div
-            id="darshandetailsentry2"
-            className="row"
-            style={{ marginTop: 5 }}
-          >
-            <div
-              id="datebutton"
-              class="textf col-sm-2"
-              style={{ marginLeft: 10 }}
-            >
-              <label class="textf ng-binding" for="inputLarge">
-                No of Person
-                <sup className="text-danger"> *</sup>
-              </label>
-              <input
-                type="number"
-                className="form-control ng-binding ng-untouched ng-valid"
-                name="noofperson"
-                ng-model="pdqc.pageDeatils.userDetails.userFullName"
-              />
+          <div id="darshandetailsentry2" className="row" style={{ marginTop: 5 }}>
+            <div id="datebutton" className="textf col-sm-2" style={{ marginLeft: 10 }}>
+              <label className="textf ng-binding" htmlFor="inputLarge">No of Person<sup className="text-danger"> *</sup></label>
+              <input type="number" className="form-control ng-binding ng-untouched ng-valid" name="noOfPerson" value={formData.noOfPerson} onChange={handleInputChange} />
             </div>
 
-            <div
-              id="amountbutton"
-              class="textf col-sm-2"
-              style={{ marginLeft: 10 }}
-            >
-              <label class="textf ng-binding" for="inputLarge">
-                Amount
-                <sup className="text-danger"> *</sup>
-              </label>
-              <input
-                type="number"
-                className="form-control ng-binding ng-untouched ng-valid"
-                name="amount"
-                ng-model="pdqc.pageDeatils.userDetails.userFullName"
-              />
+            <div id="amountbutton" className="textf col-sm-2" style={{ marginLeft: 10 }}>
+              <label className="textf ng-binding" htmlFor="inputLarge">Amount<sup className="text-danger"> *</sup></label>
+              <input type="number" className="form-control ng-binding ng-untouched ng-valid" name="amount" value={formData.amount} onChange={handleInputChange} />
             </div>
           </div>
         </div>
       </div>
 
       <div id="primarydetails">
-        <h4 style={{ color: "red", marginLeft: 10, marginTop: 10 }}>
-          Primary Devotee Details
-        </h4>
+        <h4 style={{ color: "red", marginLeft: 10, marginTop: 10 }}>Primary Devotee Details</h4>
         <hr />
         <div id="primarydetailsentry" className="row">
-          <div
-            id="fullNamebutton"
-            class="textf col-sm-2"
-            style={{ marginLeft: 10 }}
-          >
-            <label class="textf ng-binding" for="inputLarge">
-              Name
-              <sup className="text-danger"> *</sup>
-            </label>
-            <input
-              type="text"
-              className="form-control ng-binding ng-untouched ng-valid"
-              name="name"
-              ng-model="pdqc.pageDeatils.userDetails.userFullName"
-            />
+          {/* Primary devotee details */}
+          <div id="fullNamebutton" className="textf col-sm-2" style={{ marginLeft: 10 }}>
+            <label className="textf ng-binding" htmlFor="inputLarge">Name<sup className="text-danger"> *</sup></label>
+            <input type="text" className="form-control ng-binding ng-untouched ng-valid" name="name" />
           </div>
 
-          <div
-            id="fullNamebutton"
-            class="textf col-sm-1"
-            style={{ marginLeft: 2 }}
-          >
-            <label class="textf ng-binding" for="inputLarge">
-              Age
-              <sup className="text-danger"> *</sup>
-            </label>
-            <input
-              type="number"
-              className="form-control ng-binding ng-untouched ng-valid"
-              name="age"
-              ng-model="pdqc.pageDeatils.userDetails.userFullName"
-            />
+          <div id="fullNamebutton" className="textf col-sm-1" style={{ marginLeft: 2 }}>
+            <label className="textf ng-binding" htmlFor="inputLarge">Age<sup className="text-danger"> *</sup></label>
+            <input type="number" className="form-control ng-binding ng-untouched ng-valid" name="age" />
           </div>
 
-          <div
-            id="fullNamebutton"
-            class="textf col-sm-1"
-            style={{ marginLeft: 2 }}
-          >
-            <label class="textf ng-binding" for="inputLarge" >
-              Gender
-              <sup className="text-danger"> *</sup>
-            </label>
-            <input
-              type="text"
-              className="form-control ng-binding ng-untouched ng-valid"
-              name="gender"
-              ng-model="pdqc.pageDeatils.userDetails.userFullName"
-            />
+          <div id="fullNamebutton" className="textf col-sm-1" style={{ marginLeft: 2 }}>
+            <label className="textf ng-binding" htmlFor="inputLarge">Gender<sup className="text-danger"> *</sup></label>
+            <input type="text" className="form-control ng-binding ng-untouched ng-valid" name="gender" />
           </div>
 
-          <div
-            id="fullNamebutton"
-            class="textf col-sm-1"
-            style={{ marginLeft: 2 }}
-          >
-            <label class="textf ng-binding" for="inputLarge">
-              ID No.
-              <sup className="text-danger"> *</sup>
-            </label>
-            <input
-              type="text"
-              className="form-control ng-binding ng-untouched ng-valid"
-              name="idno"
-              ng-model="pdqc.pageDeatils.userDetails.userFullName"
-            />
+          <div id="fullNamebutton" className="textf col-sm-1" style={{ marginLeft: 2 }}>
+            <label className="textf ng-binding" htmlFor="inputLarge">ID No.<sup className="text-danger"> *</sup></label>
+            <input type="text" className="form-control ng-binding ng-untouched ng-valid" name="idno" value={formData.idNo} onChange={handleInputChange} />
           </div>
 
-          <div
-            id="idproof"
-            class="textf col-sm-3"
-            style={{ marginLeft: 2 }}
-          >
-            <label class="dropdf ng-binding" for="inputLarge">
-              ID Proof
-              <sup className="text-danger"> *</sup>
-            </label>{" "}
-            <br />
-            <div class="textf col-sm-3">
+          <div id="idproof" className="textf col-sm-3" style={{ marginLeft: 2 }}>
+            <label className="dropdf ng-binding" htmlFor="inputLarge">ID Proof<sup className="text-danger"> *</sup></label><br />
+            <div className="textf col-sm-3">
               <select>
                 <option value="">ID Proof</option>
                 <option value="aadhar">AadharCard</option>
@@ -204,8 +124,8 @@ const Arti = () => {
             </div>
           </div>
           <div id="loginButton" style={{ marginLeft: 10, marginTop: 15 }}>
-            <button type="button" class="btn btn-danger">
-              Login
+            <button type="button" className="btn btn-danger" onClick={handleSubmit}>
+              Submit
             </button>
           </div>
         </div>
