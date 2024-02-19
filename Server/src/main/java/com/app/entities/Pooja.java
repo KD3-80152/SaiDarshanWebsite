@@ -10,7 +10,7 @@ import lombok.*;
 @Table(name = "Pooja")
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+
 public class Pooja extends BaseEntity{
 	
 	
@@ -50,4 +50,11 @@ public class Pooja extends BaseEntity{
 		this.adharNo = adharNo;
 	}
 
+	@Override
+	public String toString() {
+		return "Pooja [date=" + date + ", noOfPerson=" + noOfPerson + ", amount=" + amount + ", pooja=" + pooja
+				+ ", user=" + user + ", primaryDevoteeName=" + primaryDevoteeName + ", adharNo=" + adharNo + "]";
+	}
+
+	
 }

@@ -27,7 +27,11 @@ const UserAllAccomodation = () => {
         } 
 
         const deleteAccomodationById=(accommodationId)=>{
+
             console.log(poojaId);
+
+            console.log(accommodationId);
+
             axios.delete(` https://localhost:8443/user/accommodation/${accommodationId}`,{
               headers:{
                 "Authorization":"Bearer "+jwt 
@@ -37,6 +41,10 @@ const UserAllAccomodation = () => {
               toast.success(response.data.message);
               setRefresh(!refresh);
               //setPooja(pooja.filter((p) => p.id !== poojaId));
+
+              
+              //setAccommodation(accommodation.filter((a) => a.id !== accommodationId));
+
             }).catch(
                 (error)=>{
               console.log("Error");
@@ -45,7 +53,9 @@ const UserAllAccomodation = () => {
             );
           }
 
-          useEffect(()=>{   
+
+          useEffect(()=>{
+
             getUserAllAccomodation();
         },[]) //For Success
                
@@ -67,7 +77,11 @@ const UserAllAccomodation = () => {
                       <th scope="col">Amount</th>
                       <th scope="col">Primary Devotee Name</th>
                       <th scope="col">AadharNo</th>
+
                       <th scope="col" hidden>Id</th>
+
+                      {/* <th scope="col" hidden>Id</th> */}
+
                        <th> Action</th>
                     </tr>
                   </thead>
@@ -82,6 +96,9 @@ const UserAllAccomodation = () => {
                         <td>{a.primaryDevoteeName}</td>
                         <td>{a.adharNo}</td>
                         <td>{a.id}</td>
+
+                        {/* <td>{a.id}</td> */}
+
                         <td>
                         <button
         

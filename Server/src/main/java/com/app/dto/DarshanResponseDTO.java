@@ -6,6 +6,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Range;
 
+import com.app.entities.TimeEnum;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,19 +25,12 @@ public class DarshanResponseDTO
 	private LocalDate bookingDate;
 	
 	@NotNull
-	private String timeSlot;
+	private TimeEnum timeSlot;
 	
 	@NotNull
 	@Range(max=4)
 	private int persons;
 
-//	@NotNull
-//	@Range(max=4)
-//	private int women;
-//	
-//	@NotNull
-//	@Range(max=4)
-//	private int children;
 	@NotNull
 	private double amount;
 	
