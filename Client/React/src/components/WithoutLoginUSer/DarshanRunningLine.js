@@ -1,7 +1,7 @@
 import React from 'react';
 import './RunningLine.css'; // Import CSS file
 
-const AccomodationRunningLine = () => {
+const DarshanRunningLine = () => {
   return (
     <div className="running-line-container">
       <div className="running-line-text" style={{fontStyle:'italic'}}><b>NOTE:-</b>
@@ -15,4 +15,4 @@ const AccomodationRunningLine = () => {
   );
 };
 
-export default AccomodationRunningLine;
+export default DarshanRunningLine;

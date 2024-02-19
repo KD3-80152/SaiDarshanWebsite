@@ -36,7 +36,7 @@ https://localhost:8443/accommodation
 
 //VERIFY OTP
 	//method=POST
-	https://localhost:8443/user/verify-otp
+	https://localhost:8443/user//verify-otp
 
 
 //RESET PASSWORD

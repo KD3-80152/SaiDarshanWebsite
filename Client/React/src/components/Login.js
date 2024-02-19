@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 
@@ -11,7 +11,7 @@ const Login = () => {
     document.title="Login";
   },[]);
    
-    let navigate = useNavigate();
+    //let navigate = useNavigate();
 
     const [loginRequest, setLoginRequest] = useState({
         email: "",
@@ -19,7 +19,7 @@ const Login = () => {
         
       });
 
-    const [role,setRole]=useState("");
+    //const [role,setRole]=useState("");
     
       const handleUserInput = (e) => {
         setLoginRequest({ ...loginRequest, [e.target.name]: e.target.value });
@@ -38,11 +38,10 @@ const Login = () => {
             console.log("result", result);
             result.json().then((res) => {
               console.log(res.mesg);
-              
-              console.log(role);
-              if (res.jwt != null) {
-                sessionStorage.setItem("jwtToken", res.jwt);
-                
+              const token = res.jwt;
+               console.log(token);
+              if (token != null) {
+                sessionStorage.setItem("jwtToken", token);
               }
               if (res.mesg === "ROLE_ADMIN")  /* Write Code  For Admin To Route  */
               {
@@ -52,7 +51,7 @@ const Login = () => {
                 if (res.jwt !== null) {
                   toast.success(res.mesg, {
                     position: "top-right",
-                    autoClose: 3000,
+                    autoClose: 1000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -66,7 +65,7 @@ const Login = () => {
                 } else {
                   toast.error(res.mesg, {
                     position: "top-right",
-                    autoClose: 3000,
+                    autoClose: 1000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -78,13 +77,13 @@ const Login = () => {
               }
               else /* Write Code  For User To Route  */
               {
-                console.log("Got the success response");
+                console.log("Got the success response For User");
                 
                 
                 if (res.jwt !== null) {
                   toast.success(res.mesg, {
                     position: "top-right",
-                    autoClose: 3000,
+                    autoClose: 1000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -92,13 +91,13 @@ const Login = () => {
                     progress: undefined,
                   });
                   setTimeout(() => {
-                    window.location.href = "/darshan";
+                    window.location.href = "darshan/add";
                      
                   }, 5000); 
                 } else {
                   toast.error(res.mesg, {
                     position: "top-right",
-                    autoClose: 3000,
+                    autoClose: 1000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -116,7 +115,7 @@ const Login = () => {
             console.error(error);
             toast.error("It seems server is down", {
               position: "top-right",
-              autoClose: 3000,
+              autoClose: 1000,
               hideProgressBar: false,
               closeOnClick: true,
               pauseOnHover: true,
