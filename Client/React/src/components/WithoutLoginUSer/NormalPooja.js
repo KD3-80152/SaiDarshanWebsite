@@ -4,47 +4,47 @@ import FooterNav from "./FooterNav";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const Pooja = () => {
+const NormalPooja = () => {
 
-  const jwt = sessionStorage.getItem("jwtToken");
+//   const jwt = sessionStorage.getItem("jwtToken");
 
-  useEffect(() => {
-    document.title = "Pooja";
-  }, []);
+//   useEffect(() => {
+//     document.title = "Pooja";
+//   }, []);
 
-  const [pooja, setPooja] = useState("");
-  const [date, setDate] = useState("");
-  const [noOfPerson, setNoOfPerson] = useState(1);
-  const [amount, setAmount] = useState(0);
+//   const [pooja, setPooja] = useState("");
+//   const [date, setDate] = useState("");
+//   const [noOfPerson, setNoOfPerson] = useState(1);
+//   const [amount, setAmount] = useState(0);
 
-  const handleNoOfPersonsChange = (event) => {
-    setNoOfPerson(Number(event.target.value));
-    const newAmount = event.target.value === "1" ? 200 : 400; // Example calculation
-    setAmount(newAmount);
-  };
+//   const handleNoOfPersonsChange = (event) => {
+//     setNoOfPerson(Number(event.target.value));
+//     const newAmount = event.target.value === "1" ? 200 : 400; // Example calculation
+//     setAmount(newAmount);
+//   };
 
-  const handleSubmit = () => {
-    const dataToSend = {
-      pooja: pooja,
-      date: date,
-      noOfPerson: noOfPerson,
-      amount: amount
-    };
+//   const handleSubmit = () => {
+//     const dataToSend = {
+//       pooja: pooja,
+//       date: date,
+//       noOfPerson: noOfPerson,
+//       amount: amount
+//     };
   
-    axios.post("https://localhost:8443/user/pooja/add", dataToSend, {
-        headers: {
-          "Authorization": "Bearer " + jwt
-        },
-      })
-      .then((response) => {
-        console.log("Response:", response.data);
-        toast.success("Pooja Booked Successfully");
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        toast.error("SomeThing Went Wrong In Pooja")
-      });
-  };
+//     axios.post("https://localhost:8443/user/pooja/add", dataToSend, {
+//         headers: {
+//           "Authorization": "Bearer " + jwt
+//         },
+//       })
+//       .then((response) => {
+//         console.log("Response:", response.data);
+//         toast.success("Pooja Booked Successfully");
+//       })
+//       .catch((error) => {
+//         console.error("Error:", error);
+//         toast.error("SomeThing Went Wrong In Pooja")
+//       });
+//   };
   
 
   return (
@@ -66,7 +66,7 @@ const Pooja = () => {
 
             <div className="col-md-2 mb-2" style={{ marginLeft: 200, marginTop: -10 }}>
               <label htmlFor="pooja" className="form-label">
-                <select className="form-select" id="pooja" name="pooja" value={pooja} onChange={(e) => setPooja(e.target.value)}>
+                <select className="form-select" id="pooja" name="pooja" >
                   <option value="">Select Pooja</option>
                   <option value="ABHISHEK_POOJA_5_AM">ABHISHEK POOJA</option>
                   <option value="SAI_SATYAVRAT_POOJA_12_PM">SAI SATYAVRAT POOJA</option>
@@ -83,7 +83,7 @@ const Pooja = () => {
 
             <div className="col-md-2 mb-2" style={{ marginLeft: 205, marginTop: -10 }}>
               <label htmlFor="date" className="form-label">
-                <input type="date" className="form-control ng-binding ng-untouched ng-valid" value={date} onChange={(e)=>setDate(e.target.value)} />
+                <input type="date" className="form-control ng-binding ng-untouched ng-valid" />
               </label>
             </div>
           </div>
@@ -95,10 +95,10 @@ const Pooja = () => {
             </label>
 
             <div className="col-md-2 mb-2" style={{ marginLeft: 130, marginTop: 10 }}>
-              <input type="radio" id="single" name="noOfPerson" className="form-check-input" value="1" style={{ marginLeft: 10 }} onChange={handleNoOfPersonsChange} />
+              <input type="radio" id="single" name="noOfPerson" className="form-check-input" value="1" style={{ marginLeft: 10 }} />
               <label htmlFor="single" className="form-check-label" style={{ marginLeft: 10 }}>Single</label>
 
-              <input type="radio" id="couple" name="noOfPerson" className="form-check-input" value="2" style={{ marginLeft: 10 }} onChange={handleNoOfPersonsChange} />
+              <input type="radio" id="couple" name="noOfPerson" className="form-check-input" value="2" style={{ marginLeft: 10 }}  />
               <label htmlFor="couple" className="form-check-label" style={{ marginLeft: 10 }}>Couple</label>
             </div>
           </div>
@@ -110,7 +110,7 @@ const Pooja = () => {
             </label>
 
             <div className="col-md-2 mb-2" style={{ marginLeft: 115, marginTop: -10 }}>
-              <input type="number" className="form-control ng-binding ng-untouched ng-valid" name="amount" value={amount} onChange={(e)=>setAmount(e.target.value)}  readOnly />
+              <input type="number" className="form-control ng-binding ng-untouched ng-valid" name="amount"  />
             </div>
           </div>
         </div>
@@ -123,16 +123,11 @@ const Pooja = () => {
           {/* Primary devotee details */}
           {/* ... */}
           {/* Submit button */}
-          <div style={{ marginLeft: 10, marginTop: 15, display: "flex" }}>
+          {/* <div style={{ marginLeft: 10, marginTop: 15, display: "flex" }}>
             <button type="button" className="btn btn-danger" onClick={handleSubmit}>
               Submit
             </button>
-<<<<<<< HEAD
-            
-            </div>
-=======
->>>>>>> 96eaeb8a77686d9e44f6928dea32d5da73a7b2c5
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -160,4 +155,4 @@ const Pooja = () => {
   );
 };
 
-export default Pooja;
+export default NormalPooja;

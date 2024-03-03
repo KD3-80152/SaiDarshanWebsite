@@ -5,10 +5,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 const Admin = () => {
+  
   const navigate = useNavigate();
-
   const handleLogout = () => {
-
     sessionStorage.removeItem("jwtToken");
     toast.success("Come Back Agin!!!", {
       position: "top-center",

@@ -5,52 +5,52 @@ import DarshanRunningLine from "./DarshanRunningLine";
 import FooterNav from "./FooterNav";
 import axios from "axios";
 
-const Darshan = () => {
+const NormalDarshan = () => {
 
-  const jwt = sessionStorage.getItem("jwtToken");
+//   const jwt = sessionStorage.getItem("jwtToken");
 
-  // State variables for form data and response message
-  const [formData, setFormData] = useState({
-    bookingDate: "",
-    timeSlot: "",
-    persons: "",
-    amount: "",
-    //fullName: "",
-    //age: "",
-    //gender: "",
-    idNo: "",
-    //idProof: "",
-  });
-  const [responseMessage, setResponseMessage] = useState("");
+//   // State variables for form data and response message
+//   const [formData, setFormData] = useState({
+//     bookingDate: "",
+//     timeSlot: "",
+//     persons: "",
+//     amount: "",
+//     //fullName: "",
+//     //age: "",
+//     //gender: "",
+//     idNo: "",
+//     //idProof: "",
+//   });
+//   const [responseMessage, setResponseMessage] = useState("");
 
-  // Function to handle form submission
-  const handleSubmit = (e) => {
+//   // Function to handle form submission
+//   const handleSubmit = (e) => {
    
-    axios.post("https://localhost:8443/user/darshan/add", formData ,{
-      headers:{
-        "Authorization":"Bearer "+jwt
-      }
-    })
-      .then((response) => {
-        setResponseMessage("Data submitted successfully");
-        console.log("Response:", response.data);
-        toast.success("Successfully Done In Darshan");
-      })
-      .catch((error) => {
-        setResponseMessage("Error submitting data");
-        console.error("Error:", error);
-        toast.error("Something Went Wrong In Darshan!!");
-      });
-  };
+//     axios.post("https://localhost:8443/user/darshan/add", formData ,{
+//       headers:{
+//         "Authorization":"Bearer "+jwt
+//       }
+//     })
+//       .then((response) => {
+//         setResponseMessage("Data submitted successfully");
+//         console.log("Response:", response.data);
+//         toast.success("Successfully Done In Darshan");
+//       })
+//       .catch((error) => {
+//         setResponseMessage("Error submitting data");
+//         console.error("Error:", error);
+//         toast.error("Something Went Wrong In Darshan!!");
+//       });
+//   };
 
-  // Function to handle input change
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+//   // Function to handle input change
+//   const handleInputChange = (e) => {
+//     setFormData({ ...formData, [e.target.name]: e.target.value });
+//   };
 
-  useEffect(() => {
-    document.title = "Darshan";
-  }, []);
+//   useEffect(() => {
+//     document.title = "Darshan";
+//   }, []);
 
   return (
     <div>
@@ -68,7 +68,7 @@ const Darshan = () => {
           {/* Date */}
           <div id="datebutton" className="textf col-sm-2" style={{ marginLeft: 10 }}>
             <label className="textf ng-binding" htmlFor="inputLarge">Date<sup className="text-danger"> *</sup></label>
-            <input type="date" className="form-control ng-binding ng-untouched ng-valid" name="bookingDate" value={formData.bookingDate} onChange={handleInputChange} />
+            <input type="date" className="form-control ng-binding ng-untouched ng-valid" name="bookingDate" />
           </div>
           {/* Time Slot */}
           {/* <div id="timeslotbutton" className="textf col-sm-2" style={{ marginLeft: 10 }}>
@@ -77,7 +77,7 @@ const Darshan = () => {
           </div> */}
                       {/* Select Time Slot */}
                       <div className="row">
-                        <select class="form-select" aria-label="Default select example" id="timeSlot" name="timeSlot" value={formData.timeSlot}  onChange={handleInputChange}  style={{width:200, height:35,marginLeft:300,marginTop:-35}}>
+                        <select class="form-select" aria-label="Default select example" id="timeSlot" name="timeSlot"  style={{width:200, height:35,marginLeft:300,marginTop:-35}}>
                           <option selected>Select Time Slot</option>
                           <option value="SIX_AM" >6:00</option>
                           <option value="EIGHT_AM" >8:00</option>
@@ -92,12 +92,12 @@ const Darshan = () => {
           <div id="darshandetailsentry2" className="row" style={{ marginTop: 5 }}>
             <div id="datebutton" className="textf col-sm-2" style={{ marginLeft: 10 }}>
               <label className="textf ng-binding" htmlFor="inputLarge">No of Person<sup className="text-danger"> *</sup></label>
-              <input type="number" className="form-control ng-binding ng-untouched ng-valid" name="persons" value={formData.persons} onChange={handleInputChange} />
+              <input type="number" className="form-control ng-binding ng-untouched ng-valid" name="persons" />
             </div>
             {/* Amount */}
             <div id="amountbutton" className="textf col-sm-2" style={{ marginLeft: 10 }}>
               <label className="textf ng-binding" htmlFor="inputLarge">Amount<sup className="text-danger"> *</sup></label>
-              <input type="number" className="form-control ng-binding ng-untouched ng-valid" name="amount" value={formData.amount} onChange={handleInputChange} />
+              <input type="number" className="form-control ng-binding ng-untouched ng-valid" name="amount"  />
             </div>
           </div>
         </div>
@@ -112,28 +112,28 @@ const Darshan = () => {
           {/* Name */}
           <div id="fullNamebutton" className="textf col-sm-2" style={{ marginLeft: 10 }}>
             <label className="textf ng-binding" htmlFor="inputLarge">Name<sup className="text-danger"> *</sup></label>
-            <input type="text" className="form-control ng-binding ng-untouched ng-valid" name="fullName" value={formData.fullName} onChange={handleInputChange} />
+            <input type="text" className="form-control ng-binding ng-untouched ng-valid" name="fullName"/>
           </div>
           {/* Age */}
           <div id="fullNamebutton" className="textf col-sm-1" style={{ marginLeft: 2 }}>
             <label className="textf ng-binding" htmlFor="inputLarge">Age<sup className="text-danger"> *</sup></label>
-            <input type="number" className="form-control ng-binding ng-untouched ng-valid" name="age" value={formData.age} onChange={handleInputChange} />
+            <input type="number" className="form-control ng-binding ng-untouched ng-valid" name="age" />
           </div>
           {/* Gender */}
           <div id="fullNamebutton" className="textf col-sm-1" style={{ marginLeft: 2 }}>
             <label className="textf ng-binding" htmlFor="inputLarge">Gender<sup className="text-danger"> *</sup></label>
-            <input type="text" className="form-control ng-binding ng-untouched ng-valid" name="gender" value={formData.gender} onChange={handleInputChange} />
+            <input type="text" className="form-control ng-binding ng-untouched ng-valid" name="gender" />
           </div>
           {/* ID No. */}
           <div id="fullNamebutton" className="textf col-sm-1" style={{ marginLeft: 2 }}>
             <label className="textf ng-binding" htmlFor="inputLarge">ID No.<sup className="text-danger"> *</sup></label>
-            <input type="text" className="form-control ng-binding ng-untouched ng-valid" name="idNo" value={formData.idNo} onChange={handleInputChange} />
+            <input type="text" className="form-control ng-binding ng-untouched ng-valid" name="idNo" />
           </div>
           {/* ID Proof */}
           <div id="fullNamebutton" className="textf col-sm-3" style={{ marginLeft: 2 }}>
             <label className="dropdf ng-binding" htmlFor="inputLarge">ID Proof<sup className="text-danger"> *</sup></label><br />
             <div className="textf col-sm-3">
-              <select name="idProof" value={formData.idProof} onChange={handleInputChange}>
+              <select name="idProof" >
                 <option value="">ID Proof</option>
                 <option value="aadhar">AadharCard</option>
                 <option value="pancard">PanCard</option>
@@ -143,9 +143,9 @@ const Darshan = () => {
           </div>
           {/* Login button */}
         
-            <div id="loginButton" style={{ marginLeft: 10, marginTop: 15 }}>
+            {/* <div id="loginButton" style={{ marginLeft: 10, marginTop: 15 }}>
               <button type="button" className="btn btn-danger" onClick={()=>{handleSubmit()}}>Submit</button>
-            </div>
+            </div> */}
           
         </div>
       </div>
@@ -164,4 +164,4 @@ const Darshan = () => {
   );
 };
 
-export default Darshan;
+export default NormalDarshan;

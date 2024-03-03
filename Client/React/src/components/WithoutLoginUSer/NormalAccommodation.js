@@ -3,65 +3,66 @@ import axios from 'axios';
 import Common from './Common';
 import FooterNav from './FooterNav';
 import { toast } from 'react-toastify';
+import { Navigate } from 'react-router-dom';
 
-const Accommodation = () => {
-  const jwt = sessionStorage.getItem('jwtToken');
+const NormalAccommodation = () => {
+//   const jwt = sessionStorage.getItem('jwtToken');
 
-  useEffect(() => {
-    document.title = 'Accommodation';
-  }, []);
+//   useEffect(() => {
+//     document.title = 'Accommodation';
+//   }, []);
 
-  const [numberOfRooms, setNumberOfRooms] = useState(1);
-  const [numberOfDays, setNumberOfDays] = useState(1);
-  const [amount, setAmount] = useState(500); // Assuming charge for each room is 500
+//   const [numberOfRooms, setNumberOfRooms] = useState(1);
+//   const [numberOfDays, setNumberOfDays] = useState(1);
+//   const [amount, setAmount] = useState(500); // Assuming charge for each room is 500
 
-  const handleNumberOfRoomsChange = (e) => {
-    const rooms = parseInt(e.target.value);
-    setNumberOfRooms(rooms);
-    calculateAmount(rooms, numberOfDays);
-  };
+//   const handleNumberOfRoomsChange = (e) => {
+//     const rooms = parseInt(e.target.value);
+//     setNumberOfRooms(rooms);
+//     calculateAmount(rooms, numberOfDays);
+//   };
 
-  const handleNumberOfDaysChange = (e) => {
-    const days = parseInt(e.target.value);
-    setNumberOfDays(days);
-    calculateAmount(numberOfRooms, days);
-  };
+//   const handleNumberOfDaysChange = (e) => {
+//     const days = parseInt(e.target.value);
+//     setNumberOfDays(days);
+//     calculateAmount(numberOfRooms, days);
+//   };
 
-  const calculateAmount = (rooms, days) => {
-    const totalAmount = rooms * 500 * days; // Assuming charge for each room is 500
-    setAmount(totalAmount);
-  };
+//   const calculateAmount = (rooms, days) => {
+//     const totalAmount = rooms * 500 * days; // Assuming charge for each room is 500
+//     setAmount(totalAmount);
+//   };
 
-  const handleSubmit = () => {
-    const checkInDate = document.getElementById('checkInDate').value;
-    const checkInTime = document.getElementById('checkInTime').value;
+//   const handleSubmit = () => {
+//     const checkInDate = document.getElementById('checkInDate').value;
+//     const checkInTime = document.getElementById('checkInTime').value;
 
-    // Send data to the backend
-    axios
-      .post(
-        'https://localhost:8443/user/accommodation/add',
-        {
-          numberOfRooms: numberOfRooms,
-          numberOfDays: numberOfDays,
-          checkInDate: checkInDate,
-          checkInTime: checkInTime,
-        },
-        {
-          headers: {
-            Authorization: 'Bearer ' + jwt,
-          },
-        }
-      )
-      .then((response) => {
-        console.log('Response:', response.data);
-        // Handle response
-        toast.success(" Accommodation Successfully Done");
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        toast.error("Error Occurred In Accommodation");
-      });
-  };
+//     // Send data to the backend
+//     axios
+//       .post(
+//         'https://localhost:8443/user/accommodation/add',
+//         {
+//           numberOfRooms: numberOfRooms,
+//           numberOfDays: numberOfDays,
+//           checkInDate: checkInDate,
+//           checkInTime: checkInTime,
+//         },
+//         {
+//           headers: {
+//             Authorization: 'Bearer ' + jwt,
+//           },
+//         }
+//       )
+//       .then((response) => {
+//         console.log('Response:', response.data);
+//         // Handle response
+//         toast.success(" Accommodation Successfully Done");
+//       })
+//       .catch((error) => {
+//         console.error('Error:', error);
+//         toast.error("Error Occurred In Accommodation");
+//       });
+//   };
 
   return (
     <div style={{ margin: 'auto' }}>
@@ -106,8 +107,8 @@ const Accommodation = () => {
               className="form-select"
               id="noOfRooms"
               name="noOfRooms"
-              value={numberOfRooms}
-              onChange={handleNumberOfRoomsChange}
+            //   value={numberOfRooms}
+            //   onChange={handleNumberOfRoomsChange}
             >
               <option value="1">1</option>
               <option value="2">2</option>
@@ -125,8 +126,8 @@ const Accommodation = () => {
               className="form-select"
               id="noOfDays"
               name="noOfDays"
-              value={numberOfDays}
-              onChange={handleNumberOfDaysChange}
+            //   value={numberOfDays}
+            //   onChange={handleNumberOfDaysChange}
             >
               <option value="1">1</option>
               <option value="2">2</option>
@@ -145,16 +146,18 @@ const Accommodation = () => {
               className="form-control ng-binding ng-untouched ng-valid"
               id="amount"
               name="amount"
-              value={amount}
+            //   value={amount}
               disabled
             />
           </div>
 
+          {/* <Navigate>
           <div id="submitButton" style={{ marginLeft: 10, marginTop: 20 }}>
-            <button type="button" className="btn btn-primary" onClick={handleSubmit}>
+            <button type="button" className="btn btn-primary">
               Submit
             </button>
           </div>
+          </Navigate> */}
         </div>
       </div>
 
@@ -169,4 +172,4 @@ const Accommodation = () => {
   );
 };
 
-export default Accommodation;
+export default NormalAccommodation;

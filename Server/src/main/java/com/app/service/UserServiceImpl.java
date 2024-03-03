@@ -25,6 +25,7 @@ import com.app.dto.UserChangePasswordDTO;
 import com.app.dto.UserDTO;
 import com.app.entities.Address;
 import com.app.entities.UserEntity;
+import com.app.entities.UserRole;
 import com.app.utils.EmailUtil;
 import com.app.utils.OtpUtil;
 
@@ -56,6 +57,7 @@ public class UserServiceImpl implements UserService {
 		
 		UserEntity user=mapper.map(reqDTO, UserEntity.class);
 		user.setPassword(encoder.encode(user.getPassword()));//pwd : encrypted using SHA
+		user.setRole(UserRole.ROLE_USER);
 		return mapper.map(userDao.save(user), Signup.class);
 	}
 
